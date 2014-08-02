@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputStylesheet name="geral.css" library="css" />
+	<title>Tickets Aereos</title>
+</h:head>
+<h:body>
+	<p:layout fullPage="true">
+		<p:layoutUnit position="north" size="160" styleClass="layoutPaginaConteudo">
+			<ui:include src="menu.xhtml"/>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center" styleClass="layoutPaginaConteudo">
+			<h:form id="formMessages">
+				<p:growl id="growlMessages" showDetail="true" autoUpdate="true" closable="true" />
+				<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />			
+			</h:form>
+			<ui:insert name="centerContent"/>
+		</p:layoutUnit>
+		
+		<p:layoutUnit position="east" size="150" styleClass="layoutPaginaConteudo">
+		</p:layoutUnit>
+
+		<p:layoutUnit position="south" size="70" styleClass="layoutPaginaConteudo">
+			<h3 align="center">
+				INSERIR NOME DOS ALUNOS
+			</h3>
+		</p:layoutUnit>
+
+	</p:layout>
+</h:body>
+</html>

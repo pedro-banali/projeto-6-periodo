@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf12839225897960" configfile="/TicketsAereosBSI_JSF/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="payment.xhtml" x="122" y="433" id="pf128417776012122" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" path="payment.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="register.xhtml" x="122" y="1073" id="pf128417779137424" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" path="register.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="page2.xhtml" x="122" y="2109" id="pf128430768814316" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" path="page2.xhtml"/>
+</pageflow:Pageflow>
