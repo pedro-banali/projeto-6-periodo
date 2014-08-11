@@ -11,6 +11,7 @@ public abstract class Pessoa {
 	private Date dataNascimento;
 	private String usuario;
 	private String senha;
+	private Endereco endereco;
 	
 	public long getId() {
 		return id;
@@ -53,6 +54,12 @@ public abstract class Pessoa {
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	public Endereco getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 	
 	
