@@ -22,6 +22,11 @@ public class Aeroporto implements IdentifierInterface, Serializable {
 	private String codigo;
 	private Endereco endereco;
 	
+	public Aeroporto(Endereco endereco)
+	{
+		this.endereco = endereco;
+	}
+	
 	public Long getId() {
 		return id;
 	}

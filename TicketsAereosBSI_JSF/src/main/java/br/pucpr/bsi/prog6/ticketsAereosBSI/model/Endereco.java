@@ -18,7 +18,7 @@ public class Endereco implements IdentifierInterface, Serializable {
 	
 	private long id;
 	private String rua;
-	private String numero;
+	private int numero;
 	private String complemento;
 	private String bairro;
 	private String cidade;
@@ -37,10 +37,10 @@ public class Endereco implements IdentifierInterface, Serializable {
 	public void setRua(String rua) {
 		this.rua = rua;
 	}
-	public String getNumero() {
+	public int getNumero() {
 		return numero;
 	}
-	public void setNumero(String numero) {
+	public void setNumero(int numero) {
 		this.numero = numero;
 	}
 	public String getComplemento() {
