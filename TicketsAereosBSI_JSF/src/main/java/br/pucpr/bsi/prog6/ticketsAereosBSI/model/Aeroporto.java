@@ -1,11 +1,27 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.model;
 
-public class Aeropoto {
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class Aeroporto implements IdentifierInterface, Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6369640537361904065L;
+	
+	@Id
+	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
+	
 	private long id;
 	private String nome;
 	private String codigo;
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	public void setId(long id) {

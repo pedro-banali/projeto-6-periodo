@@ -1,6 +1,16 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.model;
 
-public class Endereco {
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Endereco implements IdentifierInterface, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3950091640940508510L;
+	
 	private long id;
 	private String rua;
 	private String numero;
@@ -9,7 +19,8 @@ public class Endereco {
 	private String cidade;
 	private String estado;
 	private String pais;
-	public long getId() {
+	
+	public Long getId() {
 		return id;
 	}
 	public void setId(long id) {
