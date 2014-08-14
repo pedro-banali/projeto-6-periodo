@@ -25,6 +25,8 @@ public class Horario  implements IdentifierInterface, Serializable{
 	private int qtdEconomica;
 	private int qtdPrimeira;
 	private int qtdExecutiva;
+	private Rota rota;
+	private Aviao aviao;
 	
 	public Long getId() {
 		return id;
@@ -67,6 +69,18 @@ public class Horario  implements IdentifierInterface, Serializable{
 	}
 	public void setQtdExecutiva(int qtdExecutiva) {
 		this.qtdExecutiva = qtdExecutiva;
+	}
+	public Rota getRota() {
+		return rota;
+	}
+	public void setRota(Rota rota) {
+		this.rota = rota;
+	}
+	public Aviao getAviao() {
+		return aviao;
+	}
+	public void setAviao(Aviao aviao) {
+		this.aviao = aviao;
 	}
 	
 	

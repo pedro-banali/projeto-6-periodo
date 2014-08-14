@@ -1,6 +1,7 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,6 +19,9 @@ public class Rota  implements IdentifierInterface, Serializable {
 	private long id;
 	private String nome;
 	private String descricao;
+	private Aeroporto aeroportoSaida;
+	private Aeroporto aeroportoChegada;
+	private List<Horario> horarios;
 	
 	public Long getId() {
 		return id;
@@ -36,6 +40,24 @@ public class Rota  implements IdentifierInterface, Serializable {
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+	public Aeroporto getAeroportoSaida() {
+		return aeroportoSaida;
+	}
+	public void setAeroportoSaida(Aeroporto aeroportoSaida) {
+		this.aeroportoSaida = aeroportoSaida;
+	}
+	public Aeroporto getAeroportoChegada() {
+		return aeroportoChegada;
+	}
+	public void setAeroportoChegada(Aeroporto aeroportoChegada) {
+		this.aeroportoChegada = aeroportoChegada;
+	}
+	public List<Horario> getHorarios() {
+		return horarios;
+	}
+	public void setHorarios(List<Horario> horarios) {
+		this.horarios = horarios;
 	}
 	
 	

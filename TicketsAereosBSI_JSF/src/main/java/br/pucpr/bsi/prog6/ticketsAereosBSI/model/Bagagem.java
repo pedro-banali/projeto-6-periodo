@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.TipoBagagemEnum;
+
 @Entity
 public class Bagagem implements IdentifierInterface, Serializable {
 	
@@ -18,6 +20,7 @@ public class Bagagem implements IdentifierInterface, Serializable {
 	
 	private long id;
 	private double peso;
+	private TipoBagagemEnum tipoBagagem;
 	
 	public Long getId() {
 		return id;
@@ -30,6 +33,12 @@ public class Bagagem implements IdentifierInterface, Serializable {
 	}
 	public void setPeso(double peso) {
 		this.peso = peso;
+	}
+	public TipoBagagemEnum getTipoBagagem() {
+		return tipoBagagem;
+	}
+	public void setTipoBagagem(TipoBagagemEnum tipoBagagem) {
+		this.tipoBagagem = tipoBagagem;
 	}
 	
 	

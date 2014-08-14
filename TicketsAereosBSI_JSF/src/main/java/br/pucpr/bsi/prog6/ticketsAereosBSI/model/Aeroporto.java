@@ -20,6 +20,7 @@ public class Aeroporto implements IdentifierInterface, Serializable {
 	private long id;
 	private String nome;
 	private String codigo;
+	private Endereco endereco;
 	
 	public Long getId() {
 		return id;
@@ -38,6 +39,12 @@ public class Aeroporto implements IdentifierInterface, Serializable {
 	}
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
+	}
+	public Endereco getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 	
 }
