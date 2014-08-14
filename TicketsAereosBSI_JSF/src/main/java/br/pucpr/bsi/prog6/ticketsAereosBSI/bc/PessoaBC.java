@@ -1,10 +1,9 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
 
-public abstract class BilheteBC  {
+public abstract class PessoaBC {
 
-	private  BilheteBC(){
+	protected PessoaBC(){
 		
 	}
-	
 }
