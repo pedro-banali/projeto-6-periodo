@@ -1,10 +1,5 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
+public class BilheteBC extends PatternBC<IdentifierInterface>{
 
-public abstract class BilheteBC  {
-
-	private  BilheteBC(){
-		
-	}
-	
 }
