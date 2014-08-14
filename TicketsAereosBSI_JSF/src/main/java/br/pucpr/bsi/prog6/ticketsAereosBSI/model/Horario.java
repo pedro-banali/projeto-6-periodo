@@ -1,8 +1,22 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Horario {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class Horario  implements IdentifierInterface, Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3371437216184129924L;
+	
+	@Id
+	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
 	
 	private long id;
 	private Date partida;
@@ -12,7 +26,7 @@ public class Horario {
 	private int qtdPrimeira;
 	private int qtdExecutiva;
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	public void setId(long id) {

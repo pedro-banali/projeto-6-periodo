@@ -1,12 +1,26 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.model;
 
-public class Papel {
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class Papel implements IdentifierInterface, Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4150094108190432699L;
+	
+	@Id
+	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
 	private long id;
 	private String nome;
 	private String descricao;
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	public void setId(long id) {

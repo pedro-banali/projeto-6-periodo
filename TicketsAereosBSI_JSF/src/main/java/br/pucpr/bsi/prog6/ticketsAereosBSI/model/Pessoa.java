@@ -1,9 +1,14 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public abstract class Pessoa {
+public abstract class Pessoa implements IdentifierInterface, Serializable  {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4315472922850937518L;
 	private long id;
 	private String nome;
 	private String email;
@@ -13,7 +18,7 @@ public abstract class Pessoa {
 	private String senha;
 	private Endereco endereco;
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	public void setId(long id) {

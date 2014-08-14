@@ -2,7 +2,7 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
 import java.util.List;
 
-import br.pucpr.bsi.prog6.ticketsAereosBSI.model.IdentifierInterface;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Bilhete;
 
 public class PrimeiraBC extends BilheteBC {
 
@@ -19,50 +19,52 @@ private static PrimeiraBC instance;
 	   }
 
 	@Override
-	public IdentifierInterface findById(long id) {
+	public Bilhete findById(long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<IdentifierInterface> findByFilter(IdentifierInterface filter) {
+	public List<Bilhete> findByFilter(Bilhete filter) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<IdentifierInterface> findAll() {
+	public List<Bilhete> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public long insert(IdentifierInterface object) {
+	public long insert(Bilhete object) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public boolean update(IdentifierInterface object) {
+	public boolean update(Bilhete object) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean delete(IdentifierInterface object) {
+	public boolean delete(Bilhete object) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	protected void validateForDataModification(IdentifierInterface object) {
+	protected void validateForDataModification(Bilhete object) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	protected void validateForFindData(IdentifierInterface object) {
+	protected void validateForFindData(Bilhete object) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 	}

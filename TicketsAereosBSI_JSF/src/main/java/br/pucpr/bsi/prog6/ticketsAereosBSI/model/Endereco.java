@@ -3,6 +3,8 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.model;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 public class Endereco implements IdentifierInterface, Serializable {
@@ -10,6 +12,9 @@ public class Endereco implements IdentifierInterface, Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -3950091640940508510L;
+	
+	@Id
+	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
 	
 	private long id;
 	private String rua;
