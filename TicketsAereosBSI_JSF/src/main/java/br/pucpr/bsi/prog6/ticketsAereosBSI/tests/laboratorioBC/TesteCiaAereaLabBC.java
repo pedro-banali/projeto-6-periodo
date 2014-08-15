@@ -3,7 +3,7 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.tests.laboratorioBC;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.CiaAereaBCC;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.CiaAereaBC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.CiaAerea;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.tests.laboratorioModel.TesteCiaAereaLabModel;
@@ -36,7 +36,7 @@ public class TesteCiaAereaLabBC extends TesteCiaAereaLabModel {
 		ciaAerea = null;
 		
 		PrintUtils.imprimeNomeMetodoChamadorEClasse(ciaAerea);		
-		CiaAereaBCC.getInstance().insert(ciaAerea);
+		CiaAereaBC.getInstance().insert(ciaAerea);
 	}
 	
 	/**
@@ -48,7 +48,7 @@ public class TesteCiaAereaLabBC extends TesteCiaAereaLabModel {
 		ciaAerea.setNome("                         ");
 
 		PrintUtils.imprimeNomeMetodoChamadorEClasse(ciaAerea);		
-		CiaAereaBCC.getInstance().insert(ciaAerea);
+		CiaAereaBC.getInstance().insert(ciaAerea);
 	}	
 	
 	/**
@@ -59,7 +59,7 @@ public class TesteCiaAereaLabBC extends TesteCiaAereaLabModel {
 		ciaAerea.setNome(null);
 		
 		PrintUtils.imprimeNomeMetodoChamadorEClasse(ciaAerea);		
-		CiaAereaBCC.getInstance().insert(ciaAerea);
+		CiaAereaBC.getInstance().insert(ciaAerea);
 	}
 	
 	/**
@@ -71,6 +71,6 @@ public class TesteCiaAereaLabBC extends TesteCiaAereaLabModel {
 		super.criarCiaAereaCompleta();
 		
 		PrintUtils.imprimeNomeMetodoChamadorEClasse(ciaAerea);		
-		CiaAereaBCC.getInstance().insert(ciaAerea);
+		CiaAereaBC.getInstance().insert(ciaAerea);
 	}
 }

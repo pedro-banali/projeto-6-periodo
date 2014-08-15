@@ -8,14 +8,14 @@ import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.CiaAereaDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.CiaAerea;
 
-public class CiaAereaBCC extends PatternBC<CiaAerea> {
+public class CiaAereaBC extends PatternBC<CiaAerea> {
 	 
-	private static CiaAereaBCC instance = new CiaAereaBCC();
+	private static CiaAereaBC instance = new CiaAereaBC();
 	
-	private CiaAereaBCC() {
+	private CiaAereaBC() {
 	}
 
-	public static CiaAereaBCC getInstance() {
+	public static CiaAereaBC getInstance() {
 		return instance;
 	}
 
