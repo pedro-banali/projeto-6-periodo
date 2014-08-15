@@ -46,7 +46,5 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 	}
 	public void setSituacaoBilheteEnum(SituacaoBilheteEnum situacaoBilheteEnum) {
 		this.situacaoBilheteEnum = situacaoBilheteEnum;
-	}
-	
-	
+	}	
 }
