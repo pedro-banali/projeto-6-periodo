@@ -11,7 +11,7 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.log4j.Logger;
 
-import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.CiaAereaBC;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.CiaAereaBCC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.CiaAerea;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.view.mb.utils.ViewUtil;
@@ -75,11 +75,11 @@ public class ManterCiaAereaMB implements Serializable{
 	//Action de Salvar Usuario
 	public String salvar() {
 		if(isAcaoIncluir()){
-			CiaAereaBC.getInstance().insert(this.ciaAerea);
+			CiaAereaBCC.getInstance().insert(this.ciaAerea);
 		} else if(isAcaoEditar()){
-			CiaAereaBC.getInstance().update(this.ciaAerea);
+			CiaAereaBCC.getInstance().update(this.ciaAerea);
 		} else if(isAcaoExcluir()){
-			CiaAereaBC.getInstance().delete(this.ciaAerea);
+			CiaAereaBCC.getInstance().delete(this.ciaAerea);
 		}
 		MessagesUtils.addInfo("sucesso", "IN0000");
 		return voltar();

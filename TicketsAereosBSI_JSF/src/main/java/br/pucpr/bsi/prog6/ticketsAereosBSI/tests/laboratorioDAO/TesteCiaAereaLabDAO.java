@@ -3,7 +3,7 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.tests.laboratorioDAO;
 import org.junit.Assert;
 import org.junit.Test;
 
-import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.CiaAereaBC;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.CiaAereaBCC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.tests.laboratorioBC.TesteCiaAereaLabBC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.tests.util.Atualizador;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.tests.util.Verificador;
@@ -34,7 +34,7 @@ public class TesteCiaAereaLabDAO extends TesteCiaAereaLabBC {
 		// INSERT
 		////////////////////////
 		PrintUtils.imprimeNomeMetodoChamadorEClasse(ciaAerea);		
-		Long idCiaAerea = CiaAereaBC.getInstance().insert(ciaAerea);
+		Long idCiaAerea = CiaAereaBCC.getInstance().insert(ciaAerea);
 
 		//Verifica se o id eh maior que zero
 		Assert.assertTrue(idCiaAerea > 0);
@@ -45,7 +45,7 @@ public class TesteCiaAereaLabDAO extends TesteCiaAereaLabBC {
 		PrintUtils.imprimeNomeMetodoChamadorEClasse(ciaAerea);
 		
 		//Obtem o objeto do BD para as comparacoes basicas
-		Verificador.verificar(CiaAereaBC.getInstance().findById(idCiaAerea), ciaAerea);		
+		Verificador.verificar(CiaAereaBCC.getInstance().findById(idCiaAerea), ciaAerea);		
 	}
 	
 	/**
@@ -54,16 +54,16 @@ public class TesteCiaAereaLabDAO extends TesteCiaAereaLabBC {
 	@Test
 	public void updateCiaAereaCompleto(){
 		PrintUtils.imprimeNomeMetodoChamadorEClasse(ciaAerea);		
-		long idCiaAerea = CiaAereaBC.getInstance().insert(ciaAerea);
+		long idCiaAerea = CiaAereaBCC.getInstance().insert(ciaAerea);
 		
 		//Atualiza objeto
 		Atualizador.atualizarCiaAerea(ciaAerea, "Update EN - ");
 		
 		//Atualiza o BD
-		CiaAereaBC.getInstance().update(ciaAerea);
+		CiaAereaBCC.getInstance().update(ciaAerea);
 		
 		//Obtem o objeto do BD para as comparacoes basicas
-		Verificador.verificar(CiaAereaBC.getInstance().findById(idCiaAerea), ciaAerea);		
+		Verificador.verificar(CiaAereaBCC.getInstance().findById(idCiaAerea), ciaAerea);		
 	}
 	
 	/**
@@ -72,13 +72,13 @@ public class TesteCiaAereaLabDAO extends TesteCiaAereaLabBC {
 	@Test
 	public void deleteCiaAereaCompleto(){
 		PrintUtils.imprimeNomeMetodoChamadorEClasse(ciaAerea);		
-		long idCiaAerea = CiaAereaBC.getInstance().insert(ciaAerea);
+		long idCiaAerea = CiaAereaBCC.getInstance().insert(ciaAerea);
 
 		//Imprime para verificar se o ciaAerea foi atualizado
 		PrintUtils.imprimeNomeMetodoChamadorEClasse(ciaAerea);
 		
 		//Deleta o ciaAerea do BD
-		CiaAereaBC.getInstance().delete(ciaAerea);
-		Assert.assertNull(CiaAereaBC.getInstance().findById(idCiaAerea));
+		CiaAereaBCC.getInstance().delete(ciaAerea);
+		Assert.assertNull(CiaAereaBCC.getInstance().findById(idCiaAerea));
 	}
 }

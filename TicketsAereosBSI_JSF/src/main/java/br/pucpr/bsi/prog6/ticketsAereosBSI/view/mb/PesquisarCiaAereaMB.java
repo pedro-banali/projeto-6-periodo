@@ -9,7 +9,7 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.log4j.Logger;
 
-import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.CiaAereaBC;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.CiaAereaBCC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.CiaAerea;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.view.mb.utils.ViewUtil;
@@ -65,7 +65,7 @@ public class PesquisarCiaAereaMB implements Serializable{
 	
 	//Action de Pesquisar a partir do filtro
 	public void pesquisar() {
-		ciaAereas = CiaAereaBC.getInstance().findByFilter(filtroPesquisa);
+		ciaAereas = CiaAereaBCC.getInstance().findByFilter(filtroPesquisa);
 		if(ciaAereas.isEmpty()){
 			MessagesUtils.addInfo("informacao", "IN0001");
 		}
