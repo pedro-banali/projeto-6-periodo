@@ -1,6 +1,7 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +20,13 @@ public class Papel implements IdentifierInterface, Serializable {
 	private long id;
 	private String nome;
 	private String descricao;
+	private List<Funcionario> funcionarios;
+	private CiaAerea ciaAerea;
+	
+	public Papel(CiaAerea ciaAerea)
+	{
+		this.ciaAerea = ciaAerea;
+	}
 	
 	public Long getId() {
 		return id;
@@ -37,6 +45,18 @@ public class Papel implements IdentifierInterface, Serializable {
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+	public List<Funcionario> getFuncionarios() {
+		return funcionarios;
+	}
+	public void setFuncionarios(List<Funcionario> funcionarios) {
+		this.funcionarios = funcionarios;
+	}
+	public CiaAerea getCiaAerea() {
+		return ciaAerea;
+	}
+	public void setCiaAerea(CiaAerea ciaAerea) {
+		this.ciaAerea = ciaAerea;
 	}
 	
 	

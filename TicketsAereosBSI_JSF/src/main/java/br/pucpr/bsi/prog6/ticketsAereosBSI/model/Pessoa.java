@@ -18,6 +18,11 @@ public abstract class Pessoa implements IdentifierInterface, Serializable  {
 	private String senha;
 	private Endereco endereco;
 	
+	public Pessoa(Endereco endereco)
+	{
+		this.endereco = endereco;
+	}
+	
 	public Long getId() {
 		return id;
 	}

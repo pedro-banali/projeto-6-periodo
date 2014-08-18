@@ -21,6 +21,13 @@ public class Bagagem implements IdentifierInterface, Serializable {
 	private long id;
 	private double peso;
 	private TipoBagagemEnum tipoBagagem;
+	private Bilhete bilhete;
+	
+	public Bagagem (TipoBagagemEnum tipoBagagemEnum, Bilhete bilhete)
+	{
+		this.tipoBagagem = tipoBagagemEnum;
+		this.bilhete = bilhete;
+	}
 	
 	public Long getId() {
 		return id;
@@ -34,11 +41,17 @@ public class Bagagem implements IdentifierInterface, Serializable {
 	public void setPeso(double peso) {
 		this.peso = peso;
 	}
-	public TipoBagagemEnum getTipoBagagem() {
+	public TipoBagagemEnum getTipoBagagemEnum() {
 		return tipoBagagem;
 	}
-	public void setTipoBagagem(TipoBagagemEnum tipoBagagem) {
+	public void setTipoBagagemEnum(TipoBagagemEnum tipoBagagem) {
 		this.tipoBagagem = tipoBagagem;
+	}
+	public Bilhete getBilhete() {
+		return bilhete;
+	}
+	public void setBilhete(Bilhete bilhete) {
+		this.bilhete = bilhete;
 	}
 	
 	

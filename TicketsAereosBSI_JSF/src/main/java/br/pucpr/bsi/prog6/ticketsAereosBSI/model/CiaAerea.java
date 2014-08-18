@@ -18,6 +18,8 @@ public class CiaAerea implements IdentifierInterface, Serializable {
 	private Long id;
 	private String nome;
 	private List<Aviao> avioes;
+	private List<Papel> papeis;
+	private List<Rota> rotas;
 	
 	public CiaAerea() {
 		avioes = new ArrayList<Aviao>();
@@ -49,6 +51,22 @@ public class CiaAerea implements IdentifierInterface, Serializable {
 
 	public void setAvioes(List<Aviao> avioes) {
 		this.avioes = avioes;
+	}
+
+	public List<Papel> getPapeis() {
+		return papeis;
+	}
+
+	public void setPapeis(List<Papel> papeis) {
+		this.papeis = papeis;
+	}
+
+	public List<Rota> getRotas() {
+		return rotas;
+	}
+
+	public void setRotas(List<Rota> rotas) {
+		this.rotas = rotas;
 	}
 	
 	

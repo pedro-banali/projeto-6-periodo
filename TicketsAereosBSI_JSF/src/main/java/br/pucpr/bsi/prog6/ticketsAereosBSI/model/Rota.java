@@ -19,9 +19,17 @@ public class Rota  implements IdentifierInterface, Serializable {
 	private long id;
 	private String nome;
 	private String descricao;
-	private Aeroporto aeroportoSaida;
-	private Aeroporto aeroportoChegada;
+	private Aeroporto origem;
+	private Aeroporto destino;
 	private List<Horario> horarios;
+	private CiaAerea ciaAerea;
+	
+	public Rota(CiaAerea ciaAerea, Aeroporto origem, Aeroporto destino)
+	{
+		this.destino = destino;
+		this.origem = origem;
+		this.ciaAerea = ciaAerea;
+	}
 	
 	public Long getId() {
 		return id;
@@ -41,23 +49,29 @@ public class Rota  implements IdentifierInterface, Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public Aeroporto getAeroportoSaida() {
-		return aeroportoSaida;
+	public Aeroporto getOrigem() {
+		return origem;
 	}
-	public void setAeroportoSaida(Aeroporto aeroportoSaida) {
-		this.aeroportoSaida = aeroportoSaida;
+	public void setOrigem(Aeroporto origem) {
+		this.origem = origem;
 	}
-	public Aeroporto getAeroportoChegada() {
-		return aeroportoChegada;
+	public Aeroporto getDestino() {
+		return destino;
 	}
-	public void setAeroportoChegada(Aeroporto aeroportoChegada) {
-		this.aeroportoChegada = aeroportoChegada;
+	public void setDestino(Aeroporto destino) {
+		this.destino = destino;
 	}
 	public List<Horario> getHorarios() {
 		return horarios;
 	}
 	public void setHorarios(List<Horario> horarios) {
 		this.horarios = horarios;
+	}
+	public CiaAerea getCiaAerea() {
+		return ciaAerea;
+	}
+	public void setCiaAerea(CiaAerea ciaAerea) {
+		this.ciaAerea = ciaAerea;
 	}
 	
 	

@@ -1,9 +1,9 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.enums;
 
 public enum TipoBagagemEnum {
-	UM(1, "Mão", 12), 
-	DOIS(2,"Nacional", 23.0),
-	TRES(3, "Internacional", 32.0);
+	MAO(1, "Mão", 12), 
+	NACIONAL(2,"Nacional", 23.0),
+	INTERNACIONAL(3, "Internacional", 32.0);
 	
 	private int id;
 	private String nome;

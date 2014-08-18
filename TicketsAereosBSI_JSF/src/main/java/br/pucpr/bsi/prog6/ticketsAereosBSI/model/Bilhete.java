@@ -1,6 +1,7 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.SituacaoBilheteEnum;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.TipoBilheteEnum;
@@ -18,6 +19,7 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 	private SituacaoBilheteEnum situacaoBilheteEnum;
 	private Passageiro passageiro;
 	private Horario horario;
+	private List<Bagagem> bagagens;
 	
 	public Bilhete(Horario horario, Passageiro passageiro)
 	{
@@ -71,5 +73,13 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 	public void setSituacaoEnum(SituacaoBilheteEnum situacao) {
 		// TODO Auto-generated method stub
 		this.situacaoBilheteEnum = situacao;
+	}
+
+	public List<Bagagem> getBagagens() {
+		return bagagens;
+	}
+
+	public void setBagagens(List<Bagagem> bagagens) {
+		this.bagagens = bagagens;
 	}
 }
