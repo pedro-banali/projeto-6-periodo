@@ -2,6 +2,7 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
 import java.util.List;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Papel;
 
 
@@ -38,8 +39,10 @@ private static PapelBC instance;
 	}
 
 	@Override
-	public long insert(Papel object) {
+	public long insert(Papel object) throws TicketsAereosBSIException {
 		// TODO Auto-generated method stub
+		if(object == null)
+			throw new TicketsAereosBSIException("Papel Nulo");
 		return 0;
 	}
 

@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
+
 @Entity
 public class Papel implements IdentifierInterface, Serializable {
 	
@@ -48,12 +50,31 @@ public class Papel implements IdentifierInterface, Serializable {
 		return nome;
 	}
 	public void setNome(String nome) {
+		
+		if(nome == null)
+			throw new TicketsAereosBSIException("Nome nulo");
+		
+		String n = nome.trim();
+		
+		if(n.equals(""))
+			throw new TicketsAereosBSIException("Nome Vazio");
+		
 		this.nome = nome;
+		
 	}
 	public String getDescricao() {
 		return descricao;
 	}
 	public void setDescricao(String descricao) {
+		
+		if(descricao == null)
+			throw new TicketsAereosBSIException("Descricao nula");
+		
+		String d = descricao.trim();
+		
+		if(d.equals(""))
+			throw new TicketsAereosBSIException("Descricao Vazia");
+		
 		this.descricao = descricao;
 	}
 	public List<Funcionario> getFuncionarios() {
@@ -65,7 +86,10 @@ public class Papel implements IdentifierInterface, Serializable {
 	public CiaAerea getCiaAerea() {
 		return ciaAerea;
 	}
-	public void setCiaAerea(CiaAerea ciaAerea) {
+	public void setCiaAerea(CiaAerea ciaAerea) throws TicketsAereosBSIException{
+		if(ciaAerea == null)
+			throw new TicketsAereosBSIException("Cia Aerea");
+		
 		this.ciaAerea = ciaAerea;
 	}
 	
