@@ -1,6 +1,7 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -25,7 +26,16 @@ public class Papel implements IdentifierInterface, Serializable {
 	
 	public Papel(CiaAerea ciaAerea)
 	{
+		List<Papel> papeis;
 		this.ciaAerea = ciaAerea;
+		papeis = this.ciaAerea.getPapeis();
+		
+		if(papeis == null)
+			papeis = new ArrayList<Papel>();
+		
+		papeis.add(this);
+		
+		this.ciaAerea.setPapeis(papeis);
 	}
 	
 	public Long getId() {
