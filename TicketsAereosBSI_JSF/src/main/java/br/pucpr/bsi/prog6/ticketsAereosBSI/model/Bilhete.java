@@ -1,6 +1,7 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.SituacaoBilheteEnum;
@@ -23,8 +24,29 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 	
 	public Bilhete(Horario horario, Passageiro passageiro)
 	{
+		List<Bilhete> bilhetes;
+		
 		this.passageiro = passageiro;
 		this.horario = horario;
+		
+		bilhetes = this.passageiro.getBilhetes();
+		
+		if(bilhetes == null)
+			bilhetes = new ArrayList<Bilhete>();
+		
+		bilhetes.add(this);
+		
+		this.passageiro.setBilhetes(bilhetes);
+		
+		bilhetes = this.horario.getBilhetes();
+		
+		if(bilhetes == null)
+			bilhetes = new ArrayList<Bilhete>();
+		
+		bilhetes.add(this);
+		
+		this.horario.setBilhetes(bilhetes);
+		
 	}
 	
 	public Long getId() {

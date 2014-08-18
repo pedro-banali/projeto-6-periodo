@@ -35,6 +35,7 @@ public class Horario  implements IdentifierInterface, Serializable{
 	{
 		this.rota = rota;
 		this.aviao = aviao;
+		bilhetes = new ArrayList<Bilhete>();
 	}
 	
 	public Long getId() {
@@ -113,10 +114,18 @@ public class Horario  implements IdentifierInterface, Serializable{
 		List<Bilhete> primeiras = new ArrayList<Bilhete>();
 		for(int i = 0; i < this.bilhetes.size(); i++)
 		{
-			if(this.bilhetes.get(i) instanceof Economica)
+			if(this.bilhetes.get(i) instanceof Primeira)
 				primeiras.add(this.bilhetes.get(i));
 		}
 		return primeiras;
+	}
+
+	public List<Bilhete> getBilhetes() {
+		return bilhetes;
+	}
+
+	public void setBilhetes(List<Bilhete> bilhetes) {
+		this.bilhetes = bilhetes;
 	}
 	
 	
