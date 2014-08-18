@@ -1,9 +1,9 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.enums;
 
 public enum SituacaoBilheteEnum {
-	UM(1, "Disponível"), 
-	DOIS(2,"Reservado"),
-	TRES(3, "Vendido");
+	DISPONIVEL(1, "Disponível"), 
+	RESERVADO(2,"Reservado"),
+	VENDIDO(3, "Vendido");
 	
 	private int id;
 	private String nome;

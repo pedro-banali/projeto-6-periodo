@@ -6,5 +6,10 @@ public class Primeira extends Bilhete {
 	 * 
 	 */
 	private static final long serialVersionUID = -1011263709895674561L;
-
+	
+	public Primeira(Horario horario, Passageiro passageiro)
+	{
+		super(horario, passageiro);
+	}
+	
 }

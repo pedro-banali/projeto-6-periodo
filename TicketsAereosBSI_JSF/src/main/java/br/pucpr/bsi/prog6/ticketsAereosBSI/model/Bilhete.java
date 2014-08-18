@@ -16,6 +16,14 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 	private String assento;
 	private TipoBilheteEnum tipoBilheteEnum;
 	private SituacaoBilheteEnum situacaoBilheteEnum;
+	private Passageiro passageiro;
+	private Horario horario;
+	
+	public Bilhete(Horario horario, Passageiro passageiro)
+	{
+		this.passageiro = passageiro;
+		this.horario = horario;
+	}
 	
 	public Long getId() {
 		return id;
@@ -46,5 +54,22 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 	}
 	public void setSituacaoBilheteEnum(SituacaoBilheteEnum situacaoBilheteEnum) {
 		this.situacaoBilheteEnum = situacaoBilheteEnum;
-	}	
+	}
+	public Passageiro getPassageiro() {
+		return passageiro;
+	}
+	public void setPassageiro(Passageiro passageiro) {
+		this.passageiro = passageiro;
+	}
+	public Horario getHorario() {
+		return horario;
+	}
+	public void setHorario(Horario horario) {
+		this.horario = horario;
+	}
+	
+	public void setSituacaoEnum(SituacaoBilheteEnum situacao) {
+		// TODO Auto-generated method stub
+		this.situacaoBilheteEnum = situacao;
+	}
 }

@@ -1,7 +1,9 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,6 +29,8 @@ public class Horario  implements IdentifierInterface, Serializable{
 	private int qtdExecutiva;
 	private Rota rota;
 	private Aviao aviao;
+	private List<Bilhete> bilhetes;
+	
 	
 	public Long getId() {
 		return id;
@@ -82,6 +86,16 @@ public class Horario  implements IdentifierInterface, Serializable{
 	public void setAviao(Aviao aviao) {
 		this.aviao = aviao;
 	}
+	public List<Bilhete> getExecutivas() {
+		List<Bilhete> executivas = new ArrayList<Bilhete>();
+		for(int i = 0; i < this.bilhetes.size(); i++)
+		{
+			if(this.bilhetes.get(i) instanceof Executiva)
+				executivas.add(this.bilhetes.get(i));
+		}
+		return executivas;
+	}
+
 	
 	
 	
