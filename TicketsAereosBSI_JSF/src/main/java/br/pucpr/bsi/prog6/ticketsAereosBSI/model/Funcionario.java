@@ -1,5 +1,8 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Funcionario extends Pessoa {
 	
 	/**
@@ -13,7 +16,18 @@ public class Funcionario extends Pessoa {
 	public Funcionario(Endereco endereco, Papel papel)
 	{
 		super(endereco);
+		List<Funcionario> funcionarios;
 		this.papel = papel;
+		
+		funcionarios = this.papel.getFuncionarios();
+		
+		if(funcionarios == null)
+			funcionarios = new ArrayList<Funcionario>();
+		
+		funcionarios.add(this);
+		
+		this.papel.setFuncionarios(funcionarios);
+		
 	}
 	
 	public String getCodigo() {

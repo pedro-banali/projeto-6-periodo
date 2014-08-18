@@ -1,6 +1,7 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -26,9 +27,21 @@ public class Rota  implements IdentifierInterface, Serializable {
 	
 	public Rota(CiaAerea ciaAerea, Aeroporto origem, Aeroporto destino)
 	{
+		List<Rota> rotas;
 		this.destino = destino;
 		this.origem = origem;
 		this.ciaAerea = ciaAerea;
+		
+		rotas = ciaAerea.getRotas();
+		
+		if(rotas == null)
+			rotas = new ArrayList<Rota>();
+		
+		rotas.add(this);
+		
+		this.ciaAerea.setRotas(rotas);
+		
+		
 	}
 	
 	public Long getId() {

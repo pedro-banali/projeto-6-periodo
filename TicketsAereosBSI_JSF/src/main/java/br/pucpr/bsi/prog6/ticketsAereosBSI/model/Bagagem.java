@@ -1,6 +1,8 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,8 +27,18 @@ public class Bagagem implements IdentifierInterface, Serializable {
 	
 	public Bagagem (TipoBagagemEnum tipoBagagemEnum, Bilhete bilhete)
 	{
+		List<Bagagem> bagagens;
 		this.tipoBagagem = tipoBagagemEnum;
 		this.bilhete = bilhete;
+		
+		bagagens = this.bilhete.getBagagens();
+		
+		if(bagagens == null)
+			bagagens = new ArrayList<Bagagem>();
+		
+		bagagens.add(this);
+		
+		this.bilhete.setBagagens(bagagens);
 	}
 	
 	public Long getId() {

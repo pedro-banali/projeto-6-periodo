@@ -1,6 +1,8 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
 import java.util.List;
+
+import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Aeroporto;
 
 public class AeroportoBC extends PatternBC<Aeroporto>{
@@ -38,12 +40,24 @@ private static AeroportoBC instance;
 	@Override
 	public long insert(Aeroporto object) {
 		// TODO Auto-generated method stub
+		if(object == null)
+			throw new TicketsAereosBSIException("Aeroporto Nulo");
+		else if(object.getNome() == null ||object.getNome().trim().equals(""))
+			throw new TicketsAereosBSIException("Aeroporto Vazio");
+		else if(object.getEndereco() == null)
+			throw new TicketsAereosBSIException("Endereco Nulo");
+		else if(object.getCodigo() == null || object.getCodigo().equals(""))
+			throw new TicketsAereosBSIException("Codigo Endereco Vazio");
 		return 0;
 	}
 
 	@Override
 	public boolean update(Aeroporto object) {
 		// TODO Auto-generated method stub
+		if(object == null)
+			throw new TicketsAereosBSIException("Aeroporto Nulo");
+		else if(object.toString().trim().equals(""))
+			throw new TicketsAereosBSIException("Aeroporto Vazio");
 		return false;
 	}
 

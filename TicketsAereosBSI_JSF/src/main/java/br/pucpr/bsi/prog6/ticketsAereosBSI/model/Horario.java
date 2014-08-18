@@ -33,9 +33,18 @@ public class Horario  implements IdentifierInterface, Serializable{
 	
 	public Horario(Rota rota, Aviao aviao)
 	{
+		List<Horario> horarios;
 		this.rota = rota;
 		this.aviao = aviao;
 		bilhetes = new ArrayList<Bilhete>();
+		horarios = this.rota.getHorarios();
+		
+		if(horarios == null)
+			horarios = new ArrayList<Horario>();
+		
+		horarios.add(this);
+		
+		this.rota.setHorarios(horarios);
 	}
 	
 	public Long getId() {
