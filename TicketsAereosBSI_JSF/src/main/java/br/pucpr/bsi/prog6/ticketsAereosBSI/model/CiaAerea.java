@@ -40,11 +40,7 @@ public class CiaAerea implements IdentifierInterface, Serializable {
 		this.nome = nome;
 	}
 	
-	@Override
-	public String toString() {
-		return "CiaAerea  [id=" + id + ", nome=" + nome + "]" ;
-	}
-
+	
 	public List<Aviao> getAvioes() {
 		return avioes;
 	}
@@ -67,6 +63,15 @@ public class CiaAerea implements IdentifierInterface, Serializable {
 
 	public void setRotas(List<Rota> rotas) {
 		this.rotas = rotas;
+	}
+
+	@Override
+	public String toString() {
+		return "CiaAerea [" + (id != null ? "id=" + id + ", " : "")
+				+ (nome != null ? "nome=" + nome + ", " : "")
+				+ (avioes != null ? "avioes=" + avioes + ", " : "")
+				+ (papeis != null ? "papeis=" + papeis + ", " : "")
+				+ (rotas != null ? "rotas=" + rotas : "") + "]";
 	}
 	
 	

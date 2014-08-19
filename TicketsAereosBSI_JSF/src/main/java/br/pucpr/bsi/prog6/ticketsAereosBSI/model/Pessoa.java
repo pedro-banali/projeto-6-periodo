@@ -71,6 +71,21 @@ public abstract class Pessoa implements IdentifierInterface, Serializable  {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+
+	@Override
+	public String toString() {
+		return "Pessoa [id="
+				+ id
+				+ ", "
+				+ (nome != null ? "nome=" + nome + ", " : "")
+				+ (email != null ? "email=" + email + ", " : "")
+				+ (telefone != null ? "telefone=" + telefone + ", " : "")
+				+ (dataNascimento != null ? "dataNascimento=" + dataNascimento
+						+ ", " : "")
+				+ (usuario != null ? "usuario=" + usuario + ", " : "")
+				+ (senha != null ? "senha=" + senha + ", " : "")
+				+ (endereco != null ? "endereco=" + endereco : "") + "]";
+	}
 	
 	
 }

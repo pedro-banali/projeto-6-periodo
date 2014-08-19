@@ -65,6 +65,18 @@ public class Bagagem implements IdentifierInterface, Serializable {
 	public void setBilhete(Bilhete bilhete) {
 		this.bilhete = bilhete;
 	}
+
+	@Override
+	public String toString() {
+		return "Bagagem [id="
+				+ id
+				+ ", peso="
+				+ peso
+				+ ", "
+				+ (tipoBagagem != null ? "tipoBagagem=" + tipoBagagem + ", "
+						: "") + (bilhete != null ? "bilhete=" + bilhete : "")
+				+ "]";
+	}
 	
 	
 }

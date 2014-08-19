@@ -51,4 +51,14 @@ public class Aeroporto implements IdentifierInterface, Serializable {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+
+	@Override
+	public String toString() {
+		return "Aeroporto [id=" + id + ", "
+				+ (nome != null ? "nome=" + nome + ", " : "")
+				+ (codigo != null ? "codigo=" + codigo + ", " : "")
+				+ (endereco != null ? "endereco=" + endereco : "") + "]";
+	}
+	
+	
 }

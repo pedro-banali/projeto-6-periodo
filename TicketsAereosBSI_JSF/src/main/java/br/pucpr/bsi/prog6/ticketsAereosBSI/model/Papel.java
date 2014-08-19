@@ -74,6 +74,18 @@ public class Papel implements IdentifierInterface, Serializable {
 		
 		this.ciaAerea = ciaAerea;
 	}
+
+	@Override
+	public String toString() {
+		return "Papel [id="
+				+ id
+				+ ", "
+				+ (nome != null ? "nome=" + nome + ", " : "")
+				+ (descricao != null ? "descricao=" + descricao + ", " : "")
+				+ (funcionarios != null ? "funcionarios=" + funcionarios + ", "
+						: "")
+				+ (ciaAerea != null ? "ciaAerea=" + ciaAerea : "") + "]";
+	}
 	
 	
 }

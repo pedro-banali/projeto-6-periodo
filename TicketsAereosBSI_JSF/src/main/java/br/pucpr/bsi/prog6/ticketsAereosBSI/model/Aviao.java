@@ -56,6 +56,14 @@ public class Aviao  implements IdentifierInterface, Serializable {
 	public void setCiaAerea(CiaAerea ciaAerea) {
 		this.ciaAerea = ciaAerea;
 	}
+
+	@Override
+	public String toString() {
+		return "Aviao [id=" + id + ", "
+				+ (codigo != null ? "codigo=" + codigo + ", " : "") + "carga="
+				+ carga + ", "
+				+ (ciaAerea != null ? "ciaAerea=" + ciaAerea : "") + "]";
+	}
 	
 	
 }

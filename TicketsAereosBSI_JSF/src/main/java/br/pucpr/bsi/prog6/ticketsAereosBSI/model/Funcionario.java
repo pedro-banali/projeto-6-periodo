@@ -48,6 +48,15 @@ public class Funcionario extends Pessoa {
 	public void setPapel(Papel papel) {
 		this.papel = papel;
 	}
+
+	@Override
+	public String toString() {
+		return "Funcionario ["
+				+ (codigo != null ? "codigo=" + codigo + ", " : "")
+				+ (contaCorrente != null ? "contaCorrente=" + contaCorrente
+						+ ", " : "") + (papel != null ? "papel=" + papel : "")
+				+ "]";
+	}
 	
 	
 }

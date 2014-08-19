@@ -86,6 +86,17 @@ public class Rota  implements IdentifierInterface, Serializable {
 	public void setCiaAerea(CiaAerea ciaAerea) {
 		this.ciaAerea = ciaAerea;
 	}
+
+	@Override
+	public String toString() {
+		return "Rota [id=" + id + ", "
+				+ (nome != null ? "nome=" + nome + ", " : "")
+				+ (descricao != null ? "descricao=" + descricao + ", " : "")
+				+ (origem != null ? "origem=" + origem + ", " : "")
+				+ (destino != null ? "destino=" + destino + ", " : "")
+				+ (horarios != null ? "horarios=" + horarios + ", " : "")
+				+ (ciaAerea != null ? "ciaAerea=" + ciaAerea : "") + "]";
+	}
 	
 	
 	

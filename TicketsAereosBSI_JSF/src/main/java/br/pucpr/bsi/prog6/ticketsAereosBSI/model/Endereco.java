@@ -73,6 +73,22 @@ public class Endereco implements IdentifierInterface, Serializable {
 	public void setPais(String pais) {
 		this.pais = pais;
 	}
+	@Override
+	public String toString() {
+		return "Endereco [id="
+				+ id
+				+ ", "
+				+ (rua != null ? "rua=" + rua + ", " : "")
+				+ "numero="
+				+ numero
+				+ ", "
+				+ (complemento != null ? "complemento=" + complemento + ", "
+						: "")
+				+ (bairro != null ? "bairro=" + bairro + ", " : "")
+				+ (cidade != null ? "cidade=" + cidade + ", " : "")
+				+ (estado != null ? "estado=" + estado + ", " : "")
+				+ (pais != null ? "pais=" + pais : "") + "]";
+	}
 	
 	
 }

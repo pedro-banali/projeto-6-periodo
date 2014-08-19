@@ -38,6 +38,15 @@ public class Passageiro extends Pessoa {
 	public void setDocumento(String documento) {
 		this.documento = documento;
 	}
+
+	@Override
+	public String toString() {
+		return "Passageiro ["
+				+ (numeroCartao != null ? "numeroCartao=" + numeroCartao + ", "
+						: "")
+				+ (documento != null ? "documento=" + documento + ", " : "")
+				+ (bilhetes != null ? "bilhetes=" + bilhetes : "") + "]";
+	}
 	
 	
 	

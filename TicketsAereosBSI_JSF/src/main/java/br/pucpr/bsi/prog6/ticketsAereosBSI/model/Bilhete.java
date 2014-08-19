@@ -104,4 +104,24 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 	public void setBagagens(List<Bagagem> bagagens) {
 		this.bagagens = bagagens;
 	}
+
+	@Override
+	public String toString() {
+		return "Bilhete [id="
+				+ id
+				+ ", numero="
+				+ numero
+				+ ", "
+				+ (assento != null ? "assento=" + assento + ", " : "")
+				+ (tipoBilheteEnum != null ? "tipoBilheteEnum="
+						+ tipoBilheteEnum + ", " : "")
+				+ (situacaoBilheteEnum != null ? "situacaoBilheteEnum="
+						+ situacaoBilheteEnum + ", " : "")
+				+ (passageiro != null ? "passageiro=" + passageiro + ", " : "")
+				+ (horario != null ? "horario=" + horario + ", " : "")
+				+ (bagagens != null ? "bagagens=" + bagagens : "") + "]";
+	}
+	
+	
+
 }

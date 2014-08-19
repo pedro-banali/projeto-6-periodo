@@ -136,6 +136,19 @@ public class Horario  implements IdentifierInterface, Serializable{
 	public void setBilhetes(List<Bilhete> bilhetes) {
 		this.bilhetes = bilhetes;
 	}
+
+	@Override
+	public String toString() {
+		return "Horario [id=" + id + ", "
+				+ (partida != null ? "partida=" + partida + ", " : "")
+				+ (chegada != null ? "chegada=" + chegada + ", " : "")
+				+ (codigo != null ? "codigo=" + codigo + ", " : "")
+				+ "qtdEconomica=" + qtdEconomica + ", qtdPrimeira="
+				+ qtdPrimeira + ", qtdExecutiva=" + qtdExecutiva + ", "
+				+ (rota != null ? "rota=" + rota + ", " : "")
+				+ (aviao != null ? "aviao=" + aviao + ", " : "")
+				+ (bilhetes != null ? "bilhetes=" + bilhetes : "") + "]";
+	}
 	
 	
 	
