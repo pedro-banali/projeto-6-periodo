@@ -41,8 +41,18 @@ private static PapelBC instance;
 	@Override
 	public long insert(Papel object) throws TicketsAereosBSIException {
 		// TODO Auto-generated method stub
-		if(object == null)
+		
+		 if(object == null) {
 			throw new TicketsAereosBSIException("Papel Nulo");
+		} else if(object.getNome() == null) {
+			throw new TicketsAereosBSIException("Nome nulo");
+		}
+		else if(object.getNome().trim().equals(""))
+			throw new TicketsAereosBSIException("Nome Vazio");
+		else if(object.getDescricao() == null)
+			throw new TicketsAereosBSIException("Descricao nula");
+		else if(object.getDescricao().trim().equals(""))
+			throw new TicketsAereosBSIException("Descricao Vazia");
 		return 0;
 	}
 

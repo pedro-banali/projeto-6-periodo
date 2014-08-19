@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Aviao;
 
 @Entity
@@ -42,6 +43,12 @@ private static AviaoBC instance;
 	@Override
 	public long insert(Aviao object) {
 		// TODO Auto-generated method stub
+		if(object == null)
+			throw new TicketsAereosBSIException("Aeroporto Nulo");
+		else if(object.getCodigo() == null || object.getCodigo().equals(""))
+			throw new TicketsAereosBSIException("Codigo Endereco Vazio");
+		else if (object.getCarga() <= 0)
+			throw new TicketsAereosBSIException("Carga vazia");
 		return 0;
 	}
 

@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
-
 @Entity
 public class Aviao  implements IdentifierInterface, Serializable {
 	/**
@@ -43,9 +41,7 @@ public class Aviao  implements IdentifierInterface, Serializable {
 	public String getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(String codigo) throws TicketsAereosBSIException {
-		if(codigo == null)
-			throw new TicketsAereosBSIException("Codigo Vazio");
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 	public double getCarga() {

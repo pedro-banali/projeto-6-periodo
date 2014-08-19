@@ -2,6 +2,7 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
 import java.util.List;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Bagagem;
 
 
@@ -40,6 +41,15 @@ private static BagagemBC instance;
 	@Override
 	public long insert(Bagagem object) {
 		// TODO Auto-generated method stub
+		if(object == null)
+			throw new TicketsAereosBSIException("Aeroporto Nulo");
+		else if (object.getPeso() <= 0)
+			throw new TicketsAereosBSIException("Carga vazia");
+		else if(object.getBilhete()  == null)
+			throw new TicketsAereosBSIException("Bilhete nulo");
+		else if (object.getBilhete().getBagagens() == null)
+			throw new TicketsAereosBSIException("Carga vazia");
+		
 		return 0;
 	}
 

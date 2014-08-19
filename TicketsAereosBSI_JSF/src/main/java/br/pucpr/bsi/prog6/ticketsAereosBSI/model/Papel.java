@@ -49,16 +49,7 @@ public class Papel implements IdentifierInterface, Serializable {
 	public String getNome() {
 		return nome;
 	}
-	public void setNome(String nome) {
-		
-		if(nome == null)
-			throw new TicketsAereosBSIException("Nome nulo");
-		
-		String n = nome.trim();
-		
-		if(n.equals(""))
-			throw new TicketsAereosBSIException("Nome Vazio");
-		
+	public void setNome(String nome) {	
 		this.nome = nome;
 		
 	}
@@ -66,15 +57,6 @@ public class Papel implements IdentifierInterface, Serializable {
 		return descricao;
 	}
 	public void setDescricao(String descricao) {
-		
-		if(descricao == null)
-			throw new TicketsAereosBSIException("Descricao nula");
-		
-		String d = descricao.trim();
-		
-		if(d.equals(""))
-			throw new TicketsAereosBSIException("Descricao Vazia");
-		
 		this.descricao = descricao;
 	}
 	public List<Funcionario> getFuncionarios() {
