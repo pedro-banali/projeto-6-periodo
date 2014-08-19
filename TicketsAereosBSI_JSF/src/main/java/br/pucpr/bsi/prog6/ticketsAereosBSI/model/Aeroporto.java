@@ -51,5 +51,4 @@ public class Aeroporto implements IdentifierInterface, Serializable {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-	
 }
