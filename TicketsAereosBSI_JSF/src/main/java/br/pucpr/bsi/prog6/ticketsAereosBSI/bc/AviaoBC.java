@@ -44,11 +44,13 @@ private static AviaoBC instance;
 	public long insert(Aviao object) {
 		// TODO Auto-generated method stub
 		if(object == null)
-			throw new TicketsAereosBSIException("Aeroporto Nulo");
+			throw new TicketsAereosBSIException("ER0020");
 		else if(object.getCodigo() == null || object.getCodigo().equals(""))
-			throw new TicketsAereosBSIException("Codigo Endereco Vazio");
-		else if (object.getCarga() <= 0)
-			throw new TicketsAereosBSIException("Carga vazia");
+			throw new TicketsAereosBSIException("ER0021");
+		else if (object.getCarga() == 0)
+			throw new TicketsAereosBSIException("ER0022");
+		else if (object.getCarga() < 0)
+			throw new TicketsAereosBSIException("ER0023");
 		return 0;
 	}
 

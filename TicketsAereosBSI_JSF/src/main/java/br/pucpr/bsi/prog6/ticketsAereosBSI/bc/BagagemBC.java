@@ -42,12 +42,14 @@ private static BagagemBC instance;
 	public long insert(Bagagem object) {
 		// TODO Auto-generated method stub
 		if(object == null)
-			throw new TicketsAereosBSIException("Aeroporto Nulo");
-		else if (object.getPeso() <= 0)
-			throw new TicketsAereosBSIException("Carga vazia");
-		else if(object.getBilhete()  == null)
-			throw new TicketsAereosBSIException("Bilhete nulo");
-		else if (object.getBilhete().getBagagens() == null)
+			throw new TicketsAereosBSIException("ER0030");
+		else if (object.getPeso() == 0)
+			throw new TicketsAereosBSIException("ER0031");
+		else if (object.getPeso() < 0)
+			throw new TicketsAereosBSIException("ER0032");
+		else if(object.getTipoBagagemEnum()  == null)
+			throw new TicketsAereosBSIException("ER0033");
+		else if (object.getBilhete() == null)
 			throw new TicketsAereosBSIException("Carga vazia");
 		
 		return 0;
