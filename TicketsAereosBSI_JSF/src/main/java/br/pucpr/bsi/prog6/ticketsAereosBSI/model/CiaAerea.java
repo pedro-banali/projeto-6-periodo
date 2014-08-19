@@ -68,10 +68,7 @@ public class CiaAerea implements IdentifierInterface, Serializable {
 	@Override
 	public String toString() {
 		return "CiaAerea [" + (id != null ? "id=" + id + ", " : "")
-				+ (nome != null ? "nome=" + nome + ", " : "")
-				+ (avioes != null ? "avioes=" + avioes + ", " : "")
-				+ (papeis != null ? "papeis=" + papeis + ", " : "")
-				+ (rotas != null ? "rotas=" + rotas : "") + "]";
+				+ (nome != null ? "nome=" + nome + ", " : "") + "]";
 	}
 	
 	

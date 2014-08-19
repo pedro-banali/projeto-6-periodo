@@ -54,8 +54,7 @@ public class Funcionario extends Pessoa {
 		return "Funcionario ["
 				+ (codigo != null ? "codigo=" + codigo + ", " : "")
 				+ (contaCorrente != null ? "contaCorrente=" + contaCorrente
-						+ ", " : "") + (papel != null ? "papel=" + papel : "")
-				+ "]";
+						+ ", " : "") + "]";
 	}
 	
 	

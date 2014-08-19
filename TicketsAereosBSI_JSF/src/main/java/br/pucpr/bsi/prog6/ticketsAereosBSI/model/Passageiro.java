@@ -44,8 +44,7 @@ public class Passageiro extends Pessoa {
 		return "Passageiro ["
 				+ (numeroCartao != null ? "numeroCartao=" + numeroCartao + ", "
 						: "")
-				+ (documento != null ? "documento=" + documento + ", " : "")
-				+ (bilhetes != null ? "bilhetes=" + bilhetes : "") + "]";
+				+ (documento != null ? "documento=" + documento + ", " : "") + "]";
 	}
 	
 	

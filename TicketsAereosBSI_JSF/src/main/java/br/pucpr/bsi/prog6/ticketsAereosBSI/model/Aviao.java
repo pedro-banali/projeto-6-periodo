@@ -61,8 +61,7 @@ public class Aviao  implements IdentifierInterface, Serializable {
 	public String toString() {
 		return "Aviao [id=" + id + ", "
 				+ (codigo != null ? "codigo=" + codigo + ", " : "") + "carga="
-				+ carga + ", "
-				+ (ciaAerea != null ? "ciaAerea=" + ciaAerea : "") + "]";
+				+ carga + "]";
 	}
 	
 	

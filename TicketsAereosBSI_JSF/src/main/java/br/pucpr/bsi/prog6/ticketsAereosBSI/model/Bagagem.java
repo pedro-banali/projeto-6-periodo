@@ -72,10 +72,7 @@ public class Bagagem implements IdentifierInterface, Serializable {
 				+ id
 				+ ", peso="
 				+ peso
-				+ ", "
-				+ (tipoBagagem != null ? "tipoBagagem=" + tipoBagagem + ", "
-						: "") + (bilhete != null ? "bilhete=" + bilhete : "")
-				+ "]";
+				+  "]";
 	}
 	
 	

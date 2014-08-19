@@ -41,6 +41,28 @@ public class EnderecoBC extends PatternBC<Endereco>{
 	@Override
 	public long insert(Endereco object) {
 		// TODO Auto-generated method stub
+		
+		this.validateForDataModification(object);
+	
+		return 0;
+	}
+
+	@Override
+	public boolean update(Endereco object) {
+		// TODO Auto-generated method stub
+		this.validateForDataModification(object);
+		return false;
+	}
+
+	@Override
+	public boolean delete(Endereco object) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	protected void validateForDataModification(Endereco object) {
+		// TODO Auto-generated method stub
 		if(object == null)
 			throw new TicketsAereosBSIException("ER0060");
 		else if(object.getNumero() == 0)
@@ -59,26 +81,6 @@ public class EnderecoBC extends PatternBC<Endereco>{
 			throw new TicketsAereosBSIException("ER0061");
 		else if(object.getBairro() == null)
 			throw new TicketsAereosBSIException("ER0065");
-	
-		return 0;
-	}
-
-	@Override
-	public boolean update(Endereco object) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean delete(Endereco object) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	protected void validateForDataModification(Endereco object) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

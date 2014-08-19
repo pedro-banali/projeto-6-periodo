@@ -41,8 +41,29 @@ private static PapelBC instance;
 	@Override
 	public long insert(Papel object) throws TicketsAereosBSIException {
 		// TODO Auto-generated method stub
+		this.validateForDataModification(object);
 		
-		 if(object == null) {
+		return 0;
+	}
+
+	@Override
+	public boolean update(Papel object) {
+		// TODO Auto-generated method stub
+		this.validateForDataModification(object);
+		return false;
+	}
+
+	@Override
+	public boolean delete(Papel object) {
+		// TODO Auto-generated method stub
+		this.validateForDataModification(object);
+		return false;
+	}
+
+	@Override
+	protected void validateForDataModification(Papel object) {
+		// TODO Auto-generated method stub
+		if(object == null) {
 			throw new TicketsAereosBSIException("Papel Nulo");
 		} else if(object.getNome() == null) {
 			throw new TicketsAereosBSIException("Nome nulo");
@@ -53,25 +74,6 @@ private static PapelBC instance;
 			throw new TicketsAereosBSIException("Descricao nula");
 		else if(object.getDescricao().trim().equals(""))
 			throw new TicketsAereosBSIException("Descricao Vazia");
-		return 0;
-	}
-
-	@Override
-	public boolean update(Papel object) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean delete(Papel object) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	protected void validateForDataModification(Papel object) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

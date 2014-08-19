@@ -42,6 +42,26 @@ private static HorarioBC instance;
 	@Override
 	public long insert(Horario object) {
 		// TODO Auto-generated method stub
+		this.validateForDataModification(object);
+		return 0;
+	}
+
+	@Override
+	public boolean update(Horario object) {
+		// TODO Auto-generated method stub
+		this.validateForDataModification(object);
+		return false;
+	}
+
+	@Override
+	public boolean delete(Horario object) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	protected void validateForDataModification(Horario object) {
+		// TODO Auto-generated method stub
 		if(object == null)
 			throw new TicketsAereosBSIException("ER0080");
 		else if(object.getPartida() == null)
@@ -65,25 +85,6 @@ private static HorarioBC instance;
 		
 		RotaBC.getInstance().insert(object.getRota());
 		AviaoBC.getInstance().insert(object.getAviao());
-		return 0;
-	}
-
-	@Override
-	public boolean update(Horario object) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean delete(Horario object) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	protected void validateForDataModification(Horario object) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

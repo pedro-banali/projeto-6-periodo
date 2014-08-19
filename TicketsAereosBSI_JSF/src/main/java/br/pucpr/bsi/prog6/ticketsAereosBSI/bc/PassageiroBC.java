@@ -45,6 +45,26 @@ private static PassageiroBC instance;
 	@Override
 	public long insert(Pessoa object) {
 		// TODO Auto-generated method stub
+		this.validateForDataModification(object);
+		return 0;
+	}
+
+	@Override
+	public boolean update(Pessoa object) {
+		// TODO Auto-generated method stub
+		this.validateForDataModification(object);
+		return false;
+	}
+
+	@Override
+	public boolean delete(Pessoa object) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	protected void validateForDataModification(Pessoa object) {
+		// TODO Auto-generated method stub
 		Passageiro passageiro;
 	 	String nameMask = "[a-zA-Z]+[a-zA-Z0-9]*([\\.|\\-|_][a-zA-Z0-9]+)*";  
         String domainMask = "[a-zA-Z]+[a-zA-Z0-9]*([\\.|\\-|_][a-zA-Z0-9]+)+";  
@@ -85,25 +105,6 @@ private static PassageiroBC instance;
 
 		}
 		EnderecoBC.getInstance().insert(object.getEndereco());
-		return 0;
-	}
-
-	@Override
-	public boolean update(Pessoa object) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean delete(Pessoa object) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	protected void validateForDataModification(Pessoa object) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

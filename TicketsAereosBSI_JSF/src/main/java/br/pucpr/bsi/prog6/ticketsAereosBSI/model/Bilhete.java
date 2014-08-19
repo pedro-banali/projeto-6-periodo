@@ -113,13 +113,7 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 				+ numero
 				+ ", "
 				+ (assento != null ? "assento=" + assento + ", " : "")
-				+ (tipoBilheteEnum != null ? "tipoBilheteEnum="
-						+ tipoBilheteEnum + ", " : "")
-				+ (situacaoBilheteEnum != null ? "situacaoBilheteEnum="
-						+ situacaoBilheteEnum + ", " : "")
-				+ (passageiro != null ? "passageiro=" + passageiro + ", " : "")
-				+ (horario != null ? "horario=" + horario + ", " : "")
-				+ (bagagens != null ? "bagagens=" + bagagens : "") + "]";
+				+ "]";
 	}
 	
 	

@@ -81,10 +81,7 @@ public class Papel implements IdentifierInterface, Serializable {
 				+ id
 				+ ", "
 				+ (nome != null ? "nome=" + nome + ", " : "")
-				+ (descricao != null ? "descricao=" + descricao + ", " : "")
-				+ (funcionarios != null ? "funcionarios=" + funcionarios + ", "
-						: "")
-				+ (ciaAerea != null ? "ciaAerea=" + ciaAerea : "") + "]";
+				+ (descricao != null ? "descricao=" + descricao + ", " : "") + "]";
 	}
 	
 	

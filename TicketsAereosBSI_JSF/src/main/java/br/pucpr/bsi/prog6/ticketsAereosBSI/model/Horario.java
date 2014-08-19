@@ -144,10 +144,7 @@ public class Horario  implements IdentifierInterface, Serializable{
 				+ (chegada != null ? "chegada=" + chegada + ", " : "")
 				+ (codigo != null ? "codigo=" + codigo + ", " : "")
 				+ "qtdEconomica=" + qtdEconomica + ", qtdPrimeira="
-				+ qtdPrimeira + ", qtdExecutiva=" + qtdExecutiva + ", "
-				+ (rota != null ? "rota=" + rota + ", " : "")
-				+ (aviao != null ? "aviao=" + aviao + ", " : "")
-				+ (bilhetes != null ? "bilhetes=" + bilhetes : "") + "]";
+				+ qtdPrimeira + ", qtdExecutiva=" + qtdExecutiva +  "]";
 	}
 	
 	

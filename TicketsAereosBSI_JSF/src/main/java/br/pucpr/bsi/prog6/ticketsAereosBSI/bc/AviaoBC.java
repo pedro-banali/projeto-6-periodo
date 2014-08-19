@@ -43,20 +43,14 @@ private static AviaoBC instance;
 	@Override
 	public long insert(Aviao object) {
 		// TODO Auto-generated method stub
-		if(object == null)
-			throw new TicketsAereosBSIException("ER0020");
-		else if(object.getCodigo() == null || object.getCodigo().equals(""))
-			throw new TicketsAereosBSIException("ER0021");
-		else if (object.getCarga() == 0)
-			throw new TicketsAereosBSIException("ER0022");
-		else if (object.getCarga() < 0)
-			throw new TicketsAereosBSIException("ER0023");
+		this.validateForDataModification(object);
 		return 0;
 	}
 
 	@Override
 	public boolean update(Aviao object) {
 		// TODO Auto-generated method stub
+		this.validateForDataModification(object);
 		return false;
 	}
 
@@ -69,7 +63,14 @@ private static AviaoBC instance;
 	@Override
 	protected void validateForDataModification(Aviao object) {
 		// TODO Auto-generated method stub
-		
+		if(object == null)
+			throw new TicketsAereosBSIException("ER0020");
+		else if(object.getCodigo() == null || object.getCodigo().equals(""))
+			throw new TicketsAereosBSIException("ER0021");
+		else if (object.getCarga() == 0)
+			throw new TicketsAereosBSIException("ER0022");
+		else if (object.getCarga() < 0)
+			throw new TicketsAereosBSIException("ER0023");
 	}
 
 	@Override

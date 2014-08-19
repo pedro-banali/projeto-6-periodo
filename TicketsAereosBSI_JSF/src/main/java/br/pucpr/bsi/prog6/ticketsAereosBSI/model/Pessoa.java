@@ -81,10 +81,7 @@ public abstract class Pessoa implements IdentifierInterface, Serializable  {
 				+ (email != null ? "email=" + email + ", " : "")
 				+ (telefone != null ? "telefone=" + telefone + ", " : "")
 				+ (dataNascimento != null ? "dataNascimento=" + dataNascimento
-						+ ", " : "")
-				+ (usuario != null ? "usuario=" + usuario + ", " : "")
-				+ (senha != null ? "senha=" + senha + ", " : "")
-				+ (endereco != null ? "endereco=" + endereco : "") + "]";
+						+ ", " : "") + "]";
 	}
 	
 	

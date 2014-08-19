@@ -40,24 +40,14 @@ private static AeroportoBC instance;
 	@Override
 	public long insert(Aeroporto object) {
 		// TODO Auto-generated method stub
-		if(object == null)
-			throw new TicketsAereosBSIException("Aeroporto Nulo");
-		else if(object.getNome() == null ||object.getNome().trim().equals(""))
-			throw new TicketsAereosBSIException("Aeroporto Vazio");
-		else if(object.getEndereco() == null)
-			throw new TicketsAereosBSIException("Endereco Nulo");
-		else if(object.getCodigo() == null || object.getCodigo().equals(""))
-			throw new TicketsAereosBSIException("Codigo Endereco Vazio");
+		this.validateForDataModification(object);
 		return 0;
 	}
 
 	@Override
 	public boolean update(Aeroporto object) {
 		// TODO Auto-generated method stub
-		if(object == null)
-			throw new TicketsAereosBSIException("Aeroporto Nulo");
-		else if(object.toString().trim().equals(""))
-			throw new TicketsAereosBSIException("Aeroporto Vazio");
+		this.validateForDataModification(object);
 		return false;
 	}
 
@@ -70,7 +60,14 @@ private static AeroportoBC instance;
 	@Override
 	protected void validateForDataModification(Aeroporto object) {
 		// TODO Auto-generated method stub
-		
+		if(object == null)
+			throw new TicketsAereosBSIException("Aeroporto Nulo");
+		else if(object.getNome() == null ||object.getNome().trim().equals(""))
+			throw new TicketsAereosBSIException("Aeroporto Vazio");
+		else if(object.getEndereco() == null)
+			throw new TicketsAereosBSIException("Endereco Nulo");
+		else if(object.getCodigo() == null || object.getCodigo().equals(""))
+			throw new TicketsAereosBSIException("Codigo Endereco Vazio");
 	}
 
 	@Override

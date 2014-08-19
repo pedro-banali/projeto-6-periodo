@@ -56,8 +56,7 @@ public class Aeroporto implements IdentifierInterface, Serializable {
 	public String toString() {
 		return "Aeroporto [id=" + id + ", "
 				+ (nome != null ? "nome=" + nome + ", " : "")
-				+ (codigo != null ? "codigo=" + codigo + ", " : "")
-				+ (endereco != null ? "endereco=" + endereco : "") + "]";
+				+ (codigo != null ? "codigo=" + codigo + ", " : "") + "]";
 	}
 	
 	

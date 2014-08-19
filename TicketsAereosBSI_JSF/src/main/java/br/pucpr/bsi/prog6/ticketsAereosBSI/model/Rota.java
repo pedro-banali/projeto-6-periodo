@@ -93,9 +93,7 @@ public class Rota  implements IdentifierInterface, Serializable {
 				+ (nome != null ? "nome=" + nome + ", " : "")
 				+ (descricao != null ? "descricao=" + descricao + ", " : "")
 				+ (origem != null ? "origem=" + origem + ", " : "")
-				+ (destino != null ? "destino=" + destino + ", " : "")
-				+ (horarios != null ? "horarios=" + horarios + ", " : "")
-				+ (ciaAerea != null ? "ciaAerea=" + ciaAerea : "") + "]";
+				+ (destino != null ? "destino=" + destino + ", " : "") + "]";
 	}
 	
 	

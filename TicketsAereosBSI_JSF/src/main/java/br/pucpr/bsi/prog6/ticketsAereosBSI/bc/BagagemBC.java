@@ -41,16 +41,8 @@ private static BagagemBC instance;
 	@Override
 	public long insert(Bagagem object) {
 		// TODO Auto-generated method stub
-		if(object == null)
-			throw new TicketsAereosBSIException("ER0030");
-		else if (object.getPeso() == 0)
-			throw new TicketsAereosBSIException("ER0031");
-		else if (object.getPeso() < 0)
-			throw new TicketsAereosBSIException("ER0032");
-		else if(object.getTipoBagagemEnum()  == null)
-			throw new TicketsAereosBSIException("ER0033");
-		else if (object.getBilhete() == null)
-			throw new TicketsAereosBSIException("Carga vazia");
+		
+		this.validateForDataModification(object);
 		
 		return 0;
 	}
@@ -58,6 +50,7 @@ private static BagagemBC instance;
 	@Override
 	public boolean update(Bagagem object) {
 		// TODO Auto-generated method stub
+		validateForDataModification(object);
 		return false;
 	}
 
@@ -70,7 +63,16 @@ private static BagagemBC instance;
 	@Override
 	protected void validateForDataModification(Bagagem object) {
 		// TODO Auto-generated method stub
-		
+		if(object == null)
+			throw new TicketsAereosBSIException("ER0030");
+		else if (object.getPeso() == 0)
+			throw new TicketsAereosBSIException("ER0031");
+		else if (object.getPeso() < 0)
+			throw new TicketsAereosBSIException("ER0032");
+		else if(object.getTipoBagagemEnum()  == null)
+			throw new TicketsAereosBSIException("ER0033");
+		else if (object.getBilhete() == null)
+			throw new TicketsAereosBSIException("Carga vazia");
 	}
 
 	@Override

@@ -22,7 +22,8 @@ public class CiaAereaBC extends PatternBC<CiaAerea> {
 	@Override
 	public long insert(CiaAerea object) {
 		validateForDataModification(object);
-		return CiaAereaDAO.getInstance().insert(object);
+		return 0;
+		//return CiaAereaDAO.getInstance().insert(object);
 	}
 
 	@Override
@@ -47,7 +48,8 @@ public class CiaAereaBC extends PatternBC<CiaAerea> {
 	@Override
 	public boolean update(CiaAerea object) {
 		validateForDataModification(object);
-		return CiaAereaDAO.getInstance().update(object);
+		return false;
+		//return CiaAereaDAO.getInstance().update(object);
 	}
 
 	@Override

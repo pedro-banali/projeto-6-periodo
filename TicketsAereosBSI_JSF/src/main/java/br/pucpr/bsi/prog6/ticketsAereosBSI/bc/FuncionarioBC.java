@@ -44,6 +44,26 @@ public class FuncionarioBC extends PessoaBC {
 
 	@Override
 	public long insert(Pessoa object) {
+		this.validateForDataModification(object);
+		return 0;
+	}
+
+	@Override
+	public boolean update(Pessoa object) {
+		// TODO Auto-generated method stub
+		this.validateForDataModification(object);
+		return false;
+	}
+
+	@Override
+	public boolean delete(Pessoa object) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	protected void validateForDataModification(Pessoa object) {
+		// TODO Auto-generated method stub
 		Funcionario funcionario;
 	 	String nameMask = "[a-zA-Z]+[a-zA-Z0-9]*([\\.|\\-|_][a-zA-Z0-9]+)*";  
         String domainMask = "[a-zA-Z]+[a-zA-Z0-9]*([\\.|\\-|_][a-zA-Z0-9]+)+";  
@@ -85,25 +105,6 @@ public class FuncionarioBC extends PessoaBC {
 		}
 		EnderecoBC.getInstance().insert(object.getEndereco());
 		PapelBC.getInstance().insert(funcionario.getPapel());
-		return 0;
-	}
-
-	@Override
-	public boolean update(Pessoa object) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean delete(Pessoa object) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	protected void validateForDataModification(Pessoa object) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

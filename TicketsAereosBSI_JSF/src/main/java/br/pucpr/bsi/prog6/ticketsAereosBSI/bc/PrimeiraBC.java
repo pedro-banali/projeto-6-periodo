@@ -40,6 +40,27 @@ private static PrimeiraBC instance;
 	@Override
 	public long insert(Bilhete object) {
 		// TODO Auto-generated method stub
+		this.validateForDataModification(object);
+		
+		return 0;
+	}
+
+	@Override
+	public boolean update(Bilhete object) {
+		// TODO Auto-generated method stub
+		this.validateForDataModification(object);
+		return false;
+	}
+
+	@Override
+	public boolean delete(Bilhete object) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	protected void validateForDataModification(Bilhete object) {
+		// TODO Auto-generated method stub
 		if(object == null)
 			throw new TicketsAereosBSIException("ER0040");
 		else if (object.getAssento() == null)
@@ -54,25 +75,6 @@ private static PrimeiraBC instance;
 		HorarioBC.getInstance().insert(object.getHorario());
 		
 		PassageiroBC.getInstance().insert(object.getPassageiro());
-		return 0;
-	}
-
-	@Override
-	public boolean update(Bilhete object) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean delete(Bilhete object) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	protected void validateForDataModification(Bilhete object) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
