@@ -2,6 +2,7 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
 import java.util.List;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Endereco;
 
 
@@ -40,6 +41,25 @@ public class EnderecoBC extends PatternBC<Endereco>{
 	@Override
 	public long insert(Endereco object) {
 		// TODO Auto-generated method stub
+		if(object == null)
+			throw new TicketsAereosBSIException("ER0060");
+		else if(object.getNumero() == 0)
+			throw new TicketsAereosBSIException("ER0063");
+		else if(object.getNumero() <= 0)
+			throw new TicketsAereosBSIException("ER0063");
+		else if(object.getPais() == null)
+			throw new TicketsAereosBSIException("ER0068");
+		else if(object.getCidade() == null)
+			throw new TicketsAereosBSIException("ER0066");
+		else if(object.getEstado() == null)
+			throw new TicketsAereosBSIException("ER0067");
+		else if(object.getComplemento()  == null)
+			throw new TicketsAereosBSIException("ER0064");
+		else if(object.getRua() == null)
+			throw new TicketsAereosBSIException("ER0061");
+		else if(object.getBairro() == null)
+			throw new TicketsAereosBSIException("ER0065");
+	
 		return 0;
 	}
 

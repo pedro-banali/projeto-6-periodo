@@ -45,12 +45,17 @@ private static EconomicaBC instance;
 			throw new TicketsAereosBSIException("ER0040");
 		else if (object.getAssento() == null)
 			throw new TicketsAereosBSIException("ER0041");
-		else if (object.getAssento().equals(""))
+		else if (object.getAssento().trim().equals(""))
 			throw new TicketsAereosBSIException("ER0041");
 		else if(object.getNumero()  == 0)
 			throw new TicketsAereosBSIException("ER0042");
 		else if(object.getNumero()  < 0)
 			throw new TicketsAereosBSIException("ER0043");
+		
+		HorarioBC.getInstance().insert(object.getHorario());
+		
+		PassageiroBC.getInstance().insert(object.getPassageiro());
+		
 
 			
 		return 0;

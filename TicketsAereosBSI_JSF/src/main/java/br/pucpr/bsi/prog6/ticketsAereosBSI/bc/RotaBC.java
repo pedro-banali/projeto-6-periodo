@@ -2,6 +2,7 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
 import java.util.List;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Rota;
 
 
@@ -40,6 +41,18 @@ private static RotaBC instance;
 	@Override
 	public long insert(Rota object) {
 		// TODO Auto-generated method stub
+		if(object == null)
+			throw new TicketsAereosBSIException("ER0120");
+		else if(object.getNome() == null || object.getNome().trim().equals(""))
+			throw new TicketsAereosBSIException("ER0121");
+		else if(object.getDescricao() == null)
+			throw new TicketsAereosBSIException("ER0122");
+		else if(object.getCiaAerea() == null)
+			throw new TicketsAereosBSIException("ER0050");
+		
+		AeroportoBC.getInstance().insert(object.getDestino());
+		AeroportoBC.getInstance().insert(object.getOrigem());
+		
 		return 0;
 	}
 
