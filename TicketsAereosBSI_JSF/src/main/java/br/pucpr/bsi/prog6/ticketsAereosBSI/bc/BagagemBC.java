@@ -72,8 +72,8 @@ private static BagagemBC instance;
 			throw new TicketsAereosBSIException("ER0032");
 		else if(object.getTipoBagagemEnum()  == null)
 			throw new TicketsAereosBSIException("ER0033");
-		else if (object.getBilhete() == null)
-			throw new TicketsAereosBSIException("Carga vazia");
+
+		
 	}
 
 	@Override
