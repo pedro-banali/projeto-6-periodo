@@ -28,6 +28,7 @@ private static PrimeiraBC instance;
 	@Override
 	public List<Bilhete> findByFilter(Bilhete filter) {
 		// TODO Auto-generated method stub
+		this.validateForDataModification(filter);
 		return null;
 	}
 

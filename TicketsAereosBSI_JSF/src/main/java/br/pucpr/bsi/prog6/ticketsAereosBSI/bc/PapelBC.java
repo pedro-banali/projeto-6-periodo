@@ -29,6 +29,7 @@ private static PapelBC instance;
 	@Override
 	public List<Papel> findByFilter(Papel filter) {
 		// TODO Auto-generated method stub
+		this.validateForDataModification(filter);
 		return null;
 	}
 

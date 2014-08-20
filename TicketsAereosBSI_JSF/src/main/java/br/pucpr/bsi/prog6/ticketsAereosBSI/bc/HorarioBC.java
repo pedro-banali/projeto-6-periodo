@@ -30,6 +30,7 @@ private static HorarioBC instance;
 	@Override
 	public List<Horario> findByFilter(Horario filter) {
 		// TODO Auto-generated method stub
+		this.validateForDataModification(filter);
 		return null;
 	}
 

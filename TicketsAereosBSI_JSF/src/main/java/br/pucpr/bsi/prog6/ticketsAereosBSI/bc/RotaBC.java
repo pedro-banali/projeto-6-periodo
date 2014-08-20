@@ -29,6 +29,7 @@ private static RotaBC instance;
 	@Override
 	public List<Rota> findByFilter(Rota filter) {
 		// TODO Auto-generated method stub
+		this.validateForDataModification(filter);
 		return null;
 	}
 

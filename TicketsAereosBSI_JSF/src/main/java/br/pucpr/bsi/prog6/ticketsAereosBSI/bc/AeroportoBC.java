@@ -28,6 +28,7 @@ private static AeroportoBC instance;
 	@Override
 	public List<Aeroporto> findByFilter(Aeroporto filter) {
 		// TODO Auto-generated method stub
+		this.validateForDataModification(filter);
 		return null;
 	}
 

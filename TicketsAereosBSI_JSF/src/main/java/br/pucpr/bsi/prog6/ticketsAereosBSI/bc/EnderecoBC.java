@@ -29,6 +29,7 @@ public class EnderecoBC extends PatternBC<Endereco>{
 	@Override
 	public List<Endereco> findByFilter(Endereco filter) {
 		// TODO Auto-generated method stub
+		this.validateForDataModification(filter);
 		return null;
 	}
 

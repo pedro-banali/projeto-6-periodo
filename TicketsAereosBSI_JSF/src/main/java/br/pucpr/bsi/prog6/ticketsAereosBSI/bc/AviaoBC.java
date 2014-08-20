@@ -31,6 +31,7 @@ private static AviaoBC instance;
 	@Override
 	public List<Aviao> findByFilter(Aviao filter) {
 		// TODO Auto-generated method stub
+		this.validateForDataModification(filter);
 		return null;
 	}
 

@@ -29,6 +29,7 @@ private static BagagemBC instance;
 	@Override
 	public List<Bagagem> findByFilter(Bagagem filter) {
 		// TODO Auto-generated method stub
+		this.validateForDataModification(filter);
 		return null;
 	}
 
