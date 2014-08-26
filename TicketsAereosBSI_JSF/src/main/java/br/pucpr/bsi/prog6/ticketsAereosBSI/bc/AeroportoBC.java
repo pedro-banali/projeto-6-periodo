@@ -2,6 +2,7 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
 import java.util.List;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.AeroportoDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Aeroporto;
 
@@ -41,21 +42,32 @@ private static AeroportoBC instance;
 	@Override
 	public long insert(Aeroporto object) {
 		// TODO Auto-generated method stub
+		
+		AeroportoDAO aeroporto = AeroportoDAO.getInstance();
+		
 		this.validateForDataModification(object);
-		return 0;
+		
+		aeroporto.insert(object);
+		
+		return aeroporto.insert(object);
 	}
 
 	@Override
 	public boolean update(Aeroporto object) {
 		// TODO Auto-generated method stub
+		AeroportoDAO aeroporto = AeroportoDAO.getInstance();
 		this.validateForDataModification(object);
-		return false;
+		
+		return aeroporto.update(object);
 	}
 
 	@Override
 	public boolean delete(Aeroporto object) {
 		// TODO Auto-generated method stub
-		return false;
+		AeroportoDAO aeroporto = AeroportoDAO.getInstance();
+		this.validateForDataModification(object);
+		
+		return aeroporto.delete(object);
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.AviaoDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Aviao;
 
@@ -44,21 +45,31 @@ private static AviaoBC instance;
 	@Override
 	public long insert(Aviao object) {
 		// TODO Auto-generated method stub
+		AviaoDAO aviaoDao = AviaoDAO.getInstance();
+		
 		this.validateForDataModification(object);
-		return 0;
+		
+		return aviaoDao.insert(object);
 	}
 
 	@Override
 	public boolean update(Aviao object) {
 		// TODO Auto-generated method stub
+		AviaoDAO aviaoDao = AviaoDAO.getInstance();
+		
 		this.validateForDataModification(object);
-		return false;
+		
+		return aviaoDao.update(object);
 	}
 
 	@Override
 	public boolean delete(Aviao object) {
 		// TODO Auto-generated method stub
-		return false;
+		AviaoDAO aviaoDao = AviaoDAO.getInstance();
+		
+		this.validateForDataModification(object);
+		
+		return aviaoDao.delete(object);
 	}
 
 	@Override
