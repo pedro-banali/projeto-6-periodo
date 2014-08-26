@@ -7,14 +7,14 @@ import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Bagagem;
 public class BagagemDAO extends PatternDAO<Bagagem> {
 	
 	private static final long serialVersionUID = 1L;
-	private final static AviaoDAO instance = new AviaoDAO();
+	private final static BagagemDAO instance = new BagagemDAO();
 
 	public BagagemDAO() {
 		super(Bagagem.class);
 		// TODO Auto-generated constructor stub
 	}
 
-	public static AviaoDAO getInstance() {
+	public static BagagemDAO getInstance() {
 		return instance;
 	}
 	@Override

@@ -2,6 +2,8 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
 import java.util.List;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.AeroportoDAO;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.BagagemDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Bagagem;
 
@@ -41,24 +43,38 @@ private static BagagemBC instance;
 
 	@Override
 	public long insert(Bagagem object) {
-		// TODO Auto-generated method stub
+		
+		BagagemDAO bagagem = BagagemDAO.getInstance();
 		
 		this.validateForDataModification(object);
 		
-		return 0;
+		bagagem.insert(object);
+		
+		return bagagem.insert(object);
 	}
 
 	@Override
 	public boolean update(Bagagem object) {
-		// TODO Auto-generated method stub
-		validateForDataModification(object);
-		return false;
+		
+		BagagemDAO bagagem = BagagemDAO.getInstance();
+		
+		this.validateForDataModification(object);
+		
+		bagagem.update(object);
+		
+		return bagagem.update(object);
 	}
 
 	@Override
 	public boolean delete(Bagagem object) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		BagagemDAO bagagem = BagagemDAO.getInstance();
+		
+		this.validateForDataModification(object);
+		
+		bagagem.delete(object);
+		
+		return bagagem.delete(object);
 	}
 
 	@Override
