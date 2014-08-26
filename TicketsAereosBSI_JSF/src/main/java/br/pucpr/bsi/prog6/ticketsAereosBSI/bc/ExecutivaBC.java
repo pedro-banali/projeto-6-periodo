@@ -2,6 +2,8 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
 import java.util.List;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.EnderecoDAO;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.ExecutivaDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Bilhete;
 
 
@@ -35,20 +37,36 @@ public class ExecutivaBC extends BilheteBC {
 	}
 	@Override
 	public long insert(Bilhete object) {
-		// TODO Auto-generated method stub
+		
+		ExecutivaDAO executiva = ExecutivaDAO.getInstance();
+		
 		this.validateForDataModification(object);
-		return 0;
+		
+		executiva.insert(object);
+		
+		return executiva.insert(object);
 	}
 	@Override
 	public boolean update(Bilhete object) {
-		// TODO Auto-generated method stub
+		
+		ExecutivaDAO executiva = ExecutivaDAO.getInstance();
+		
 		this.validateForDataModification(object);
-		return false;
+		
+		executiva.update(object);
+		
+		return executiva.update(object);
 	}
 	@Override
 	public boolean delete(Bilhete object) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		ExecutivaDAO executiva = ExecutivaDAO.getInstance();
+		
+		this.validateForDataModification(object);
+		
+		executiva.delete(object);
+		
+		return executiva.delete(object);
 	}
 	@Override
 	protected void validateForDataModification(Bilhete object) {

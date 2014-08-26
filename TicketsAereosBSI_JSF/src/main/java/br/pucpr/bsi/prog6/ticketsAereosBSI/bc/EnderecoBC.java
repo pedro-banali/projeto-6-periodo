@@ -2,6 +2,8 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
 import java.util.List;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.EconomicaDAO;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.EnderecoDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Endereco;
 
@@ -41,24 +43,38 @@ public class EnderecoBC extends PatternBC<Endereco>{
 
 	@Override
 	public long insert(Endereco object) {
-		// TODO Auto-generated method stub
+		
+		EnderecoDAO endereco = EnderecoDAO.getInstance();
 		
 		this.validateForDataModification(object);
-	
-		return 0;
+		
+		endereco.insert(object);
+		
+		return endereco.insert(object);
 	}
 
 	@Override
 	public boolean update(Endereco object) {
-		// TODO Auto-generated method stub
+		
+		EnderecoDAO endereco = EnderecoDAO.getInstance();
+		
 		this.validateForDataModification(object);
-		return false;
+		
+		endereco.update(object);
+		
+		return endereco.update(object);
 	}
 
 	@Override
 	public boolean delete(Endereco object) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		EnderecoDAO endereco = EnderecoDAO.getInstance();
+		
+		this.validateForDataModification(object);
+		
+		endereco.delete(object);
+		
+		return endereco.delete(object);
 	}
 
 	@Override
