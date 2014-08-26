@@ -22,7 +22,7 @@ public class FuncionarioBC extends PessoaBC {
 	   }
 
 	@Override
-	public Pessoa findById(long id) {
+	public Funcionario findById(long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

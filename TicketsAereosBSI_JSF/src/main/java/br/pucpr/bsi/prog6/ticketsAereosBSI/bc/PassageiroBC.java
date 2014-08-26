@@ -22,7 +22,7 @@ private static PassageiroBC instance;
 	   }
 
 	@Override
-	public Pessoa findById(long id) {
+	public Passageiro findById(long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
