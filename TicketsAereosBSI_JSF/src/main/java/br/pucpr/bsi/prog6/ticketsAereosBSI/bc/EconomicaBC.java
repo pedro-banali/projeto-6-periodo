@@ -2,6 +2,8 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
 import java.util.List;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.CiaAereaDAO;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.EconomicaDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Bilhete;
 
 
@@ -40,24 +42,38 @@ private static EconomicaBC instance;
 
 	@Override
 	public long insert(Bilhete object) {
-		// TODO Auto-generated method stub
+		
+		EconomicaDAO economica = EconomicaDAO.getInstance();
 		
 		this.validateForDataModification(object);
 		
-		return 0;
+		economica.insert(object);
+		
+		return economica.insert(object);
 	}
 
 	@Override
 	public boolean update(Bilhete object) {
-		// TODO Auto-generated method stub
+		
+		EconomicaDAO economica = EconomicaDAO.getInstance();
+		
 		this.validateForDataModification(object);
-		return false;
+		
+		economica.update(object);
+		
+		return economica.update(object);
 	}
 
 	@Override
 	public boolean delete(Bilhete object) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		EconomicaDAO economica = EconomicaDAO.getInstance();
+		
+		this.validateForDataModification(object);
+		
+		economica.delete(object);
+		
+		return economica.delete(object);
 	}
 
 	@Override

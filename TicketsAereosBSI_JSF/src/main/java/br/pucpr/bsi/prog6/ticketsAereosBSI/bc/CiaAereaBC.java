@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.BagagemDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.CiaAereaDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.CiaAerea;
@@ -21,9 +22,14 @@ public class CiaAereaBC extends PatternBC<CiaAerea> {
 
 	@Override
 	public long insert(CiaAerea object) {
-		validateForDataModification(object);
-		return 0;
-		//return CiaAereaDAO.getInstance().insert(object);
+		
+		CiaAereaDAO ciaAerea = CiaAereaDAO.getInstance();
+		
+		this.validateForDataModification(object);
+		
+		ciaAerea.insert(object);
+		
+		return ciaAerea.insert(object);
 	}
 
 	@Override
@@ -47,14 +53,26 @@ public class CiaAereaBC extends PatternBC<CiaAerea> {
 	
 	@Override
 	public boolean update(CiaAerea object) {
-		validateForDataModification(object);
-		return false;
-		//return CiaAereaDAO.getInstance().update(object);
+		
+		CiaAereaDAO ciaAerea = CiaAereaDAO.getInstance();
+		
+		this.validateForDataModification(object);
+		
+		ciaAerea.update(object);
+		
+		return ciaAerea.update(object);
 	}
 
 	@Override
 	public boolean delete(CiaAerea object) {
-		return CiaAereaDAO.getInstance().delete(object);
+		
+		CiaAereaDAO ciaAerea = CiaAereaDAO.getInstance();
+		
+		this.validateForDataModification(object);
+		
+		ciaAerea.delete(object);
+		
+		return ciaAerea.delete(object);
 	}
 
 	@Override
