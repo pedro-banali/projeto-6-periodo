@@ -30,9 +30,6 @@ public class TesteCiaAereaLabDAO extends TesteCiaAereaLabBC {
 	@Override
 	public void criarCiaAereaCompleta(){
 		
-		////////////////////////
-		// INSERT
-		////////////////////////
 		PrintUtils.imprimeNomeMetodoChamadorEClasse(ciaAerea);		
 		Long idCiaAerea = CiaAereaBC.getInstance().insert(ciaAerea);
 
@@ -53,8 +50,7 @@ public class TesteCiaAereaLabDAO extends TesteCiaAereaLabBC {
 	 */
 	@Test
 	public void updateCiaAereaCompleto(){
-		PrintUtils.imprimeNomeMetodoChamadorEClasse(ciaAerea);		
-		long idCiaAerea = CiaAereaBC.getInstance().insert(ciaAerea);
+		criarCiaAereaCompleta();
 		
 		//Atualiza objeto
 		Atualizador.atualizarCiaAerea(ciaAerea, "Update EN - ");
@@ -63,7 +59,7 @@ public class TesteCiaAereaLabDAO extends TesteCiaAereaLabBC {
 		CiaAereaBC.getInstance().update(ciaAerea);
 		
 		//Obtem o objeto do BD para as comparacoes basicas
-		Verificador.verificar(CiaAereaBC.getInstance().findById(idCiaAerea), ciaAerea);		
+		Verificador.verificar(CiaAereaBC.getInstance().findById(ciaAerea.getId()), ciaAerea);		
 	}
 	
 	/**
@@ -71,14 +67,13 @@ public class TesteCiaAereaLabDAO extends TesteCiaAereaLabBC {
 	 */
 	@Test
 	public void deleteCiaAereaCompleto(){
-		PrintUtils.imprimeNomeMetodoChamadorEClasse(ciaAerea);		
-		long idCiaAerea = CiaAereaBC.getInstance().insert(ciaAerea);
+		criarCiaAereaCompleta();
 
 		//Imprime para verificar se o ciaAerea foi atualizado
 		PrintUtils.imprimeNomeMetodoChamadorEClasse(ciaAerea);
 		
 		//Deleta o ciaAerea do BD
 		CiaAereaBC.getInstance().delete(ciaAerea);
-		Assert.assertNull(CiaAereaBC.getInstance().findById(idCiaAerea));
+		Assert.assertNull(CiaAereaBC.getInstance().findById(ciaAerea.getId()));
 	}
 }
