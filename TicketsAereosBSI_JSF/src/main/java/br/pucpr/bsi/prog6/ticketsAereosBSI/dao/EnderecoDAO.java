@@ -9,7 +9,7 @@ public class EnderecoDAO extends PatternDAO<Endereco> {
 	private static final long serialVersionUID = 1L;
 	private final static EnderecoDAO instance = new EnderecoDAO();
 
-	private EnderecoDAO() {
+	public EnderecoDAO() {
 		super(Endereco.class);
 	}
 
