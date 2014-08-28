@@ -2,7 +2,6 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
 import java.util.List;
 
-import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.CiaAereaDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.EconomicaDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Bilhete;
 
