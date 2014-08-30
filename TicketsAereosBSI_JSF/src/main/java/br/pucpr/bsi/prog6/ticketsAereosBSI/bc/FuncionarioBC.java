@@ -2,6 +2,7 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
 import java.util.List;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.FuncionarioDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Funcionario;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Pessoa;
@@ -41,21 +42,31 @@ public class FuncionarioBC extends PessoaBC {
 
 	@Override
 	public long insert(Pessoa object) {
+		FuncionarioDAO funcionarioDao = FuncionarioDAO.getInstance();
+		
 		this.validateForDataModification(object);
-		return 0;
+		
+		return funcionarioDao.insert(object);
 	}
 
 	@Override
 	public boolean update(Pessoa object) {
 		// TODO Auto-generated method stub
+		FuncionarioDAO funcionarioDao = FuncionarioDAO.getInstance();
+		
 		this.validateForDataModification(object);
-		return false;
+		
+		return funcionarioDao.update(object);
 	}
 
 	@Override
 	public boolean delete(Pessoa object) {
 		// TODO Auto-generated method stub
-		return false;
+		FuncionarioDAO funcionarioDao = FuncionarioDAO.getInstance();
+		
+		this.validateForDataModification(object);
+		
+		return funcionarioDao.update(object);
 	}
 
 	@Override

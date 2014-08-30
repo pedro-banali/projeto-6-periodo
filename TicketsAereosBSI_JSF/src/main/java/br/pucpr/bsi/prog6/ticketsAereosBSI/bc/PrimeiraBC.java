@@ -2,6 +2,7 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
 import java.util.List;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.PrimeiraDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Bilhete;
 
 public class PrimeiraBC extends BilheteBC {
@@ -27,6 +28,7 @@ private static PrimeiraBC instance;
 	@Override
 	public List<Bilhete> findByFilter(Bilhete filter) {
 		// TODO Auto-generated method stub
+		
 		this.validateForDataModification(filter);
 		return null;
 	}
@@ -40,22 +42,26 @@ private static PrimeiraBC instance;
 	@Override
 	public long insert(Bilhete object) {
 		// TODO Auto-generated method stub
+		PrimeiraDAO primeiraDao = PrimeiraDAO.getInstance();
 		this.validateForDataModification(object);
 		
-		return 0;
+		return primeiraDao.insert(object);
 	}
 
 	@Override
 	public boolean update(Bilhete object) {
 		// TODO Auto-generated method stub
+		PrimeiraDAO primeiraDao = PrimeiraDAO.getInstance();
 		this.validateForDataModification(object);
-		return false;
+		return primeiraDao.update(object);
 	}
 
 	@Override
 	public boolean delete(Bilhete object) {
 		// TODO Auto-generated method stub
-		return false;
+		PrimeiraDAO primeiraDao = PrimeiraDAO.getInstance();
+		this.validateForDataModification(object);
+		return primeiraDao.delete(object);
 	}
 
 	@Override

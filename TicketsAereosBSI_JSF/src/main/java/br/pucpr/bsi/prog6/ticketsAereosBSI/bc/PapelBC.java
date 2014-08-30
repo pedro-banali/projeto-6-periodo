@@ -2,6 +2,7 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
 import java.util.List;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.PapelDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Papel;
 
@@ -42,23 +43,26 @@ private static PapelBC instance;
 	@Override
 	public long insert(Papel object) throws TicketsAereosBSIException {
 		// TODO Auto-generated method stub
+		PapelDAO papelDao = PapelDAO.getInstance();
 		this.validateForDataModification(object);
 		
-		return 0;
+		return papelDao.insert(object);
 	}
 
 	@Override
 	public boolean update(Papel object) {
 		// TODO Auto-generated method stub
+		PapelDAO papelDao = PapelDAO.getInstance();
 		this.validateForDataModification(object);
-		return false;
+		return papelDao.update(object);
 	}
 
 	@Override
 	public boolean delete(Papel object) {
 		// TODO Auto-generated method stub
+		PapelDAO papelDao = PapelDAO.getInstance();
 		this.validateForDataModification(object);
-		return false;
+		return papelDao.delete(object);
 	}
 
 	@Override

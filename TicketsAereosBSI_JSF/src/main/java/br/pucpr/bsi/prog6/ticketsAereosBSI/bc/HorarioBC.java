@@ -3,6 +3,7 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 import java.util.Date;
 import java.util.List;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.HorarioDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Horario;
 
@@ -43,21 +44,25 @@ private static HorarioBC instance;
 	@Override
 	public long insert(Horario object) {
 		// TODO Auto-generated method stub
+		HorarioDAO horarioDao = HorarioDAO.getInstance();
 		this.validateForDataModification(object);
-		return 0;
+		return horarioDao.insert(object);
 	}
 
 	@Override
 	public boolean update(Horario object) {
 		// TODO Auto-generated method stub
+		HorarioDAO horarioDao = HorarioDAO.getInstance();
 		this.validateForDataModification(object);
-		return false;
+		return horarioDao.update(object);
 	}
 
 	@Override
 	public boolean delete(Horario object) {
 		// TODO Auto-generated method stub
-		return false;
+		HorarioDAO horarioDao = HorarioDAO.getInstance();
+		this.validateForDataModification(object);
+		return horarioDao.delete(object);
 	}
 
 	@Override
