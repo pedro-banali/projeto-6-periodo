@@ -46,9 +46,7 @@ public class EnderecoBC extends PatternBC<Endereco>{
 		EnderecoDAO endereco = EnderecoDAO.getInstance();
 		
 		this.validateForDataModification(object);
-		
-		endereco.insert(object);
-		
+					
 		return endereco.insert(object);
 	}
 
@@ -59,8 +57,7 @@ public class EnderecoBC extends PatternBC<Endereco>{
 		
 		this.validateForDataModification(object);
 		
-		endereco.update(object);
-		
+				
 		return endereco.update(object);
 	}
 

@@ -46,9 +46,7 @@ private static BagagemBC instance;
 		BagagemDAO bagagem = BagagemDAO.getInstance();
 		
 		this.validateForDataModification(object);
-		
-		bagagem.insert(object);
-		
+					
 		return bagagem.insert(object);
 	}
 
@@ -59,8 +57,7 @@ private static BagagemBC instance;
 		
 		this.validateForDataModification(object);
 		
-		bagagem.update(object);
-		
+				
 		return bagagem.update(object);
 	}
 
@@ -71,8 +68,7 @@ private static BagagemBC instance;
 		
 		this.validateForDataModification(object);
 		
-		bagagem.delete(object);
-		
+				
 		return bagagem.delete(object);
 	}
 

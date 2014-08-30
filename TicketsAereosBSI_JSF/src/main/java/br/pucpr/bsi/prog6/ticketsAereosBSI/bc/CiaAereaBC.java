@@ -54,9 +54,7 @@ public class CiaAereaBC extends PatternBC<CiaAerea> {
 		CiaAereaDAO ciaAerea = CiaAereaDAO.getInstance();
 		
 		this.validateForDataModification(object);
-		
-		ciaAerea.update(object);
-		
+				
 		return ciaAerea.update(object);
 	}
 
@@ -67,8 +65,7 @@ public class CiaAereaBC extends PatternBC<CiaAerea> {
 		
 		this.validateForDataModification(object);
 		
-		ciaAerea.delete(object);
-		
+				
 		return ciaAerea.delete(object);
 	}
 
