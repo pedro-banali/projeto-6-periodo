@@ -12,6 +12,36 @@ import br.pucpr.bsi.prog6.ticketsAereosBSI.model.CiaAerea;
 
 public class CiaAereaDAO extends PatternDAO<CiaAerea> {
 
+	@Override
+	public CiaAerea findById(long id) {
+		// TODO Auto-generated method stub
+		return super.findById(id);
+	}
+
+	@Override
+	public List<CiaAerea> findAll() {
+		// TODO Auto-generated method stub
+		return super.findAll();
+	}
+
+	@Override
+	public Long insert(CiaAerea obj) {
+		// TODO Auto-generated method stub
+		return super.insert(obj);
+	}
+
+	@Override
+	public boolean update(CiaAerea obj) {
+		// TODO Auto-generated method stub
+		return super.update(obj);
+	}
+
+	@Override
+	public boolean delete(CiaAerea obj) {
+		// TODO Auto-generated method stub
+		return super.delete(obj);
+	}
+
 	private static final long serialVersionUID = 1L;
 	private final static CiaAereaDAO instance = new CiaAereaDAO();
 

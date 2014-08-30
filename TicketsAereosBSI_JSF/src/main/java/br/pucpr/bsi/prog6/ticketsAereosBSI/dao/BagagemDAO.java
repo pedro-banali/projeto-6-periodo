@@ -18,6 +18,36 @@ public class BagagemDAO extends PatternDAO<Bagagem> {
 		return instance;
 	}
 	@Override
+	public Bagagem findById(long id) {
+		// TODO Auto-generated method stub
+		return super.findById(id);
+	}
+
+	@Override
+	public List<Bagagem> findAll() {
+		// TODO Auto-generated method stub
+		return super.findAll();
+	}
+
+	@Override
+	public Long insert(Bagagem obj) {
+		// TODO Auto-generated method stub
+		return super.insert(obj);
+	}
+
+	@Override
+	public boolean update(Bagagem obj) {
+		// TODO Auto-generated method stub
+		return super.update(obj);
+	}
+
+	@Override
+	public boolean delete(Bagagem obj) {
+		// TODO Auto-generated method stub
+		return super.delete(obj);
+	}
+
+	@Override
 	public List<Bagagem> findByFilter(Bagagem filter) {
 		// TODO Auto-generated method stub
 		return null;
