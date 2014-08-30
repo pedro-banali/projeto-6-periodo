@@ -2,7 +2,6 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
 import java.util.List;
 
-import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.PrimeiraDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.RotaDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Rota;
