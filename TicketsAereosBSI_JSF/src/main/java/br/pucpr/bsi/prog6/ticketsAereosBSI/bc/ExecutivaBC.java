@@ -41,7 +41,6 @@ public class ExecutivaBC extends BilheteBC {
 		
 		this.validateForDataModification(object);
 		
-		executiva.insert(object);
 		
 		return executiva.insert(object);
 	}
@@ -52,8 +51,7 @@ public class ExecutivaBC extends BilheteBC {
 		
 		this.validateForDataModification(object);
 		
-		executiva.update(object);
-		
+				
 		return executiva.update(object);
 	}
 	@Override
@@ -63,8 +61,7 @@ public class ExecutivaBC extends BilheteBC {
 		
 		this.validateForDataModification(object);
 		
-		executiva.delete(object);
-		
+				
 		return executiva.delete(object);
 	}
 	@Override
