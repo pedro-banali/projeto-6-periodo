@@ -55,9 +55,7 @@ private static EconomicaBC instance;
 		EconomicaDAO economica = EconomicaDAO.getInstance();
 		
 		this.validateForDataModification(object);
-		
-		economica.update(object);
-		
+				
 		return economica.update(object);
 	}
 
@@ -67,8 +65,7 @@ private static EconomicaBC instance;
 		EconomicaDAO economica = EconomicaDAO.getInstance();
 		
 		this.validateForDataModification(object);
-		
-		economica.delete(object);
+			
 		
 		return economica.delete(object);
 	}
