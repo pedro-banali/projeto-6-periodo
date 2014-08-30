@@ -7,6 +7,9 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 
@@ -24,7 +27,11 @@ public class Papel implements IdentifierInterface, Serializable {
 	private long id;
 	private String nome;
 	private String descricao;
+	@Transient
 	private List<Funcionario> funcionarios;
+	
+	@ManyToOne
+	@JoinColumn(name="id_ciaaerea")
 	private CiaAerea ciaAerea;
 	
 	public Papel(CiaAerea ciaAerea)

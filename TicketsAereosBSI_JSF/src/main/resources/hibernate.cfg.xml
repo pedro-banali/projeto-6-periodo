@@ -15,5 +15,6 @@
 	<property name="hibernate.connection.pool_size">10</property>
 	<!-- Mapping files -->
 	<mapping class="br.pucpr.bsi.prog6.ticketsAereosBSI.model.CiaAerea"/>
+	<mapping class="br.pucpr.bsi.prog6.ticketsAereosBSI.model.Papel"/>
 </session-factory>
 </hibernate-configuration>

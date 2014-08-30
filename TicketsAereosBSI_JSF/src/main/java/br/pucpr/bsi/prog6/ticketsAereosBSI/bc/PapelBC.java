@@ -30,8 +30,10 @@ private static PapelBC instance;
 	@Override
 	public List<Papel> findByFilter(Papel filter) {
 		// TODO Auto-generated method stub
+		PapelDAO papelDao = PapelDAO.getInstance();
 		this.validateForDataModification(filter);
-		return null;
+		
+		return papelDao.findByFilter(filter);
 	}
 
 	@Override

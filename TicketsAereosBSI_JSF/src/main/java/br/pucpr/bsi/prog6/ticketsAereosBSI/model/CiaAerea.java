@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 @Entity
@@ -21,9 +23,10 @@ public class CiaAerea implements IdentifierInterface, Serializable {
 	
 	@Transient
 	private List<Aviao> avioes;
-	@Transient
+	@OneToMany(mappedBy="ciaAerea", fetch=FetchType.LAZY)
 	private List<Papel> papeis;
 	@Transient
+	//@OneToMany(mappedBy="ciaAerea", fetch=FetchType.LAZY)
 	private List<Rota> rotas;
 	
 	public CiaAerea() {
