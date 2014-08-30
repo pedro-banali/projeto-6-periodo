@@ -2,6 +2,8 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
 import java.util.List;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.PrimeiraDAO;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.RotaDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Rota;
 
@@ -42,22 +44,29 @@ private static RotaBC instance;
 	@Override
 	public long insert(Rota object) {
 		// TODO Auto-generated method stub
+		RotaDAO rotaDao = RotaDAO.getInstance();
 		this.validateForDataModification(object);
-	
-		return 0;
+		
+		return rotaDao.insert(object);
+			
 	}
 
 	@Override
 	public boolean update(Rota object) {
 		// TODO Auto-generated method stub
+		RotaDAO rotaDao = RotaDAO.getInstance();
 		this.validateForDataModification(object);
-		return false;
+		
+		return rotaDao.update(object);
 	}
 
 	@Override
 	public boolean delete(Rota object) {
 		// TODO Auto-generated method stub
-		return false;
+		RotaDAO rotaDao = RotaDAO.getInstance();
+		this.validateForDataModification(object);
+		
+		return rotaDao.delete(object);
 	}
 
 	@Override
