@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class CiaAerea implements IdentifierInterface, Serializable {
@@ -17,8 +18,12 @@ public class CiaAerea implements IdentifierInterface, Serializable {
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
+	
+	@Transient
 	private List<Aviao> avioes;
+	@Transient
 	private List<Papel> papeis;
+	@Transient
 	private List<Rota> rotas;
 	
 	public CiaAerea() {

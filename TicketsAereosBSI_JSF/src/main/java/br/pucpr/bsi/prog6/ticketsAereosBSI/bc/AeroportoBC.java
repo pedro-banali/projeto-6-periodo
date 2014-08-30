@@ -46,9 +46,7 @@ private static AeroportoBC instance;
 		AeroportoDAO aeroporto = AeroportoDAO.getInstance();
 		
 		this.validateForDataModification(object);
-		
-		aeroporto.insert(object);
-		
+				
 		return aeroporto.insert(object);
 	}
 

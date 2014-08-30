@@ -26,8 +26,6 @@ public class CiaAereaBC extends PatternBC<CiaAerea> {
 		
 		this.validateForDataModification(object);
 		
-		ciaAerea.insert(object);
-		
 		return ciaAerea.insert(object);
 	}
 
