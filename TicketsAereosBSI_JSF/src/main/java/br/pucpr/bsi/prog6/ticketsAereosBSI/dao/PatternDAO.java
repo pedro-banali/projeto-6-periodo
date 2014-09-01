@@ -41,6 +41,8 @@ public abstract class PatternDAO<T extends IdentifierInterface> implements Seria
 			return (T) byIdQuery.uniqueResult();
 		} catch (Exception e) {
 			throw new TicketsAereosBSIException(e);
+		} finally {
+			session.close();
 		}
 	}
 	
@@ -64,6 +66,8 @@ public abstract class PatternDAO<T extends IdentifierInterface> implements Seria
 			return listQuery.list();
 		} catch (Exception e) {
 			throw new TicketsAereosBSIException(e);
+		} finally {
+			session.close();
 		}
 	}		
 	

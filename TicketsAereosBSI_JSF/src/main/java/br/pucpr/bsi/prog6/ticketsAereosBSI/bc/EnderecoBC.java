@@ -24,7 +24,7 @@ public class EnderecoBC extends PatternBC<Endereco>{
 	@Override
 	public Endereco findById(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return EnderecoDAO.getInstance().findById(id);
 	}
 
 	@Override

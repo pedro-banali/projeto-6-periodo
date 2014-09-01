@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -33,6 +34,12 @@ public class Papel implements IdentifierInterface, Serializable {
 	@ManyToOne
 	@JoinColumn(name="id_ciaaerea")
 	private CiaAerea ciaAerea;
+	
+	@SuppressWarnings("unused")
+	private Papel()
+	{
+		
+	}
 	
 	public Papel(CiaAerea ciaAerea)
 	{

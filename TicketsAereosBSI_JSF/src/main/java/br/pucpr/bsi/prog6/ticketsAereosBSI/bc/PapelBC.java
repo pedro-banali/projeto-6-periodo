@@ -24,7 +24,7 @@ private static PapelBC instance;
 	@Override
 	public Papel findById(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return  PapelDAO.getInstance().findById(id);
 	}
 
 	@Override
@@ -43,7 +43,7 @@ private static PapelBC instance;
 	}
 
 	@Override
-	public long insert(Papel object) throws TicketsAereosBSIException {
+	public long insert(Papel object){
 		// TODO Auto-generated method stub
 		PapelDAO papelDao = PapelDAO.getInstance();
 		this.validateForDataModification(object);
