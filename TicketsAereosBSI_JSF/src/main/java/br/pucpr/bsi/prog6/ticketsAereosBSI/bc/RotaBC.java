@@ -24,7 +24,7 @@ private static RotaBC instance;
 	@Override
 	public Rota findById(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return RotaDAO.getInstance().findById(id);
 	}
 
 	@Override

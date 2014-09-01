@@ -23,7 +23,7 @@ private static AeroportoBC instance;
 	@Override
 	public Aeroporto findById(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return AeroportoDAO.getInstance().findById(id);
 	}
 
 	@Override

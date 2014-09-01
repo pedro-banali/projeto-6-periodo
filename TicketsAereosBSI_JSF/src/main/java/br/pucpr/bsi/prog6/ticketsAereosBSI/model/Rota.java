@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 @Entity
@@ -23,15 +24,24 @@ public class Rota  implements IdentifierInterface, Serializable {
 	private long id;
 	private String nome;
 	private String descricao;
-	@Transient
+	@OneToOne
+	@JoinColumn(name="id_origem")
 	private Aeroporto origem;
-	@Transient
+	@OneToOne
+	@JoinColumn(name="id_destino")
 	private Aeroporto destino;
 	@Transient
 	private List<Horario> horarios;
+	
 	@ManyToOne
 	@JoinColumn(name="id_ciaaerea")
 	private CiaAerea ciaAerea;
+	
+	@SuppressWarnings("unused")
+	private Rota()
+	{
+		
+	}
 	
 	public Rota(CiaAerea ciaAerea, Aeroporto origem, Aeroporto destino)
 	{

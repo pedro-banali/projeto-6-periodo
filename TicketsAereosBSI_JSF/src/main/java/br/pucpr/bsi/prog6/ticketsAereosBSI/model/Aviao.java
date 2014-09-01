@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Aviao  implements IdentifierInterface, Serializable {
@@ -20,7 +22,16 @@ public class Aviao  implements IdentifierInterface, Serializable {
 	private long id;
 	private String codigo;
 	private double carga;
+	
+	@ManyToOne
+	@JoinColumn(name="id_ciaaerea")
 	private CiaAerea ciaAerea;
+	
+	@SuppressWarnings("unused")
+	private Aviao()
+	{
+		
+	}
 	
 	public Aviao(CiaAerea ciaAerea)
 	{

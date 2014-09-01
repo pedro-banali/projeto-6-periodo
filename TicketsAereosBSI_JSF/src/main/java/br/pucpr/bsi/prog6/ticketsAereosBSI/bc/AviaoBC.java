@@ -26,7 +26,7 @@ private static AviaoBC instance;
 	@Override
 	public Aviao findById(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return AviaoDAO.getInstance().findById(id);
 	}
 
 	@Override
