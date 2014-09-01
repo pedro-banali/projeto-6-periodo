@@ -63,7 +63,7 @@ public class TestePapelLabDAO extends TestePapelLabBC {
 		CiaAerea ciaAereaBD = CiaAereaBC.getInstance().findById(papel.getCiaAerea().getId());
 		
 		//Exception de Lazy
-		ciaAereaBD.getAvioes().get(0);
+		ciaAereaBD.getPapeis().get(0);
 	}
 	
 	

@@ -65,7 +65,7 @@ public class TesteHorarioLabDAO extends TesteHorarioLabBC {
 	 * Valida o atributo Rota como se esta com FecthType Lazy
 	 */
 	@Test(expected = LazyInitializationException.class)
-	public void validarPapelLazy(){
+	public void validarHorarioLazy(){
 		criarHorarioCompleto();
 		
 		//Obtem o objeto do BD para as comparacoes basicas

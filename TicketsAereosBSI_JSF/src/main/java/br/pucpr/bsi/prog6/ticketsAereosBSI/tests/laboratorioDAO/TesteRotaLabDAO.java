@@ -68,7 +68,7 @@ public class TesteRotaLabDAO extends TesteRotaLabBC {
 		CiaAerea ciaAereaBD = CiaAereaBC.getInstance().findById(rota.getCiaAerea().getId());
 		
 		//Exception de Lazy
-		ciaAereaBD.getAvioes().get(0);
+		ciaAereaBD.getRotas().get(0);
 	}
 	
 	

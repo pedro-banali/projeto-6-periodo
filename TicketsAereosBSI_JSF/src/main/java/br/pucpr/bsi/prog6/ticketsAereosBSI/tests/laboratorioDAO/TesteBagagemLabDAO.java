@@ -33,6 +33,7 @@ public class TesteBagagemLabDAO extends TesteBagagemLabBC{
 	/**
 	 * Valida a bagagem completa
 	 */
+	@SuppressWarnings("unchecked")
 	@Test
 	@Override
 	public void criarBagagemCompleta(){

@@ -55,7 +55,7 @@ public class TesteFuncionarioLabDAO extends TesteFuncionarioLabBC{
 	 * Valida o atributo Funcionario como se esta com FecthType Lazy
 	 */
 	@Test(expected = LazyInitializationException.class)
-	public void validarPapelLazy(){
+	public void validarFuncionariosLazy(){
 		criarFuncionarioCompleto();
 		
 		//Obtem o objeto do BD para as comparacoes basicas

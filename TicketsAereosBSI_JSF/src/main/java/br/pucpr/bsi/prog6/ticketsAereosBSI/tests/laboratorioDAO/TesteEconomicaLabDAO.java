@@ -67,7 +67,7 @@ public class TesteEconomicaLabDAO extends TesteEconomicaLabBC{
 	 * Valida o atributo Bilhetes como se esta com FecthType Lazy
 	 */
 	@Test(expected = LazyInitializationException.class)
-	public void validarPapelLazy(){
+	public void validarBilhetesLazy(){
 		criarEconomicaCompleta();
 		
 		//Obtem o objeto do BD para as comparacoes basicas

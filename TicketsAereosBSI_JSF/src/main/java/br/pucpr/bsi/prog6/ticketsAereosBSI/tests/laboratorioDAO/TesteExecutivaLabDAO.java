@@ -67,7 +67,7 @@ public class TesteExecutivaLabDAO extends TesteExecutivaLabBC{
 	 * Valida o atributo Bilhetes como se esta com FecthType Lazy
 	 */
 	@Test(expected = LazyInitializationException.class)
-	public void validarPapelLazy(){
+	public void validarBilhetesLazy(){
 		criarExecutivaCompleta();
 		
 		//Obtem o objeto do BD para as comparacoes basicas
