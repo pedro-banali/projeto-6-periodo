@@ -20,5 +20,6 @@
 	<mapping class="br.pucpr.bsi.prog6.ticketsAereosBSI.model.Aviao"/>
 	<mapping class="br.pucpr.bsi.prog6.ticketsAereosBSI.model.Rota"/>
 	<mapping class="br.pucpr.bsi.prog6.ticketsAereosBSI.model.Aeroporto"/>
+	<mapping class="br.pucpr.bsi.prog6.ticketsAereosBSI.model.Horario"/>
 </session-factory>
 </hibernate-configuration>

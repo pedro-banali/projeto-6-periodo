@@ -8,6 +8,10 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Horario  implements IdentifierInterface, Serializable{
@@ -27,9 +31,19 @@ public class Horario  implements IdentifierInterface, Serializable{
 	private int qtdEconomica;
 	private int qtdPrimeira;
 	private int qtdExecutiva;
+	
+	@ManyToOne
+	@JoinColumn(name="id_rota")
 	private Rota rota;
+	@OneToOne
+	@JoinColumn(name="id_aviao")
 	private Aviao aviao;
+	@Transient
 	private List<Bilhete> bilhetes;
+	
+	@SuppressWarnings("unused")
+	private Horario()
+	{}
 	
 	public Horario(Rota rota, Aviao aviao)
 	{

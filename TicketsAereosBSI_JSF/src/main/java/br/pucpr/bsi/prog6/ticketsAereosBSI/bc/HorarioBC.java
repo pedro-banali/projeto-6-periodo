@@ -25,7 +25,7 @@ private static HorarioBC instance;
 	@Override
 	public Horario findById(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return HorarioBC.getInstance().findById(id);
 	}
 
 	@Override
