@@ -16,7 +16,7 @@ public class Endereco implements IdentifierInterface, Serializable {
 	@Id
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
 	
-	private long id;
+	private Long id;
 	private String rua;
 	private int numero;
 	private String complemento;
@@ -24,6 +24,10 @@ public class Endereco implements IdentifierInterface, Serializable {
 	private String cidade;
 	private String estado;
 	private String pais;
+	
+	public Endereco() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public Long getId() {
 		return id;

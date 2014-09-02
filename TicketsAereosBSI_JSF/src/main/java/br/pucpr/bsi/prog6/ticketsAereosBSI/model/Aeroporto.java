@@ -2,6 +2,7 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,20 +12,17 @@ import javax.persistence.OneToOne;
 @Entity
 public class Aeroporto implements IdentifierInterface, Serializable {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 6369640537361904065L;
 	
 	@Id
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
 	
-	private long id;
+	private Long id;
 	private String nome;
 	private String codigo;
 	
-	//@OneToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
-	@OneToOne
+	@OneToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
+	//@OneToOne
 	@JoinColumn(name="id_endereco")
 	private Endereco endereco;
 	

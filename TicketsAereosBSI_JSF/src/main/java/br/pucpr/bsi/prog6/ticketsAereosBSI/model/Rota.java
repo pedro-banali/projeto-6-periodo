@@ -6,13 +6,11 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 @Entity
@@ -24,17 +22,19 @@ public class Rota  implements IdentifierInterface, Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	private String nome;
 	private String descricao;
-	@OneToOne(fetch=FetchType.LAZY)
+
+	@ManyToOne
 	@JoinColumn(name="id_origem")
 	private Aeroporto origem;
-	@OneToOne(fetch=FetchType.LAZY)
+	
+	@ManyToOne
 	@JoinColumn(name="id_destino")
 	private Aeroporto destino;
-	//@OneToMany(mappedBy="rota", fetch=FetchType.LAZY)
-	@Transient
+	
+	@OneToMany(targetEntity = Horario.class, mappedBy = "rota", fetch = FetchType.LAZY)
 	private List<Horario> horarios;
 	
 	@ManyToOne
