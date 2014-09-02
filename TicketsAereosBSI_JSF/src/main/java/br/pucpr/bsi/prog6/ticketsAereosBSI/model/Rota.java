@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Rota  implements IdentifierInterface, Serializable {
@@ -26,13 +27,14 @@ public class Rota  implements IdentifierInterface, Serializable {
 	private long id;
 	private String nome;
 	private String descricao;
-	@OneToOne
+	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_origem")
 	private Aeroporto origem;
-	@OneToOne
+	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_destino")
 	private Aeroporto destino;
-	@OneToMany(mappedBy="rota", fetch=FetchType.LAZY)
+	//@OneToMany(mappedBy="rota", fetch=FetchType.LAZY)
+	@Transient
 	private List<Horario> horarios;
 	
 	@ManyToOne
