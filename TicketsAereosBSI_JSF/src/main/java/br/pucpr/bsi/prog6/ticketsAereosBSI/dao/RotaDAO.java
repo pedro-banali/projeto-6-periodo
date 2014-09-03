@@ -5,6 +5,10 @@ import java.util.List;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Rota;
 
 public class RotaDAO extends PatternDAO<Rota>{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2997507448312008422L;
 	private static RotaDAO instance = new RotaDAO();
 
 	private RotaDAO() {

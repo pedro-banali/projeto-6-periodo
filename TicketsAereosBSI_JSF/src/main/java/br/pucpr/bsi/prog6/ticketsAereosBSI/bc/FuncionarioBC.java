@@ -25,7 +25,7 @@ public class FuncionarioBC extends PessoaBC {
 	@Override
 	public Funcionario findById(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return (Funcionario) FuncionarioDAO.getInstance().findById(id);
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class FuncionarioBC extends PessoaBC {
 		
 		this.validateForDataModification(object);
 		
-		return funcionarioDao.update(object);
+		return funcionarioDao.delete(object);
 	}
 
 	@Override

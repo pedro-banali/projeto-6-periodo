@@ -5,11 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
+import javax.persistence.OneToMany;
 
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 
@@ -27,7 +28,8 @@ public class Papel implements IdentifierInterface, Serializable {
 	private long id;
 	private String nome;
 	private String descricao;
-	@Transient
+	
+	@OneToMany(mappedBy="papel", fetch=FetchType.LAZY)
 	private List<Funcionario> funcionarios;
 	
 	@ManyToOne
@@ -48,6 +50,9 @@ public class Papel implements IdentifierInterface, Serializable {
 		
 		if(papeis == null)
 			papeis = new ArrayList<Papel>();
+		
+		if(funcionarios == null)
+			funcionarios = new ArrayList<Funcionario>();
 		
 		papeis.add(this);
 		

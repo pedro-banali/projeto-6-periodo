@@ -3,6 +3,11 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Funcionario extends Pessoa {
 	
 	/**
@@ -11,7 +16,16 @@ public class Funcionario extends Pessoa {
 	private static final long serialVersionUID = 2437913993872236059L;
 	private String codigo;
 	private String contaCorrente;
+	
+	@ManyToOne
+	@JoinColumn(name="id_papel")
 	private Papel papel;
+	
+	@SuppressWarnings("unused")
+	private Funcionario()
+	{
+		super();
+	}
 			
 	public Funcionario(Endereco endereco, Papel papel)
 	{

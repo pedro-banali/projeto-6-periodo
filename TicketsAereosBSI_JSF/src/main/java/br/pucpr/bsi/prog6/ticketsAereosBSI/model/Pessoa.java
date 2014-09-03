@@ -3,19 +3,50 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+
+@Entity
+
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@SequenceGenerator(sequenceName="SEQ_ID_USUARIO", 
+name="seqIdUsuario", initialValue=0, 
+allocationSize=1)
+
+
 public abstract class Pessoa implements IdentifierInterface, Serializable  {
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -4315472922850937518L;
-	private long id;
+	private static final long serialVersionUID = -1847715757862584652L;
+	/**
+	 * 
+	 */
+	
+	@Id
+	@GeneratedValue(strategy =GenerationType.SEQUENCE,
+	generator="seqIdUsuario")
+
+	
+	private Long id;
 	private String nome;
 	private String email;
 	private String telefone;
 	private Date dataNascimento;
 	private String usuario;
 	private String senha;
+	
+	@OneToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+	@JoinColumn(name="id_endereco")
 	private Endereco endereco;
 	
 	public Pessoa(Endereco endereco)
@@ -23,6 +54,10 @@ public abstract class Pessoa implements IdentifierInterface, Serializable  {
 		this.endereco = endereco;
 	}
 	
+	public Pessoa() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Long getId() {
 		return id;
 	}

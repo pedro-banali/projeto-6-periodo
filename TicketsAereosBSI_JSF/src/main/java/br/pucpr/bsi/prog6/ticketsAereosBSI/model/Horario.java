@@ -28,19 +28,24 @@ public class Horario  implements IdentifierInterface, Serializable{
 	private Date partida;
 	private Date chegada;
 	private String codigo;
+	
 	@Column(name="qtd_economica")
 	private int qtdEconomica;
+	
 	@Column(name="qtd_primeira")
 	private int qtdPrimeira;
+	
 	@Column(name="qtd_executiva")
 	private int qtdExecutiva;
 	
 	@ManyToOne
 	@JoinColumn(name="id_rota")
 	private Rota rota;
+	
 	@ManyToOne
 	@JoinColumn(name="id_aviao")
 	private Aviao aviao;
+	
 	@Transient
 	private List<Bilhete> bilhetes;
 	

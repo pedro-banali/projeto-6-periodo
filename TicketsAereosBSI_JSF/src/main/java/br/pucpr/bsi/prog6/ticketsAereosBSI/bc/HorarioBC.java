@@ -25,7 +25,7 @@ private static HorarioBC instance;
 	@Override
 	public Horario findById(long id) {
 		// TODO Auto-generated method stub
-		return HorarioBC.getInstance().findById(id);
+		return HorarioDAO.getInstance().findById(id);
 	}
 
 	@Override
@@ -89,8 +89,8 @@ private static HorarioBC instance;
 		else if(object.getCodigo().trim().equals(""))
 			throw new TicketsAereosBSIException("ER0088");
 		
-		RotaBC.getInstance().insert(object.getRota());
-		AviaoBC.getInstance().insert(object.getAviao());
+		RotaBC.getInstance().validateForDataModification(object.getRota());
+		AviaoBC.getInstance().validateForDataModification(object.getAviao());
 	}
 
 	@Override
