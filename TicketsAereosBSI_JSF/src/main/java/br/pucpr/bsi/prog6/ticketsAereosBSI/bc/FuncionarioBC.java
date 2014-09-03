@@ -83,8 +83,8 @@ public class FuncionarioBC extends PessoaBC {
 		else if(funcionario.getCodigo() == null)
 			throw new TicketsAereosBSIException("ER0071");
 
-		EnderecoBC.getInstance().insert(object.getEndereco());
-		PapelBC.getInstance().insert(funcionario.getPapel());
+		EnderecoBC.getInstance().validateForDataModification(object.getEndereco());
+		PapelBC.getInstance().validateForDataModification(funcionario.getPapel());
 	}
 
 	@Override

@@ -68,8 +68,6 @@ public class EnderecoBC extends PatternBC<Endereco>{
 		
 		this.validateForDataModification(object);
 		
-		endereco.delete(object);
-		
 		return endereco.delete(object);
 	}
 

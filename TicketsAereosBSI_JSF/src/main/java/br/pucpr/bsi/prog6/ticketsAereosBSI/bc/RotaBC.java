@@ -42,11 +42,8 @@ private static RotaBC instance;
 
 	@Override
 	public long insert(Rota object) {
-		// TODO Auto-generated method stub
-		RotaDAO rotaDao = RotaDAO.getInstance();
-		this.validateForDataModification(object);
-		
-		return rotaDao.insert(object);
+		validateForDataModification(object);
+		return RotaDAO.getInstance().insert(object);
 			
 	}
 
@@ -80,8 +77,8 @@ private static RotaBC instance;
 		else if(object.getCiaAerea() == null)
 			throw new TicketsAereosBSIException("ER0050");
 		
-		AeroportoBC.getInstance().insert(object.getDestino());
-		AeroportoBC.getInstance().insert(object.getOrigem());
+		AeroportoBC.getInstance().validateForDataModification(object.getDestino());
+		AeroportoBC.getInstance().validateForDataModification(object.getOrigem());
 	}
 
 	@Override

@@ -81,7 +81,7 @@ private static PassageiroBC instance;
 			throw new TicketsAereosBSIException("ER0101");
 			
 
-		EnderecoBC.getInstance().insert(object.getEndereco());
+		EnderecoBC.getInstance().validateForDataModification(object.getEndereco());
 	}
 
 	@Override

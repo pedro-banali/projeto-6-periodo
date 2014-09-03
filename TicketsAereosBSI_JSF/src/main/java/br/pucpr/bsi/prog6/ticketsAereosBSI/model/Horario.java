@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 @Entity
@@ -28,14 +28,17 @@ public class Horario  implements IdentifierInterface, Serializable{
 	private Date partida;
 	private Date chegada;
 	private String codigo;
+	@Column(name="qtd_economica")
 	private int qtdEconomica;
+	@Column(name="qtd_primeira")
 	private int qtdPrimeira;
+	@Column(name="qtd_executiva")
 	private int qtdExecutiva;
 	
 	@ManyToOne
 	@JoinColumn(name="id_rota")
 	private Rota rota;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="id_aviao")
 	private Aviao aviao;
 	@Transient

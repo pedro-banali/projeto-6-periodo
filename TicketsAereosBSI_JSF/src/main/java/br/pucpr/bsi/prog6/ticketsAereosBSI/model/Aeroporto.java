@@ -21,8 +21,7 @@ public class Aeroporto implements IdentifierInterface, Serializable {
 	private String nome;
 	private String codigo;
 	
-	@OneToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
-	//@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="id_endereco")
 	private Endereco endereco;
 	

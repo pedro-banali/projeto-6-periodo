@@ -69,9 +69,9 @@ private static PrimeiraBC instance;
 		// TODO Auto-generated method stub
 		super.validateForDataModification(object);
 		
-		HorarioBC.getInstance().insert(object.getHorario());
+		HorarioBC.getInstance().validateForDataModification(object.getHorario());
 		
-		PassageiroBC.getInstance().insert(object.getPassageiro());
+		PassageiroBC.getInstance().validateForDataModification(object.getPassageiro());
 	}
 
 	@Override
