@@ -7,7 +7,7 @@ import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.TipoBilheteEnum;
 
 
 @Entity
-@DiscriminatorValue(value="2")
+@DiscriminatorValue(value="PRIMEIRA")
 public class Primeira extends Bilhete {
 
 	/**

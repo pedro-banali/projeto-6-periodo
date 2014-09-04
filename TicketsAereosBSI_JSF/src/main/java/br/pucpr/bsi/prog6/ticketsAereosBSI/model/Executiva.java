@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.TipoBilheteEnum;
 
 @Entity
-@DiscriminatorValue(value="1")
+@DiscriminatorValue(value="EXECUTIVA")
 public class Executiva extends Bilhete {
 
 	/**

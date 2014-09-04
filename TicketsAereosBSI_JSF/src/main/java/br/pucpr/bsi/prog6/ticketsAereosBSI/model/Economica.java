@@ -7,7 +7,7 @@ import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.TipoBilheteEnum;
 
 
 @Entity
-@DiscriminatorValue(value="0")
+@DiscriminatorValue(value="ECONOMICA")
 public class Economica extends Bilhete {
 
 	/**
