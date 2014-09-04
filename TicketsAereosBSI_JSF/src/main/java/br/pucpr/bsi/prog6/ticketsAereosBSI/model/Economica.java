@@ -5,15 +5,20 @@ import javax.persistence.Entity;
 
 import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.TipoBilheteEnum;
 
-@Entity
-@DiscriminatorValue(value="1")
 
+@Entity
+@DiscriminatorValue(value="0")
 public class Economica extends Bilhete {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -910293633584037805L;
+	
+	@SuppressWarnings("unused")
+	private Economica() {
+		super();
+	}
 	
 	public Economica(Horario horario, Passageiro passageiro)
 	{

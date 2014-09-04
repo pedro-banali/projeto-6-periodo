@@ -17,6 +17,11 @@ public class Passageiro extends Pessoa {
 	@OneToMany(mappedBy="passageiro", fetch=FetchType.LAZY)
 	private List<Bilhete> bilhetes;
 	
+	@SuppressWarnings("unused")
+	private Passageiro()
+	{}
+	
+	
 	public Passageiro(Endereco endereco)
 	{
 		super(endereco);

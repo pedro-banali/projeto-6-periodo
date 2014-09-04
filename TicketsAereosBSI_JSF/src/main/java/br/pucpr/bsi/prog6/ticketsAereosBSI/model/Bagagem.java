@@ -4,26 +4,39 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.TipoBagagemEnum;
 
 @Entity
+ 
 public class Bagagem implements IdentifierInterface, Serializable {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1548664053401217429L;
+	
 	@Id
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
 	
-	private long id;
+	private Long id;
 	private double peso;
+	@Column(name="tipo")
 	private TipoBagagemEnum tipoBagagem;
+	
+	@ManyToOne
+	@JoinColumn(name="id_bilhete")
 	private Bilhete bilhete;
+	
+	@SuppressWarnings("unused")
+	private Bagagem()
+	{}
 	
 	public Bagagem (TipoBagagemEnum tipoBagagemEnum, Bilhete bilhete)
 	{

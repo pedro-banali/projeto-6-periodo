@@ -14,15 +14,14 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
+import javax.persistence.OneToMany;
 
 import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.SituacaoBilheteEnum;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.TipoBilheteEnum;
 
 @Entity
 @Inheritance
-@DiscriminatorColumn(name="tipo", length=1,
-discriminatorType= DiscriminatorType.STRING)
+@DiscriminatorColumn(name="tipo", length=1, discriminatorType= DiscriminatorType.INTEGER) 
 public abstract class Bilhete implements IdentifierInterface, Serializable  {
 	/**
 	 * 
@@ -35,10 +34,13 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 	private Long id;
 	private int numero;
 	private String assento;
+	
 	@Column(name="tipo", updatable=false, insertable=false)
 	private TipoBilheteEnum tipoBilheteEnum;
+	
 	@Column(name="situacao")
 	private SituacaoBilheteEnum situacaoBilheteEnum;
+	
 	@ManyToOne
 	@JoinColumn(name="id_passageiro")
 	private Passageiro passageiro;
@@ -47,7 +49,7 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 	@JoinColumn(name="id_horario")
 	private Horario horario;
 	
-	@Transient
+	@OneToMany(mappedBy="bilhete")
 	private List<Bagagem> bagagens;
 	
 	public Bilhete(Horario horario, Passageiro passageiro)
@@ -77,6 +79,10 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 		
 	}
 	
+	protected Bilhete() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Long getId() {
 		return id;
 	}

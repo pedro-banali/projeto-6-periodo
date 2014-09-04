@@ -7,13 +7,18 @@ import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.TipoBilheteEnum;
 
 
 @Entity
-@DiscriminatorValue(value="3")
+@DiscriminatorValue(value="2")
 public class Primeira extends Bilhete {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1011263709895674561L;
+	
+	@SuppressWarnings("unused")
+	private Primeira() {
+		super();
+	}
 	
 	public Primeira(Horario horario, Passageiro passageiro)
 	{

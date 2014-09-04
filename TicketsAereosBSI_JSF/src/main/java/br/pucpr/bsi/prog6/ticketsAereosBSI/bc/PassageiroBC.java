@@ -2,7 +2,6 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
 import java.util.List;
 
-import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.BagagemDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.PassageiroDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Passageiro;

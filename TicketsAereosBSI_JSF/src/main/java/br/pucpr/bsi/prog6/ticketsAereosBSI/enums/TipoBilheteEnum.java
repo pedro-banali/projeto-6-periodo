@@ -1,7 +1,7 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.enums;
 
 public enum TipoBilheteEnum {
-		ECONOMICA(1, "Econômica"), 
+		ECONOMICA(1, "Economica"), 
 		EXECUTIVA(2,"Executiva"),
 		PRIMEIRA(3, "Primeira");
 		

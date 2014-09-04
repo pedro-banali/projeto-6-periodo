@@ -28,5 +28,6 @@
 	<mapping class="br.pucpr.bsi.prog6.ticketsAereosBSI.model.Primeira"/>
 	<mapping class="br.pucpr.bsi.prog6.ticketsAereosBSI.model.Executiva"/>
 	<mapping class="br.pucpr.bsi.prog6.ticketsAereosBSI.model.Passageiro"/>
+	<mapping class="br.pucpr.bsi.prog6.ticketsAereosBSI.model.Bagagem"/>
 </session-factory>
 </hibernate-configuration>
