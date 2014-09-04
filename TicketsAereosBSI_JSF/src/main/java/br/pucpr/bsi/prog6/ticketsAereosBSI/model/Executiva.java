@@ -1,7 +1,12 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.model;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.TipoBilheteEnum;
 
+@Entity
+@DiscriminatorValue(value="2")
 
 public class Executiva extends Bilhete {
 

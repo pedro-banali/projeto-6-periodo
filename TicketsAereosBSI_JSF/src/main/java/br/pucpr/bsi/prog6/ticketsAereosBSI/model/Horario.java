@@ -11,7 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Horario  implements IdentifierInterface, Serializable{
@@ -46,7 +46,7 @@ public class Horario  implements IdentifierInterface, Serializable{
 	@JoinColumn(name="id_aviao")
 	private Aviao aviao;
 	
-	@Transient
+	@OneToMany(mappedBy="horario")
 	private List<Bilhete> bilhetes;
 	
 	@SuppressWarnings("unused")

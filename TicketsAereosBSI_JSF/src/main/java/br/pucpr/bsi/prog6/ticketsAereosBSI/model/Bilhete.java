@@ -4,22 +4,46 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+
 import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.SituacaoBilheteEnum;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.TipoBilheteEnum;
 
+@Entity
+@Inheritance
+@DiscriminatorColumn(name="tipo", length=1,
+discriminatorType= DiscriminatorType.STRING)
 public abstract class Bilhete implements IdentifierInterface, Serializable  {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1288350832675933793L;
 	
-	private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
+	private Long id;
 	private int numero;
 	private String assento;
 	private TipoBilheteEnum tipoBilheteEnum;
 	private SituacaoBilheteEnum situacaoBilheteEnum;
+	@Transient
 	private Passageiro passageiro;
+	
+	@ManyToOne
+	@JoinColumn(name="id_horario")
 	private Horario horario;
+	
+	@Transient
 	private List<Bagagem> bagagens;
 	
 	public Bilhete(Horario horario, Passageiro passageiro)
