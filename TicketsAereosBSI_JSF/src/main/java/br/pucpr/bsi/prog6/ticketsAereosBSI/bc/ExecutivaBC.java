@@ -2,6 +2,7 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
 import java.util.List;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.BagagemDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.ExecutivaDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Bilhete;
 
@@ -21,7 +22,7 @@ public class ExecutivaBC extends BilheteBC {
 	@Override
 	public Bilhete findById(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return ExecutivaDAO.getInstance().findById(id);
 	}
 	@Override
 	public List<Bilhete> findByFilter(Bilhete filter) {
