@@ -2,6 +2,10 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.model;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+@Entity
 public class Passageiro extends Pessoa {
 	
 	/**
@@ -10,6 +14,7 @@ public class Passageiro extends Pessoa {
 	private static final long serialVersionUID = -5323481036344324077L;
 	private String numeroCartao;
 	private String documento;
+	@OneToMany(mappedBy="passageiro", fetch=FetchType.LAZY)
 	private List<Bilhete> bilhetes;
 	
 	public Passageiro(Endereco endereco)
