@@ -24,7 +24,7 @@ private static BagagemBC instance;
 	@Override
 	public Bagagem findById(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return BagagemDAO.getInstance().findById(id);
 	}
 
 	@Override
