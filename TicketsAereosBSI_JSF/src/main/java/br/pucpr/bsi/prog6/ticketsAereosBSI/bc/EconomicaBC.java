@@ -2,6 +2,7 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
 import java.util.List;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.BagagemDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.EconomicaDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Bilhete;
 
@@ -23,7 +24,7 @@ private static EconomicaBC instance;
 	@Override
 	public Bilhete findById(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return EconomicaDAO.getInstance().findById(id);
 	}
 
 	@Override
