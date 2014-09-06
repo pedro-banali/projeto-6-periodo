@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,7 +23,7 @@ import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.TipoBilheteEnum;
 
 @Entity
 @Inheritance
-@DiscriminatorColumn(name="tipo", length=1, discriminatorType= DiscriminatorType.INTEGER) 
+@DiscriminatorColumn(name="tipo", discriminatorType= DiscriminatorType.STRING) 
 public abstract class Bilhete implements IdentifierInterface, Serializable  {
 	/**
 	 * 
@@ -36,9 +38,11 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 	private String assento;
 	
 	@Column(name="tipo", updatable=false, insertable=false)
+	@Enumerated(EnumType.STRING)
 	private TipoBilheteEnum tipoBilheteEnum;
 	
 	@Column(name="situacao")
+	@Enumerated(EnumType.STRING)
 	private SituacaoBilheteEnum situacaoBilheteEnum;
 	
 	@ManyToOne
