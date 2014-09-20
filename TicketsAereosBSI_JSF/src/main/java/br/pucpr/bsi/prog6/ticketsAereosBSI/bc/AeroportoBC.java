@@ -32,7 +32,7 @@ private static AeroportoBC instance;
 		if(!this.validateForFindData(filter)){
 			throw new TicketsAereosBSIException("ER0001");
 		}
-		return null;
+		return AeroportoDAO.getInstance().findByFilter(filter);
 	}
 
 	@Override
@@ -92,7 +92,8 @@ private static AeroportoBC instance;
 			return false;
 		else if(object.getNome() == null || object.getNome().equals(""))
 			return false;
-		
+		else
+			EnderecoBC.getInstance().validateForDataModification(object.getEndereco());
 		return true;
 			
 	}

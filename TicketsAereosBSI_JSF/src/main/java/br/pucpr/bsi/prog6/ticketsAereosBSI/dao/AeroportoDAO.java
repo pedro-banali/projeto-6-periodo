@@ -2,6 +2,12 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.dao;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.util.HibernateUtil;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Aeroporto;
 
 public class AeroportoDAO extends PatternDAO<Aeroporto> {
@@ -46,10 +52,24 @@ public class AeroportoDAO extends PatternDAO<Aeroporto> {
 	public static AeroportoDAO getInstance() {
 		return instance;
 	}
+	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Aeroporto> findByFilter(Aeroporto filter) {
 		// TODO Auto-generated method stub
-		return null;
+		Session session = HibernateUtil.getSession();
+		try {
+			
+			Criteria c = session.createCriteria(Aeroporto.class);
+			if (StringUtils.isNotBlank(filter.getNome())) {
+				c.add(Restrictions.like("codigo", "%" + filter.getCodigo() + "%"));
+				c.add(Restrictions.like("nome", "%" + filter.getNome() + "%"));
+			}
+			return ((List<Aeroporto>) c.list());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally{ session.close(); }
 	}
 
 }
