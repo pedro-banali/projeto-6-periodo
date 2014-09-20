@@ -1,5 +1,8 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
@@ -21,11 +24,37 @@ public class Primeira extends Bilhete {
 
 	public Primeira(Horario horario, Passageiro passageiro) {
 		super(horario, passageiro);
-		setTipoBilheteEnum(TipoBilheteEnum.PRIMEIRA);
+		
+		List<Primeira> primeiras;
+
+		primeiras = super.getHorario().getPrimeiras();
+		
+		if (primeiras == null)
+			primeiras = new ArrayList<Primeira>();
+
+		primeiras.add(this);
+
+		this.getHorario().setPrimeiras(primeiras);
+
+		super.setTipoBilheteEnum(TipoBilheteEnum.PRIMEIRA);
+		horario.getPrimeiras().add(this);
+		
 	}
 
 	public Primeira(Horario horario) {
 		super(horario);
+				
+		List<Primeira> primeiras;
+
+		primeiras = super.getHorario().getPrimeiras();
+		
+		if (primeiras == null)
+			primeiras = new ArrayList<Primeira>();
+
+		primeiras.add(this);
+
+		this.getHorario().setPrimeiras(primeiras);
+
 		super.setTipoBilheteEnum(TipoBilheteEnum.PRIMEIRA);
 		horario.getPrimeiras().add(this);
 	}

@@ -1,7 +1,6 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -58,29 +57,7 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 	
 	public Bilhete(Horario horario, Passageiro passageiro)
 	{
-		List<Bilhete> bilhetes;
-		
-		this.passageiro = passageiro;
-		this.horario = horario;
-		
-		bilhetes = this.passageiro.getBilhetes();
-		
-		if(bilhetes == null)
-			bilhetes = new ArrayList<Bilhete>();
-		
-		bilhetes.add(this);
-		
-		this.passageiro.setBilhetes(bilhetes);
-		
-		bilhetes = this.horario.getBilhetes();
-		
-		if(bilhetes == null)
-			bilhetes = new ArrayList<Bilhete>();
-		
-		bilhetes.add(this);
-		
-		this.horario.setBilhetes(bilhetes);
-		
+				
 		this.situacaoBilheteEnum = SituacaoBilheteEnum.DISPONIVEL;
 		
 	}
@@ -151,6 +128,8 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 		this.bagagens = bagagens;
 	}
 
+	
+	
 	@Override
 	public String toString() {
 		return "Bilhete [id="

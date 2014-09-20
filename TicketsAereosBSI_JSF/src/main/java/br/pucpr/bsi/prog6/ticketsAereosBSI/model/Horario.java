@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Where;
 
 @Entity
 public class Horario  implements IdentifierInterface, Serializable{
@@ -46,9 +49,22 @@ public class Horario  implements IdentifierInterface, Serializable{
 	@JoinColumn(name="id_aviao")
 	private Aviao aviao;
 	
-	@OneToMany(mappedBy="horario")
+	@OneToMany(cascade={CascadeType.PERSIST})
 	@JoinColumn(name="ID_HORARIO", updatable=false)
-	private List<Bilhete> bilhetes;
+	@Where(clause="tipo='EXECUTIVA'")
+	private List<Executiva>executivas;
+	
+	@OneToMany(cascade={CascadeType.PERSIST})
+	@JoinColumn(name="ID_HORARIO", updatable=false)
+	@Where(clause="tipo='ECONOMICA'")
+	private List<Economica>economicas;
+
+	
+	@OneToMany(cascade={CascadeType.PERSIST})
+	@JoinColumn(name="ID_HORARIO", updatable=false)
+	@Where(clause="tipo='PRIMEIRA'")
+	private List<Primeira>primeiras;
+
 	
 	@SuppressWarnings("unused")
 	private Horario()
@@ -59,7 +75,11 @@ public class Horario  implements IdentifierInterface, Serializable{
 		List<Horario> horarios;
 		this.rota = rota;
 		this.aviao = aviao;
-		bilhetes = new ArrayList<Bilhete>();
+		
+		primeiras = new ArrayList<Primeira>();
+		executivas = new ArrayList<Executiva>();
+		economicas = new ArrayList<Economica>();
+		
 		horarios = this.rota.getHorarios();
 		
 		if(horarios == null)
@@ -124,40 +144,28 @@ public class Horario  implements IdentifierInterface, Serializable{
 	public void setAviao(Aviao aviao) {
 		this.aviao = aviao;
 	}
-	public List<Bilhete> getExecutivas() {
-		List<Bilhete> executivas = new ArrayList<Bilhete>();
-		for(int i = 0; i < this.bilhetes.size(); i++)
-		{
-			if(this.bilhetes.get(i) instanceof Executiva)
-				executivas.add(this.bilhetes.get(i));
-		}
+	public List<Executiva> getExecutivas() {
 		return executivas;
 	}
-	public List<Bilhete> getEconomicas() {
-		List<Bilhete> economicas = new ArrayList<Bilhete>();
-		for(int i = 0; i < this.bilhetes.size(); i++)
-		{
-			if(this.bilhetes.get(i) instanceof Economica)
-				economicas.add(this.bilhetes.get(i));
-		}
+	public List<Economica> getEconomicas() {
 		return economicas;
 	}
-	public List<Bilhete> getPrimeiras() {
-		List<Bilhete> primeiras = new ArrayList<Bilhete>();
-		for(int i = 0; i < this.bilhetes.size(); i++)
-		{
-			if(this.bilhetes.get(i) instanceof Primeira)
-				primeiras.add(this.bilhetes.get(i));
-		}
+	public List<Primeira> getPrimeiras() {
 		return primeiras;
 	}
 
-	public List<Bilhete> getBilhetes() {
-		return bilhetes;
+
+
+	public void setExecutivas(List<Executiva> executivas) {
+		this.executivas = executivas;
 	}
 
-	public void setBilhetes(List<Bilhete> bilhetes) {
-		this.bilhetes = bilhetes;
+	public void setEconomicas(List<Economica> economicas) {
+		this.economicas = economicas;
+	}
+
+	public void setPrimeiras(List<Primeira> primeiras) {
+		this.primeiras = primeiras;
 	}
 
 	@Override
