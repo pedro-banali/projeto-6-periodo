@@ -124,6 +124,15 @@ public class FuncionarioBC extends PessoaBC<Funcionario> {
 	@Override
 	protected boolean validateForFindData(Funcionario object) {
 		// TODO Auto-generated method stub
-		return false;
-	}
+		
+		if(object == null && 
+				(object.getCodigo() == null || object.getCodigo().equals("")) && 
+				(object.getContaCorrente() == null || object.getContaCorrente().equals("")) &&
+				PapelBC.getInstance().validateForFindData(object.getPapel()))
+				return false;
+			else
+				return EnderecoBC.getInstance().validateForFindData(object.getEndereco());
+				
+		}
+
 }
