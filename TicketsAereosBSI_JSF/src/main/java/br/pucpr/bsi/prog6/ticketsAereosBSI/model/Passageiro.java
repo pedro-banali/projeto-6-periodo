@@ -56,6 +56,36 @@ public class Passageiro extends Pessoa {
 						: "")
 				+ (documento != null ? "documento=" + documento + ", " : "") + "]";
 	}
+
+
+	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Passageiro other = (Passageiro) obj;
+		if (bilhetes == null) {
+			if (other.bilhetes != null)
+				return false;
+		} else if (!bilhetes.equals(other.bilhetes))
+			return false;
+		if (documento == null) {
+			if (other.documento != null)
+				return false;
+		} else if (!documento.equals(other.documento))
+			return false;
+		if (numeroCartao == null) {
+			if (other.numeroCartao != null)
+				return false;
+		} else if (!numeroCartao.equals(other.numeroCartao))
+			return false;
+		return true;
+	}
 	
 	
 	
