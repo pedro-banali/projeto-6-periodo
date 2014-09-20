@@ -74,6 +74,35 @@ public class Aviao  implements IdentifierInterface, Serializable {
 				+ (codigo != null ? "codigo=" + codigo + ", " : "") + "carga="
 				+ carga + "]";
 	}
+
+	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Aviao other = (Aviao) obj;
+		if (Double.doubleToLongBits(carga) != Double
+				.doubleToLongBits(other.carga))
+			return false;
+		if (ciaAerea == null) {
+			if (other.ciaAerea != null)
+				return false;
+		} else if (!ciaAerea.equals(other.ciaAerea))
+			return false;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		if (id != other.id)
+			return false;
+		return true;
+	}
 	
 	
 }

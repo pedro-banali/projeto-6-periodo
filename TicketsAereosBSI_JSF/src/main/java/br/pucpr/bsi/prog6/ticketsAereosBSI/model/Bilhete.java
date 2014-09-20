@@ -141,6 +141,52 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 				+ "]";
 	}
 	
+	
+	
+	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Bilhete other = (Bilhete) obj;
+		if (assento == null) {
+			if (other.assento != null)
+				return false;
+		} else if (!assento.equals(other.assento))
+			return false;
+		if (bagagens == null) {
+			if (other.bagagens != null)
+				return false;
+		} else if (!bagagens.equals(other.bagagens))
+			return false;
+		if (horario == null) {
+			if (other.horario != null)
+				return false;
+		} else if (!horario.equals(other.horario))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (numero != other.numero)
+			return false;
+		if (passageiro == null) {
+			if (other.passageiro != null)
+				return false;
+		} else if (!passageiro.equals(other.passageiro))
+			return false;
+		if (situacaoBilheteEnum != other.situacaoBilheteEnum)
+			return false;
+		if (tipoBilheteEnum != other.tipoBilheteEnum)
+			return false;
+		return true;
+	}
 
 	public abstract int getMaxBagagens();
 	
