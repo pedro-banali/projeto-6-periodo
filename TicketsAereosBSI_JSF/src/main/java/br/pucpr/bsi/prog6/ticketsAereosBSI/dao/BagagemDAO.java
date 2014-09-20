@@ -62,12 +62,17 @@ public class BagagemDAO extends PatternDAO<Bagagem> {
 		Session session = HibernateUtil.getSession();
 		try {
 			Criteria c = session.createCriteria(Bagagem.class);
-			Criteria ca = c.createCriteria(Horario.class);
+			Criteria cBilhete = c.createCriteria("bilhete");
+			Criteria cHorario = cBilhete.createCriteria("horario");
 			if (filter.getTipoBagagemEnum() != null) {
 				c.add(Restrictions.like("tipo", "%" + filter.getTipoBagagemEnum() + "%"));
 			}
 			if (filter.getPeso() <= 0) {
 				c.add(Restrictions.like("peso", "%" + filter.getPeso() + "%"));
+			}
+			if(filter.getBilhete().getHorario().getPartida() != null)
+			{
+				cHorario.add(Restrictions.eq("partida",  filter.getBilhete().getHorario().getPartida()));
 			}
 			return ((List<Bagagem>) c.list());
 		} catch (Exception e) {
