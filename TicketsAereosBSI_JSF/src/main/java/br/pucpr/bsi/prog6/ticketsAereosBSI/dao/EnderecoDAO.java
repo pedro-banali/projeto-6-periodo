@@ -2,6 +2,12 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.util.HibernateUtil;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Bagagem;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Endereco;
 
 public class EnderecoDAO extends PatternDAO<Endereco> {
@@ -50,7 +56,18 @@ public class EnderecoDAO extends PatternDAO<Endereco> {
 	@Override
 	public List<Endereco> findByFilter(Endereco filter) {
 		
+		Session session = HibernateUtil.getSession();
+		try {
+			Criteria c = session.createCriteria(Bagagem.class);
+			
+			if (filter.getRua() != null) {
+				c.add(Restrictions.like("rua", "%" + filter.getRua() + "%"));
+			}
+			return ((List<Endereco>) c.list());
+		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
+		} finally {session.close();}
 		
 	}
 }

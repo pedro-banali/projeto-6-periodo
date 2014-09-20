@@ -3,10 +3,11 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 import java.util.List;
 
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.ExecutivaDAO;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Bilhete;
 
 
-public class ExecutivaBC extends BilheteBC {
+public class ExecutivaBC extends BilheteBC<Bilhete> {
 	
 	private static ExecutivaBC instance; 
 	
@@ -67,7 +68,17 @@ public class ExecutivaBC extends BilheteBC {
 	@Override
 	protected void validateForDataModification(Bilhete object) {
 		// TODO Auto-generated method stub
-		super.validateForDataModification(object);
+		if (object == null)
+			throw new TicketsAereosBSIException("ER0040");
+		else if (object.getAssento() == null)
+			throw new TicketsAereosBSIException("ER0041");
+		else if (object.getAssento().trim().equals(""))
+			throw new TicketsAereosBSIException("ER0041");
+		else if (object.getNumero() == 0)
+			throw new TicketsAereosBSIException("ER0042");
+		else if (object.getNumero() < 0)
+			throw new TicketsAereosBSIException("ER0043");
+
 		
 		HorarioBC.getInstance().validateForDataModification(object.getHorario());
 		

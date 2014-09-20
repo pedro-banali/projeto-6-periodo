@@ -2,6 +2,7 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
 import java.util.List;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.AviaoDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.EnderecoDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Endereco;
@@ -30,8 +31,11 @@ public class EnderecoBC extends PatternBC<Endereco>{
 	@Override
 	public List<Endereco> findByFilter(Endereco filter) {
 		// TODO Auto-generated method stub
-		this.validateForDataModification(filter);
-		return null;
+		if(!this.validateForFindData(filter)){
+			throw new TicketsAereosBSIException("ER0001");
+		}
+
+		return EnderecoDAO.getInstance().findByFilter(filter);
 	}
 
 	@Override
@@ -97,6 +101,10 @@ public class EnderecoBC extends PatternBC<Endereco>{
 	@Override
 	protected boolean validateForFindData(Endereco object) {
 		// TODO Auto-generated method stub
+		if(object == null && 
+				(object.getRua() == null || object.getRua().equals("")))
 		return false;
+		
+		return true;
 	}
 }
