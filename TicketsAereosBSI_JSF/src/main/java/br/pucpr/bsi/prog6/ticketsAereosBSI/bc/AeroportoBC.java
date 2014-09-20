@@ -30,7 +30,7 @@ private static AeroportoBC instance;
 	public List<Aeroporto> findByFilter(Aeroporto filter) {
 		// TODO Auto-generated method stub
 		if(!this.validateForFindData(filter)){
-			throw new TicketsAereosBSIException("Aeroporto Nulo");
+			throw new TicketsAereosBSIException("ER0001");
 		}
 		return null;
 	}
@@ -88,8 +88,12 @@ private static AeroportoBC instance;
 		// TODO Auto-generated method stub
 		if(object == null)
 			return false;
+		else if(object.getCodigo() == null || object.getCodigo().equals(""))
+			return false;
+		else if(object.getNome() == null || object.getNome().equals(""))
+			return false;
 		
-		return false;
+		return true;
 			
 	}
 
