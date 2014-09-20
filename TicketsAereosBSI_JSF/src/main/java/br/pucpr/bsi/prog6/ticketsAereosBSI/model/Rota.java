@@ -116,6 +116,54 @@ public class Rota  implements IdentifierInterface, Serializable {
 				+ (origem != null ? "origem=" + origem + ", " : "")
 				+ (destino != null ? "destino=" + destino + ", " : "") + "]";
 	}
+
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Rota other = (Rota) obj;
+		if (ciaAerea == null) {
+			if (other.ciaAerea != null)
+				return false;
+		} else if (!ciaAerea.equals(other.ciaAerea))
+			return false;
+		if (descricao == null) {
+			if (other.descricao != null)
+				return false;
+		} else if (!descricao.equals(other.descricao))
+			return false;
+		if (destino == null) {
+			if (other.destino != null)
+				return false;
+		} else if (!destino.equals(other.destino))
+			return false;
+		if (horarios == null) {
+			if (other.horarios != null)
+				return false;
+		} else if (!horarios.equals(other.horarios))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (origem == null) {
+			if (other.origem != null)
+				return false;
+		} else if (!origem.equals(other.origem))
+			return false;
+		return true;
+	}
 	
 	
 	
