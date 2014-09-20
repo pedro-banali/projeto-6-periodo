@@ -20,7 +20,7 @@ public abstract class BilheteBC<T extends Bilhete> extends PatternBC<T>  {
 		
 	}
 
-	public List<Object[]> findAssentosDisponiveis(Long idHorario) {
+	public List<String> findAssentosDisponiveis(Long idHorario) {
 		// TODO Auto-generated method stub
 		return null;
 	}
