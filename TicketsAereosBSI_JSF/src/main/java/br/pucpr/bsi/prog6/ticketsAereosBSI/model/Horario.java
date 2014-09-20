@@ -177,6 +177,69 @@ public class Horario  implements IdentifierInterface, Serializable{
 				+ "qtdEconomica=" + qtdEconomica + ", qtdPrimeira="
 				+ qtdPrimeira + ", qtdExecutiva=" + qtdExecutiva +  "]";
 	}
+
+	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Horario other = (Horario) obj;
+		if (aviao == null) {
+			if (other.aviao != null)
+				return false;
+		} else if (!aviao.equals(other.aviao))
+			return false;
+		if (chegada == null) {
+			if (other.chegada != null)
+				return false;
+		} else if (!chegada.equals(other.chegada))
+			return false;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		if (economicas == null) {
+			if (other.economicas != null)
+				return false;
+		} else if (!economicas.equals(other.economicas))
+			return false;
+		if (executivas == null) {
+			if (other.executivas != null)
+				return false;
+		} else if (!executivas.equals(other.executivas))
+			return false;
+		if (id != other.id)
+			return false;
+		if (partida == null) {
+			if (other.partida != null)
+				return false;
+		} else if (!partida.equals(other.partida))
+			return false;
+		if (primeiras == null) {
+			if (other.primeiras != null)
+				return false;
+		} else if (!primeiras.equals(other.primeiras))
+			return false;
+		if (qtdEconomica != other.qtdEconomica)
+			return false;
+		if (qtdExecutiva != other.qtdExecutiva)
+			return false;
+		if (qtdPrimeira != other.qtdPrimeira)
+			return false;
+		if (rota == null) {
+			if (other.rota != null)
+				return false;
+		} else if (!rota.equals(other.rota))
+			return false;
+		return true;
+	}
+	
 	
 	
 	

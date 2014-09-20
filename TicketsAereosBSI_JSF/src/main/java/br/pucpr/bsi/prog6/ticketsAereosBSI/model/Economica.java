@@ -66,5 +66,7 @@ public class Economica extends Bilhete {
 		// TODO Auto-generated method stub
 		return 1;
 	}
+	
+	
 
 }

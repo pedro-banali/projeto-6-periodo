@@ -70,6 +70,35 @@ public class Funcionario extends Pessoa {
 				+ (contaCorrente != null ? "contaCorrente=" + contaCorrente
 						+ ", " : "") + "]";
 	}
+
+	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Funcionario other = (Funcionario) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		if (contaCorrente == null) {
+			if (other.contaCorrente != null)
+				return false;
+		} else if (!contaCorrente.equals(other.contaCorrente))
+			return false;
+		if (papel == null) {
+			if (other.papel != null)
+				return false;
+		} else if (!papel.equals(other.papel))
+			return false;
+		return true;
+	}
 	
 	
 }

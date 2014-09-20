@@ -12,6 +12,10 @@ import javax.persistence.OneToOne;
 @Entity
 public class Aeroporto implements IdentifierInterface, Serializable {
 	
+	
+
+	
+
 	private static final long serialVersionUID = 6369640537361904065L;
 	
 	@Id
@@ -64,6 +68,38 @@ public class Aeroporto implements IdentifierInterface, Serializable {
 		return "Aeroporto [id=" + id + ", "
 				+ (nome != null ? "nome=" + nome + ", " : "")
 				+ (codigo != null ? "codigo=" + codigo + ", " : "") + "]";
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Aeroporto other = (Aeroporto) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		if (endereco == null) {
+			if (other.endereco != null)
+				return false;
+		} else if (!endereco.equals(other.endereco))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		return true;
 	}
 	
 	

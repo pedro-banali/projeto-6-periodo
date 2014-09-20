@@ -87,6 +87,36 @@ public class Bagagem implements IdentifierInterface, Serializable {
 				+ peso
 				+  "]";
 	}
+
+	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Bagagem other = (Bagagem) obj;
+		if (bilhete == null) {
+			if (other.bilhete != null)
+				return false;
+		} else if (!bilhete.equals(other.bilhete))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (Double.doubleToLongBits(peso) != Double
+				.doubleToLongBits(other.peso))
+			return false;
+		if (tipoBagagem != other.tipoBagagem)
+			return false;
+		return true;
+	}
+	
 	
 	
 }
