@@ -6,20 +6,19 @@ import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.BagagemDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Bagagem;
 
-
 public class BagagemBC extends PatternBC<Bagagem> {
 
-private static BagagemBC instance;
-	
-	private BagagemBC(){
-		
+	private static BagagemBC instance;
+
+	private BagagemBC() {
+
 	}
-	
+
 	public static BagagemBC getInstance() {
-	      if (instance == null)
-	         instance = new BagagemBC();
-	      return instance;
-	   }
+		if (instance == null)
+			instance = new BagagemBC();
+		return instance;
+	}
 
 	@Override
 	public Bagagem findById(long id) {
@@ -30,8 +29,11 @@ private static BagagemBC instance;
 	@Override
 	public List<Bagagem> findByFilter(Bagagem filter) {
 		// TODO Auto-generated method stub
-		this.validateForDataModification(filter);
-		return null;
+		if (!this.validateForFindData(filter)) {
+			throw new TicketsAereosBSIException("ER0001");
+		}
+		
+		return BagagemDAO.getInstance().findByFilter(filter);
 	}
 
 	@Override
@@ -42,54 +44,59 @@ private static BagagemBC instance;
 
 	@Override
 	public long insert(Bagagem object) {
-		
+
 		BagagemDAO bagagem = BagagemDAO.getInstance();
-		
+
 		this.validateForDataModification(object);
-					
+
 		return bagagem.insert(object);
 	}
 
 	@Override
 	public boolean update(Bagagem object) {
-		
+
 		BagagemDAO bagagem = BagagemDAO.getInstance();
-		
+
 		this.validateForDataModification(object);
-		
-				
+
 		return bagagem.update(object);
 	}
 
 	@Override
 	public boolean delete(Bagagem object) {
-		
+
 		BagagemDAO bagagem = BagagemDAO.getInstance();
-		
+
 		this.validateForDataModification(object);
-		
-				
+
 		return bagagem.delete(object);
 	}
 
 	@Override
 	protected void validateForDataModification(Bagagem object) {
 		// TODO Auto-generated method stub
-		if(object == null)
+		if (object == null)
 			throw new TicketsAereosBSIException("ER0030");
 		else if (object.getPeso() == 0)
 			throw new TicketsAereosBSIException("ER0031");
 		else if (object.getPeso() < 0)
 			throw new TicketsAereosBSIException("ER0032");
-		else if(object.getTipoBagagemEnum()  == null)
+		else if (object.getTipoBagagemEnum() == null)
 			throw new TicketsAereosBSIException("ER0033");
-		else if(object.getBilhete() == null)
+		else if (object.getBilhete() == null)
 			throw new TicketsAereosBSIException("ER0034");
 	}
 
 	@Override
 	protected boolean validateForFindData(Bagagem object) {
 		// TODO Auto-generated method stub
-		return false;
+		if (object == null && 
+				(object.getPeso() <= 0) && 
+				(object.getTipoBagagemEnum() == null) &&
+				(object.getBilhete().getHorario().getPartida() == null)){
+			return false;
+		}
+		
+		return true;
 	}
 }

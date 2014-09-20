@@ -32,8 +32,11 @@ private static AviaoBC instance;
 	@Override
 	public List<Aviao> findByFilter(Aviao filter) {
 		// TODO Auto-generated method stub
-		this.validateForDataModification(filter);
-		return null;
+		if(!this.validateForFindData(filter)){
+			throw new TicketsAereosBSIException("ER0001");
+		}
+
+		return AviaoDAO.getInstance().findByFilter(filter);
 	}
 
 	@Override
@@ -87,8 +90,12 @@ private static AviaoBC instance;
 
 	@Override
 	protected boolean validateForFindData(Aviao object) {
-		return false;
-		// TODO Auto-generated method stub
+		if(object == null && 
+				(object.getCodigo() == null || object.getCodigo().equals("")) &&
+				object.getCarga() <= 0)
+			return false;
+		else
+			return CiaAereaBC.getInstance().validateForFindData(object.getCiaAerea());
 		
 	}
 }

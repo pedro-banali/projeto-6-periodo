@@ -61,8 +61,11 @@ public class AeroportoDAO extends PatternDAO<Aeroporto> {
 		try {
 			
 			Criteria c = session.createCriteria(Aeroporto.class);
-			if (StringUtils.isNotBlank(filter.getNome())) {
+			if (StringUtils.isNotBlank(filter.getCodigo())) {
 				c.add(Restrictions.like("codigo", "%" + filter.getCodigo() + "%"));
+			}
+			if(StringUtils.isNotBlank(filter.getNome()))
+			{
 				c.add(Restrictions.like("nome", "%" + filter.getNome() + "%"));
 			}
 			return ((List<Aeroporto>) c.list());

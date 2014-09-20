@@ -2,7 +2,15 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.dao;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.util.HibernateUtil;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Bagagem;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.model.CiaAerea;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Horario;
 
 public class BagagemDAO extends PatternDAO<Bagagem> {
 	
@@ -47,10 +55,25 @@ public class BagagemDAO extends PatternDAO<Bagagem> {
 		return super.delete(obj);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Bagagem> findByFilter(Bagagem filter) {
 		// TODO Auto-generated method stub
-		return null;
+		Session session = HibernateUtil.getSession();
+		try {
+			Criteria c = session.createCriteria(Bagagem.class);
+			Criteria ca = c.createCriteria(Horario.class);
+			if (filter.getTipoBagagemEnum() != null) {
+				c.add(Restrictions.like("tipo", "%" + filter.getTipoBagagemEnum() + "%"));
+			}
+			if (filter.getPeso() <= 0) {
+				c.add(Restrictions.like("peso", "%" + filter.getPeso() + "%"));
+			}
+			return ((List<Bagagem>) c.list());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {session.close();}
 	}
 
 }
