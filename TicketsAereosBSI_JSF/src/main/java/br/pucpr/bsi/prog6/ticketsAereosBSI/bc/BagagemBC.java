@@ -3,6 +3,9 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 import java.util.List;
 
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.BagagemDAO;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dto.BilheteDTO;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.TipoBagagemEnum;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.TipoBilheteEnum;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Bagagem;
 
@@ -98,5 +101,12 @@ public class BagagemBC extends PatternBC<Bagagem> {
 		}
 		
 		return true;
+	}
+	
+
+	public void realizarCheckIn(Long idBilhete, TipoBilheteEnum tipoBilhete,
+			TipoBagagemEnum tipoBagagemEnum, Double peso) {
+		// TODO Auto-generated method stub
+		
 	}
 }

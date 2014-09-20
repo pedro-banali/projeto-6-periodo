@@ -42,7 +42,7 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 	
 	@Column(name="situacao")
 	@Enumerated(EnumType.STRING)
-	private SituacaoBilheteEnum situacaoBilheteEnum;
+	private SituacaoBilheteEnum situacaoEnum;
 	
 	@ManyToOne
 	@JoinColumn(name="id_passageiro")
@@ -58,14 +58,14 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 	public Bilhete(Horario horario, Passageiro passageiro)
 	{
 				
-		this.situacaoBilheteEnum = SituacaoBilheteEnum.DISPONIVEL;
+		this.situacaoEnum = SituacaoBilheteEnum.DISPONIVEL;
 		
 	}
 	
 	public Bilhete(Horario horario)
 	{
 		this.horario = horario;		
-		this.situacaoBilheteEnum = SituacaoBilheteEnum.DISPONIVEL;		
+		this.situacaoEnum = SituacaoBilheteEnum.DISPONIVEL;		
 	}
 	
 	protected Bilhete() {
@@ -96,12 +96,10 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 	public void setTipoBilheteEnum(TipoBilheteEnum tipoBilheteEnum) {
 		this.tipoBilheteEnum = tipoBilheteEnum;
 	}
-	public SituacaoBilheteEnum getSituacaoBilheteEnum() {
-		return situacaoBilheteEnum;
+	public SituacaoBilheteEnum getSituacaoEnum() {
+		return situacaoEnum;
 	}
-	public void setSituacaoBilheteEnum(SituacaoBilheteEnum situacaoBilheteEnum) {
-		this.situacaoBilheteEnum = situacaoBilheteEnum;
-	}
+
 	public Passageiro getPassageiro() {
 		return passageiro;
 	}
@@ -117,7 +115,7 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 	
 	public void setSituacaoEnum(SituacaoBilheteEnum situacao) {
 		// TODO Auto-generated method stub
-		this.situacaoBilheteEnum = situacao;
+		this.situacaoEnum = situacao;
 	}
 
 	public List<Bagagem> getBagagens() {
@@ -181,7 +179,7 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 				return false;
 		} else if (!passageiro.equals(other.passageiro))
 			return false;
-		if (situacaoBilheteEnum != other.situacaoBilheteEnum)
+		if (situacaoEnum != other.situacaoEnum)
 			return false;
 		if (tipoBilheteEnum != other.tipoBilheteEnum)
 			return false;

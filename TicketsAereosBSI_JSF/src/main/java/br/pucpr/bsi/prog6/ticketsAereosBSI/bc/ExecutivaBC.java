@@ -5,6 +5,7 @@ import java.util.List;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.ExecutivaDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Bilhete;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Passageiro;
 
 
 public class ExecutivaBC extends BilheteBC<Bilhete> {
@@ -88,6 +89,12 @@ public class ExecutivaBC extends BilheteBC<Bilhete> {
 	protected boolean validateForFindData(Bilhete object) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	@Override
+	public void reservarBilhete(Long idBilhete, Passageiro passageiro,
+			String string) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

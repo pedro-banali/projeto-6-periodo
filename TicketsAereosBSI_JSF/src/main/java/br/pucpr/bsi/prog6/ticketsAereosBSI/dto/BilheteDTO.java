@@ -14,7 +14,7 @@ public class BilheteDTO {
 	private String ciaAerea;
 	private Long idBilhete;
 	private Long idHorario;
-	private TipoBilheteEnum tipoEnum;
+	private TipoBilheteEnum tipoBilhete;
 	private SituacaoBilheteEnum situacaoBilheteEnum;
 	
 	
@@ -76,6 +76,22 @@ public class BilheteDTO {
 
 	public void setIdHorario(Long idHorario) {
 		this.idHorario = idHorario;
+	}
+
+	public SituacaoBilheteEnum getSituacaoBilheteEnum() {
+		return situacaoBilheteEnum;
+	}
+
+	public void setSituacaoBilheteEnum(SituacaoBilheteEnum situacaoBilheteEnum) {
+		this.situacaoBilheteEnum = situacaoBilheteEnum;
+	}
+
+	public TipoBilheteEnum getTipoBilhete() {
+		return tipoBilhete;
+	}
+
+	public void setTipoBilhete(TipoBilheteEnum tipoBilhete) {
+		this.tipoBilhete = tipoBilhete;
 	}
 	
 	
