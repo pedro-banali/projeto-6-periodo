@@ -24,7 +24,18 @@ public class Executiva extends Bilhete {
 		super(horario, passageiro);
 		setTipoBilheteEnum(TipoBilheteEnum.EXECUTIVA);
 	}
-
-
+	
+	
+	public Executiva(Horario horario)
+	{
+		super(horario);
+		super.setTipoBilheteEnum(TipoBilheteEnum.EXECUTIVA);
+	}
+	
+	@Override
+	public int getMaxBagagens() {
+		// TODO Auto-generated method stub
+		return 2;
+	}
 
 }

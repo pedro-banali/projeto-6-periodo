@@ -47,6 +47,7 @@ public class Horario  implements IdentifierInterface, Serializable{
 	private Aviao aviao;
 	
 	@OneToMany(mappedBy="horario")
+	@JoinColumn(name="ID_HORARIO", updatable=false)
 	private List<Bilhete> bilhetes;
 	
 	@SuppressWarnings("unused")

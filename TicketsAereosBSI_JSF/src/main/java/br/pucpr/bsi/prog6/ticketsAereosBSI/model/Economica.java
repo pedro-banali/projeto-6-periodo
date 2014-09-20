@@ -26,4 +26,16 @@ public class Economica extends Bilhete {
 		setTipoBilheteEnum(TipoBilheteEnum.ECONOMICA);
 	}
 	
+	public Economica(Horario horario)
+	{
+		super(horario);
+		super.setTipoBilheteEnum(TipoBilheteEnum.EXECUTIVA);
+	}
+
+	@Override
+	public int getMaxBagagens() {
+		// TODO Auto-generated method stub
+		return 1;
+	}
+	
 }

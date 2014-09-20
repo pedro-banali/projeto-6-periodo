@@ -81,6 +81,14 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 		
 		this.horario.setBilhetes(bilhetes);
 		
+		this.situacaoBilheteEnum = SituacaoBilheteEnum.DISPONIVEL;
+		
+	}
+	
+	public Bilhete(Horario horario)
+	{
+		this.horario = horario;		
+		this.situacaoBilheteEnum = SituacaoBilheteEnum.DISPONIVEL;		
 	}
 	
 	protected Bilhete() {
@@ -154,6 +162,8 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 				+ "]";
 	}
 	
+
+	public abstract int getMaxBagagens();
 	
 
 }
