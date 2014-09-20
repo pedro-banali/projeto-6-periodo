@@ -12,10 +12,10 @@ import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Aeroporto;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Funcionario;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Pessoa;
 
-public class FuncionarioDAO extends PessoaDAO {
+public class FuncionarioDAO extends PessoaDAO<Funcionario>{
 
 	@Override
-	public List<Pessoa> findByFilter(Pessoa filter) {
+	public List<Funcionario> findByFilter(Pessoa filter) {
 		// TODO Auto-generated method stub
 		
 		Session session = HibernateUtil.getSession();
@@ -29,7 +29,7 @@ public class FuncionarioDAO extends PessoaDAO {
 				c.add(Restrictions.like("contaCorrente", "%" + ((Funcionario)filter).getContaCorrente() + "%"));
 			}
 			
-			return ((List<Pessoa>) c.list());
+			return ((List<Funcionario>) c.list());
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

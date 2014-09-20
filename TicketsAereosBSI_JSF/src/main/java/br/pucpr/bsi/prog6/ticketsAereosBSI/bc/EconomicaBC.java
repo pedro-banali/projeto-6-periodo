@@ -105,4 +105,12 @@ public class EconomicaBC extends BilheteBC<Bilhete> {
 		
 	}
 
+	@Override
+	public List<String> findAssentosDisponiveis(Long idHorario) {
+		return null;
+		// TODO Auto-generated method stub
+
+
+	}
+
 }

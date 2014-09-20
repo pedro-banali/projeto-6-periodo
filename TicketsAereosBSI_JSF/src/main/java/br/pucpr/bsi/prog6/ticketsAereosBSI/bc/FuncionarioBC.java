@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.FuncionarioDAO;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.PassageiroDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Funcionario;
 
@@ -33,7 +34,11 @@ public class FuncionarioBC extends PessoaBC<Funcionario> {
 	@Override
 	public List<Funcionario> findByFilter(Funcionario filter) {
 		// TODO Auto-generated method stub
-		return null;
+		if(!(this.validateForFindData(filter)))
+		{
+			throw new TicketsAereosBSIException("ER0001");
+		}
+		return FuncionarioDAO.getInstance().findByFilter(filter);
 	}
 
 	@Override

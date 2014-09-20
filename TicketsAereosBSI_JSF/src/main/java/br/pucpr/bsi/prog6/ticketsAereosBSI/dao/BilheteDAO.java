@@ -52,4 +52,6 @@ public abstract class  BilheteDAO extends PatternDAO<Bilhete> {
 		return null;
 	}
 
+	public abstract List<String> findAssentosDisponiveis(Long idHorario);
+
 }

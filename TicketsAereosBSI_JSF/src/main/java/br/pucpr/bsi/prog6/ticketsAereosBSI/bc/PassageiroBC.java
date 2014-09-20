@@ -33,8 +33,11 @@ public class PassageiroBC extends PessoaBC<Passageiro> {
 	public List<Passageiro> findByFilter(Passageiro filter) {
 		// TODO Auto-generated method stub
 
-		this.validateForDataModification(filter);
-		return null;
+		if(!(this.validateForFindData(filter)))
+		{
+			throw new TicketsAereosBSIException("ER0001");
+		}
+		return PassageiroDAO.getInstance().findByFilter(filter);
 	}
 
 	@Override
@@ -117,6 +120,10 @@ public class PassageiroBC extends PessoaBC<Passageiro> {
 	@Override
 	protected boolean validateForFindData(Passageiro object) {
 		// TODO Auto-generated method stub
-		return false;
+		if(object == null && (object.getNome() == null || object.getNome().equals("")) && 
+				(object.getNumeroCartao() == null || object.getNumeroCartao().equals(""))){
+			return false;
+		}
+		return true;
 	}
 }
