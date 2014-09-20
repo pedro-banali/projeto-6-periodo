@@ -75,9 +75,9 @@ private static PrimeiraBC instance;
 	}
 
 	@Override
-	protected void validateForFindData(Bilhete object) {
+	protected boolean validateForFindData(Bilhete object) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	

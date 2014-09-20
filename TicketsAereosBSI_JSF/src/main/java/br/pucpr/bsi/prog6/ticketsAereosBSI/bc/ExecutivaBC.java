@@ -74,9 +74,9 @@ public class ExecutivaBC extends BilheteBC {
 		PassageiroBC.getInstance().validateForDataModification(object.getPassageiro());
 	}
 	@Override
-	protected void validateForFindData(Bilhete object) {
+	protected boolean validateForFindData(Bilhete object) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 	
 }

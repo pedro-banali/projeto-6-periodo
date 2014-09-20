@@ -82,8 +82,8 @@ private static RotaBC instance;
 	}
 
 	@Override
-	protected void validateForFindData(Rota object) {
+	protected boolean validateForFindData(Rota object) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 }

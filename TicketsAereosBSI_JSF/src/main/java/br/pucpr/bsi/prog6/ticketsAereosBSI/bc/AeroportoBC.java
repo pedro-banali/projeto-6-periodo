@@ -29,7 +29,9 @@ private static AeroportoBC instance;
 	@Override
 	public List<Aeroporto> findByFilter(Aeroporto filter) {
 		// TODO Auto-generated method stub
-		this.validateForDataModification(filter);
+		if(!this.validateForFindData(filter)){
+			throw new TicketsAereosBSIException("Aeroporto Nulo");
+		}
 		return null;
 	}
 
@@ -82,9 +84,13 @@ private static AeroportoBC instance;
 	}
 
 	@Override
-	protected void validateForFindData(Aeroporto object) {
+	protected boolean validateForFindData(Aeroporto object) {
 		// TODO Auto-generated method stub
+		if(object == null)
+			return false;
 		
+		return false;
+			
 	}
 
 

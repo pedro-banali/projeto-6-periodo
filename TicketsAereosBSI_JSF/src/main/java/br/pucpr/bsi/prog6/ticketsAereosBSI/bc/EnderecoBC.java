@@ -95,8 +95,8 @@ public class EnderecoBC extends PatternBC<Endereco>{
 	}
 
 	@Override
-	protected void validateForFindData(Endereco object) {
+	protected boolean validateForFindData(Endereco object) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 }

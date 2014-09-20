@@ -84,8 +84,8 @@ private static PapelBC instance;
 	}
 
 	@Override
-	protected void validateForFindData(Papel object) {
+	protected boolean validateForFindData(Papel object) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 }

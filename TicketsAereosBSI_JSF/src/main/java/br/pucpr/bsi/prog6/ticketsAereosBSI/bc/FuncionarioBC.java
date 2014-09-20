@@ -88,8 +88,8 @@ public class FuncionarioBC extends PessoaBC {
 	}
 
 	@Override
-	protected void validateForFindData(Pessoa object) {
+	protected boolean validateForFindData(Pessoa object) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 }

@@ -81,10 +81,10 @@ public class CiaAereaBC extends PatternBC<CiaAerea> {
 	}
 
 	@Override
-	protected void validateForFindData(CiaAerea object) {
+	protected boolean validateForFindData(CiaAerea object) {
 		if(object != null &&
 				StringUtils.isNotBlank(object.getNome())){
-			return;	
+			return false;	
 		}
 		throw new TicketsAereosBSIException("ER0001");
 	}

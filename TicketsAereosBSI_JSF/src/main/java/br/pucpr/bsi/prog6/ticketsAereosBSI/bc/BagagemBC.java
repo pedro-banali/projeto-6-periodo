@@ -88,8 +88,8 @@ private static BagagemBC instance;
 	}
 
 	@Override
-	protected void validateForFindData(Bagagem object) {
+	protected boolean validateForFindData(Bagagem object) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 }

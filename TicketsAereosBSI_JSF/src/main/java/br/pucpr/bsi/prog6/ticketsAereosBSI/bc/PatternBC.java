@@ -89,6 +89,7 @@ public abstract class PatternBC<T extends IdentifierInterface>{
 	 * 
 	 * As validacoes de regras de negocio deverao ser realizadas nesse metodo
 	 * @param object
+	 * @return TODO
 	 */
-	protected abstract void validateForFindData(T object); 	
+	protected abstract boolean validateForFindData(T object); 	
 }

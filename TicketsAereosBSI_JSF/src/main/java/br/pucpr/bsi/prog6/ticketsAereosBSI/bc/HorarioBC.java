@@ -94,8 +94,8 @@ private static HorarioBC instance;
 	}
 
 	@Override
-	protected void validateForFindData(Horario object) {
+	protected boolean validateForFindData(Horario object) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 }

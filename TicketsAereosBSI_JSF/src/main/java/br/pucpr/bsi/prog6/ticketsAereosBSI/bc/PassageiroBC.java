@@ -85,8 +85,8 @@ private static PassageiroBC instance;
 	}
 
 	@Override
-	protected void validateForFindData(Pessoa object) {
+	protected boolean validateForFindData(Pessoa object) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 }

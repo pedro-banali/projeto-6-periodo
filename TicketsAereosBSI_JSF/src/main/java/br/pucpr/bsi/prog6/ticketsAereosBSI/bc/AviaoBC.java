@@ -86,7 +86,8 @@ private static AviaoBC instance;
 	}
 
 	@Override
-	protected void validateForFindData(Aviao object) {
+	protected boolean validateForFindData(Aviao object) {
+		return false;
 		// TODO Auto-generated method stub
 		
 	}
