@@ -99,5 +99,11 @@ private static PrimeiraBC instance;
 		
 	}
 
+	@Override
+	public List<String> findAssentosDisponiveis(Long idHorario) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	}

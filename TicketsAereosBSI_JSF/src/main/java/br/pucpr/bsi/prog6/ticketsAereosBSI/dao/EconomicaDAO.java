@@ -27,9 +27,9 @@ public class EconomicaDAO extends BilheteDAO {
 		Session session = HibernateUtil.getSession();
 		 try {
 		 Query q = session.createQuery("SELECT e " +
-		 " FROM Economica e JOIN e.address a" +
-		 "WHERE a.city = :city ");
-		 q.setParameter("city", city);
+		 " FROM Economica e JOIN e.horario h" +
+		 "WHERE h.id = :id  and (SITUACAO <> Disponível)");
+		 q.setParameter("id", idHorario);
 		 return (List<String>) q.list();
 		 }finally {
 		 session.close();

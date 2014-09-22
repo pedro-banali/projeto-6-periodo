@@ -96,5 +96,10 @@ public class ExecutivaBC extends BilheteBC<Bilhete> {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public List<String> findAssentosDisponiveis(Long idHorario) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
