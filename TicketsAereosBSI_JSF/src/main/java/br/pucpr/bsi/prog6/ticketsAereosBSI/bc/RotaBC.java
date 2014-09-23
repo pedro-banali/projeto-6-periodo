@@ -30,14 +30,14 @@ private static RotaBC instance;
 	@Override
 	public List<Rota> findByFilter(Rota filter) {
 		// TODO Auto-generated method stub
-		this.validateForDataModification(filter);
-		return null;
+		this.validateForFindData(filter);
+		return RotaDAO.getInstance().findByFilter(filter);
 	}
 
 	@Override
 	public List<Rota> findAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return RotaDAO.getInstance().findAll();
 	}
 
 	@Override
@@ -84,6 +84,6 @@ private static RotaBC instance;
 	@Override
 	protected boolean validateForFindData(Rota object) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 }
