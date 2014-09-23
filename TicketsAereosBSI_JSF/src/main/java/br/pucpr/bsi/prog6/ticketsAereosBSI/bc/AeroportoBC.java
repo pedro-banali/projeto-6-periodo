@@ -38,7 +38,7 @@ private static AeroportoBC instance;
 	@Override
 	public List<Aeroporto> findAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return AeroportoDAO.getInstance().findAll();
 	}
 
 	@Override

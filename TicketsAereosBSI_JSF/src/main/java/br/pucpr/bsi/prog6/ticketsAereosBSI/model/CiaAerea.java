@@ -29,6 +29,7 @@ public class CiaAerea implements IdentifierInterface, Serializable {
 	
 	public CiaAerea() {
 		avioes = new ArrayList<Aviao>();
+		papeis = new ArrayList<Papel>();
 	}
 	
 	public Long getId() {

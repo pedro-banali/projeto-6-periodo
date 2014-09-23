@@ -35,10 +35,15 @@ public class AviaoDAO extends PatternDAO<Aviao> {
 			if (StringUtils.isNotBlank(filter.getCodigo())) {
 				c.add(Restrictions.like("codigo", "%" + filter.getCodigo() + "%"));
 			}
+			if (StringUtils.isNotBlank(filter.getCiaAerea().getNome())) {
+				c.createAlias("ciaAerea", "ciaAerea");
+				c.add(Restrictions.like("ciaAerea.nome", "%" + filter.getCiaAerea().getNome() + "%"));
+			}
 			if(filter.getCarga() > 0)
 			{
-				c.add(Restrictions.like("carga", "%" + filter.getCarga() + "%"));
+				c.add(Restrictions.eq("carga", filter.getCarga()));
 			}
+			
 			
 			return ((List<Aviao>) c.list());
 		} catch (Exception e) {

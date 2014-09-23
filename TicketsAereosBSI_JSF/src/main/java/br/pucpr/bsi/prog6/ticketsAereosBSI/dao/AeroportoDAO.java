@@ -68,6 +68,41 @@ public class AeroportoDAO extends PatternDAO<Aeroporto> {
 			{
 				c.add(Restrictions.like("nome", "%" + filter.getNome() + "%"));
 			}
+			if(StringUtils.isNotBlank(filter.getEndereco().getRua()))
+			{
+				c.createAlias("endereco", "endereco");
+				c.add(Restrictions.like("endereco.rua", "%" + filter.getEndereco().getRua() + "%"));
+			}
+			if(StringUtils.isNotBlank(filter.getEndereco().getBairro()))
+			{
+				c.createAlias("endereco", "endereco");
+				c.add(Restrictions.like("endereco.bairro", "%" + filter.getEndereco().getBairro() + "%"));
+			}
+			if(StringUtils.isNotBlank(filter.getEndereco().getCidade()))
+			{
+				c.createAlias("endereco", "endereco");
+				c.add(Restrictions.like("endereco.cidade", "%" + filter.getEndereco().getCidade() + "%"));
+			}
+			if(StringUtils.isNotBlank(filter.getEndereco().getPais()))
+			{
+				c.createAlias("endereco", "endereco");
+				c.add(Restrictions.like("endereco.pais", "%" + filter.getEndereco().getPais() + "%"));
+			}
+			if(filter.getEndereco().getNumero() > 0)
+			{
+				c.createAlias("endereco", "endereco");
+				c.add(Restrictions.eq("endereco.numero", filter.getEndereco().getNumero()));
+			}
+			if(StringUtils.isNotBlank(filter.getEndereco().getComplemento()))
+			{
+				c.createAlias("endereco", "endereco");
+				c.add(Restrictions.like("endereco.complemento", "%" + filter.getEndereco().getComplemento() + "%"));
+			}
+			if(StringUtils.isNotBlank(filter.getEndereco().getEstado()))
+			{
+				c.createAlias("endereco", "endereco");
+				c.add(Restrictions.like("endereco.estado", "%" + filter.getEndereco().getEstado() + "%"));
+			}
 			return ((List<Aeroporto>) c.list());
 		} catch (Exception e) {
 			e.printStackTrace();

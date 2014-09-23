@@ -29,7 +29,7 @@ public class Papel implements IdentifierInterface, Serializable {
 	private String nome;
 	private String descricao;
 	
-	@OneToMany(mappedBy="papel", fetch=FetchType.LAZY)
+	@OneToMany(targetEntity = Funcionario.class, mappedBy="papel", fetch=FetchType.LAZY)
 	private List<Funcionario> funcionarios;
 	
 	@ManyToOne
@@ -44,19 +44,9 @@ public class Papel implements IdentifierInterface, Serializable {
 	
 	public Papel(CiaAerea ciaAerea)
 	{
-		List<Papel> papeis;
 		this.ciaAerea = ciaAerea;
-		papeis = this.ciaAerea.getPapeis();
-		
-		if(papeis == null)
-			papeis = new ArrayList<Papel>();
-		
-		if(funcionarios == null)
-			funcionarios = new ArrayList<Funcionario>();
-		
-		papeis.add(this);
-		
-		this.ciaAerea.setPapeis(papeis);
+		ciaAerea.getPapeis().add(this);
+		funcionarios = new ArrayList<Funcionario>();
 	}
 	
 	public Long getId() {

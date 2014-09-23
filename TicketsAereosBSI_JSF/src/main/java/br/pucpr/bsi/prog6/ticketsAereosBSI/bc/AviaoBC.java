@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.Entity;
 
+import org.apache.commons.lang3.StringUtils;
+
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.AviaoDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Aviao;
@@ -42,7 +44,7 @@ private static AviaoBC instance;
 	@Override
 	public List<Aviao> findAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return AviaoDAO.getInstance().findAll();
 	}
 
 	@Override
@@ -90,12 +92,18 @@ private static AviaoBC instance;
 
 	@Override
 	protected boolean validateForFindData(Aviao object) {
-		if(object == null && 
-				(object.getCodigo() == null || object.getCodigo().equals("")) &&
-				object.getCarga() <= 0)
-			return false;
+		if(object != null) 
+		{
+			
+			if(StringUtils.isNotBlank(object.getCodigo()) && object.getCarga() < 0)
+				return CiaAereaBC.getInstance().validateForFindData(object.getCiaAerea());
+			
+			return true;
+		}
 		else
-			return CiaAereaBC.getInstance().validateForFindData(object.getCiaAerea());
+		{
+			return false;
+		}
 		
 	}
 }
