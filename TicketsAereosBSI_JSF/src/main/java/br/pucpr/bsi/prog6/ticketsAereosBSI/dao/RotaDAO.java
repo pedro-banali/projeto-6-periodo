@@ -29,46 +29,44 @@ public class RotaDAO extends PatternDAO<Rota>{
 
 	@Override
 	public List<Rota> findByFilter(Rota filter) {
-		// TODO Auto-generated method stub
 		Session session = HibernateUtil.getSession();
 		try {
-			
-			Criteria c = session.createCriteria(Passageiro.class);
-			c.createAlias("endereco", "endereco");
+
+			Criteria c = session.createCriteria(Rota.class);
 			if (StringUtils.isNotBlank(filter.getNome())) {
 				c.add(Restrictions.like("nome", "%" + filter.getNome() + "%"));
 			}
-			if(StringUtils.isNotBlank(filter.getDescricao()))
-			{
+			if (StringUtils.isNotBlank(filter.getDescricao())) {
 				c.add(Restrictions.like("descricao", "%" + filter.getDescricao() + "%"));
 			}
-			if(StringUtils.isNotBlank(filter.getDestino().getNome()))
-			{
-				c.createAlias("destino", "destino");
-				c.add(Restrictions.like("destino.nome", "%" + filter.getDestino().getNome() + "%"));
+			if (StringUtils.isNotBlank(filter.getCiaAerea().getNome())) {
+				c.createAlias("ciaAerea", "ciaAerea");
+				c.add(Restrictions.like("ciaAerea.nome", "%" + filter.getCiaAerea().getNome() + "%"));
 			}
-			if(StringUtils.isNotBlank(filter.getOrigem().getNome()))
-			{
-				c.createAlias("origem", "origem");
-				c.add(Restrictions.like("origem.nome", "%" + filter.getOrigem().getNome() + "%"));
+			if (StringUtils.isNotBlank(filter.getOrigem().getEndereco().getCidade())) {
+				c.createAlias("origem", "aeroportoO");
+				c.createAlias("aeroportoO.endereco", "enderecoO");
+				c.add(Restrictions.like("enderecoO.cidade", "%"+ filter.getOrigem().getEndereco().getCidade() + "%"));
 			}
-			if(StringUtils.isNotBlank(filter.getDestino().getEndereco().getCidade()))
-			{
-				c.createAlias("destino", "destino");
-				c.createAlias("destino.endereco", "dEndereco");
-				c.add(Restrictions.like("dEndereco.cidade", "%" + filter.getDestino().getEndereco().getCidade() + "%"));
+			if (StringUtils.isNotBlank(filter.getDestino().getEndereco().getCidade())) {
+				c.createAlias("destino", "aeroportoD");
+				c.createAlias("aeroportoD.endereco", "enderecoD");
+				c.add(Restrictions.like("enderecoD.cidade", "%"+ filter.getDestino().getEndereco().getCidade() + "%"));
 			}
-			if(StringUtils.isNotBlank(filter.getOrigem().getNome()))
-			{
-				c.createAlias("origem", "origem");
-				c.createAlias("origem.endereco", "oEndereco");
-				c.add(Restrictions.like("oEndereco.cidade", "%" + filter.getOrigem().getEndereco().getCidade() + "%"));
+			if (StringUtils.isNotBlank(filter.getDestino().getNome())) {
+				c.createAlias("destino", "aeroportoD");
+				c.add(Restrictions.like("aeroportoD.nome", "%"+ filter.getDestino().getNome() + "%"));
 			}
-			
+			if (StringUtils.isNotBlank(filter.getOrigem().getNome())) {
+				c.createAlias("origem", "aeroportoO");
+				c.add(Restrictions.like("aeroportoO.nome", "%"+ filter.getOrigem().getNome() + "%"));
+			}
 			return ((List<Rota>) c.list());
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
-		}finally{ session.close(); }
+		} finally {
+			//session.close();
+		}
 	}
 }

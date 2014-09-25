@@ -3,6 +3,9 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.AviaoDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.HorarioDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Horario;
@@ -31,14 +34,17 @@ private static HorarioBC instance;
 	@Override
 	public List<Horario> findByFilter(Horario filter) {
 		// TODO Auto-generated method stub
-		this.validateForDataModification(filter);
-		return null;
+		if(!(this.validateForFindData(filter)))
+		{
+			throw new TicketsAereosBSIException("ER0001");
+		}
+		return HorarioDAO.getInstance().findByFilter(filter);
 	}
 
 	@Override
 	public List<Horario> findAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return HorarioDAO.getInstance().findAll();
 	}
 
 	@Override
@@ -96,6 +102,20 @@ private static HorarioBC instance;
 	@Override
 	protected boolean validateForFindData(Horario object) {
 		// TODO Auto-generated method stub
-		return false;
+		if(object != null)
+		{
+			if(StringUtils.isNotBlank(object.getCodigo()) &&
+					object.getPartida() == null &&
+					object.getChegada() == null &&
+					!AviaoBC.getInstance().validateForFindData(object.getAviao()) &&
+					!RotaBC.getInstance().validateForFindData(object.getRota()))
+			{
+				return false;
+			}
+			else
+				return true;
+		}
+		else
+			return false;
 	}
 }

@@ -2,24 +2,25 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.RotaDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Rota;
 
+public class RotaBC extends PatternBC<Rota> {
 
-public class RotaBC extends PatternBC<Rota>{
+	private static RotaBC instance;
 
-private static RotaBC instance;
-	
-	private RotaBC(){
-		
+	private RotaBC() {
+
 	}
-	
+
 	public static RotaBC getInstance() {
-	      if (instance == null)
-	         instance = new RotaBC();
-	      return instance;
-	   }
+		if (instance == null)
+			instance = new RotaBC();
+		return instance;
+	}
 
 	@Override
 	public Rota findById(long id) {
@@ -30,7 +31,10 @@ private static RotaBC instance;
 	@Override
 	public List<Rota> findByFilter(Rota filter) {
 		// TODO Auto-generated method stub
-		this.validateForFindData(filter);
+		if(!(this.validateForFindData(filter)))
+		{
+			throw new TicketsAereosBSIException("ER0001");
+		}
 		return RotaDAO.getInstance().findByFilter(filter);
 	}
 
@@ -44,7 +48,7 @@ private static RotaBC instance;
 	public long insert(Rota object) {
 		validateForDataModification(object);
 		return RotaDAO.getInstance().insert(object);
-			
+
 	}
 
 	@Override
@@ -52,7 +56,7 @@ private static RotaBC instance;
 		// TODO Auto-generated method stub
 		RotaDAO rotaDao = RotaDAO.getInstance();
 		this.validateForDataModification(object);
-		
+
 		return rotaDao.update(object);
 	}
 
@@ -61,29 +65,47 @@ private static RotaBC instance;
 		// TODO Auto-generated method stub
 		RotaDAO rotaDao = RotaDAO.getInstance();
 		this.validateForDataModification(object);
-		
+
 		return rotaDao.delete(object);
 	}
 
 	@Override
 	protected void validateForDataModification(Rota object) {
 		// TODO Auto-generated method stub
-		if(object == null)
+		if (object == null)
 			throw new TicketsAereosBSIException("ER0120");
-		else if(object.getNome() == null || object.getNome().trim().equals(""))
+		else if (object.getNome() == null || object.getNome().trim().equals(""))
 			throw new TicketsAereosBSIException("ER0121");
-		else if(object.getDescricao() == null)
+		else if (object.getDescricao() == null)
 			throw new TicketsAereosBSIException("ER0122");
-		else if(object.getCiaAerea() == null)
+		else if (object.getCiaAerea() == null)
 			throw new TicketsAereosBSIException("ER0050");
-		
-		AeroportoBC.getInstance().validateForDataModification(object.getDestino());
-		AeroportoBC.getInstance().validateForDataModification(object.getOrigem());
+
+		AeroportoBC.getInstance().validateForDataModification(
+				object.getDestino());
+		AeroportoBC.getInstance().validateForDataModification(
+				object.getOrigem());
 	}
 
 	@Override
 	protected boolean validateForFindData(Rota object) {
-		// TODO Auto-generated method stub
-		return true;
+		// TODO Auto-generated method stub]
+		if (object != null) {
+			if (StringUtils.isNotBlank(object.getNome()) &&
+					StringUtils.isNotBlank(object.getDescricao()) &&
+					StringUtils.isNotBlank(object.getDestino().getNome()) &&
+					StringUtils.isNotBlank(object.getOrigem().getNome())&&
+					StringUtils.isNotBlank(object.getDestino().getEndereco().getCidade()) &&
+					StringUtils.isNotBlank(object.getOrigem().getEndereco().getCidade()) &&
+					!CiaAereaBC.getInstance().validateForFindData(object.getCiaAerea()))
+			{
+				return false;
+			}
+			else{
+				return true;
+			}
+		} else {
+			return false;
+		}
 	}
 }
