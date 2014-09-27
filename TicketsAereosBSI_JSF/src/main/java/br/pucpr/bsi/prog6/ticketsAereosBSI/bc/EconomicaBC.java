@@ -2,115 +2,106 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.EconomicaDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
-import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Bilhete;
-import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Passageiro;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Economica;
 
-public class EconomicaBC extends BilheteBC<Bilhete> {
+public class EconomicaBC extends BilheteBC<Economica> {
 
-	private static EconomicaBC instance;
+	private static EconomicaBC instance = new EconomicaBC();
 
-	public EconomicaBC() {
-
+	private EconomicaBC() {
 	}
 
 	public static EconomicaBC getInstance() {
-		if (instance == null)
-			instance = new EconomicaBC();
 		return instance;
 	}
 
 	@Override
-	public Bilhete findById(long id) {
-		// TODO Auto-generated method stub
+	public Economica findById(long id) {
+		if (id < 0) {
+			return null;
+		}
 		return EconomicaDAO.getInstance().findById(id);
 	}
 
 	@Override
-	public List<Bilhete> findByFilter(Bilhete filter) {
-		// TODO Auto-generated method stub
-		this.validateForDataModification(filter);
-		return null;
+	public List<Economica> findByFilter(Economica filter) {
+		if (!validateForFindData(filter)) {
+			throw new TicketsAereosBSIException("ER0001");
+		}
+		return EconomicaDAO.getInstance().findByFilter(filter);
 	}
 
 	@Override
-	public List<Bilhete> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Economica> findAll() {
+		return EconomicaDAO.getInstance().findAll();
 	}
 
 	@Override
-	public long insert(Bilhete object) {
-
-		EconomicaDAO economica = EconomicaDAO.getInstance();
-
-		this.validateForDataModification(object);
-
-		return economica.insert(object);
+	public long insert(Economica object) {
+		validateForDataModification(object);
+		return EconomicaDAO.getInstance().insert(object);
 	}
 
 	@Override
-	public boolean update(Bilhete object) {
-
-		EconomicaDAO economica = EconomicaDAO.getInstance();
-
-		this.validateForDataModification(object);
-
-		return economica.update(object);
+	public boolean update(Economica object) {
+		validateForDataModification(object);
+		return EconomicaDAO.getInstance().update(object);
 	}
 
 	@Override
-	public boolean delete(Bilhete object) {
-
-		EconomicaDAO economica = EconomicaDAO.getInstance();
-
-		this.validateForDataModification(object);
-
-		return economica.delete(object);
+	public boolean delete(Economica object) {
+		return EconomicaDAO.getInstance().delete(object);
 	}
 
 	@Override
-	protected void validateForDataModification(Bilhete object) {
-		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
-		if (object == null)
+	protected void validateForDataModification(Economica object) {
+		if (object == null) {
 			throw new TicketsAereosBSIException("ER0040");
-		else if (object.getAssento() == null)
+		}
+
+		if (StringUtils.isBlank(object.getAssento())) {
 			throw new TicketsAereosBSIException("ER0041");
-		else if (object.getAssento().trim().equals(""))
-			throw new TicketsAereosBSIException("ER0041");
-		else if (object.getNumero() == 0)
+		}
+		if (object.getNumero() == 0) {
 			throw new TicketsAereosBSIException("ER0042");
-		else if (object.getNumero() < 0)
+		}
+
+		if (object.getNumero() < 0) {
 			throw new TicketsAereosBSIException("ER0043");
+		}
 
-		HorarioBC.getInstance()
-				.validateForDataModification(object.getHorario());
+		if (object.getHorario() == null) {
+			throw new TicketsAereosBSIException("ER0044");
+		}
 
-		PassageiroBC.getInstance().validateForDataModification(
-				object.getPassageiro());
+		if (object.getPassageiro() == null) {
+			throw new TicketsAereosBSIException("ER0045");
+		}
+
 	}
 
 	@Override
-	protected boolean validateForFindData(Bilhete object) {
-		// TODO Auto-generated method stub
-		return false;
+	protected boolean validateForFindData(Economica object) {
+		if (object == null) {
+			return false;
+		}
+		if (!(super.validateForFindData(object))) {
+			return false;
+		}
+		return true;
+
 	}
 
 	@Override
-	public void reservarBilhete(Long idBilhete, Passageiro passageiro,
-			String string) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public List<String> findAssentosDisponiveis(Long idHorario) {
-		return null;
-		// TODO Auto-generated method stub
-
-
+	public List<String> findAssentosDisponiveis(long idHorario) {
+		if (idHorario <= 0) {
+			return null; 
+		}
+		return EconomicaDAO.getInstance().findAssentosDisponiveis(idHorario);
 	}
 
 }

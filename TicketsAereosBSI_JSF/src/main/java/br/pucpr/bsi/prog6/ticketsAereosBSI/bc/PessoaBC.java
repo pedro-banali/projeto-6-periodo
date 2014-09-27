@@ -60,7 +60,7 @@ public abstract class PessoaBC<T extends Pessoa> extends PatternBC<T> {
 					&& StringUtils.isBlank(object.getTelefone())
 					&& StringUtils.isBlank(object.getUsuario())
 					&& object.getDataNascimento() == null
-					&& EnderecoBC.getInstance().validateForFindData(
+					&& !EnderecoBC.getInstance().validateForFindData(
 							object.getEndereco())) {
 
 				return false;

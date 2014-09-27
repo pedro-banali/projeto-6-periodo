@@ -5,7 +5,9 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.CiaAereaBC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.PapelBC;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.CiaAerea;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Papel;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.tests.laboratorioQueries.populate.enums.CiaAereaEnum;
@@ -38,6 +40,21 @@ public class TestePapelLabQueries {
 		Papel papelIdInvalido = PapelBC.getInstance().findById(100000);
 		Assert.assertNull(papelIdInvalido);
 	}
+	
+	///////////////////////////////////////////////////////////
+	// DADOS DO PAPEL
+	///////////////////////////////////////////////////////////
+		
+	@Test(expected = TicketsAereosBSIException.class)
+	public void testFindByFilterNulo(){
+		PapelBC.getInstance().findByFilter(null);
+	}	
+	
+	@Test(expected = TicketsAereosBSIException.class)
+	public void testFindByFilterVazio(){
+		Papel filter = new Papel(new CiaAerea());
+		PapelBC.getInstance().findByFilter(filter);
+	}	
 	
 	@Test
 	public void testFindByFilterNome(){

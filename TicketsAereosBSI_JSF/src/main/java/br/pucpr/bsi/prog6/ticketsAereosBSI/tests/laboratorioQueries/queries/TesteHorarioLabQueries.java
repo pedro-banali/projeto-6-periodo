@@ -7,12 +7,16 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.FuncionarioBC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.HorarioBC;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Aeroporto;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Aviao;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.CiaAerea;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Endereco;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Funcionario;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Horario;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Papel;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Rota;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.tests.laboratorioQueries.populate.enums.AeroportoEnum;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.tests.laboratorioQueries.populate.enums.AviaoEnum;
@@ -49,8 +53,19 @@ public class TesteHorarioLabQueries {
 	}
 	
 	///////////////////////////////////////////////////////////
-	// DADOS DO ROTA
+	// DADOS DO HORARIO
 	///////////////////////////////////////////////////////////
+	
+	@Test(expected = TicketsAereosBSIException.class)
+	public void testFindByFilterNulo(){
+		HorarioBC.getInstance().findByFilter(null);
+	}	
+	
+	@Test(expected = TicketsAereosBSIException.class)
+	public void testFindByFilterVazio(){
+		Horario filter = new Horario(new Rota(new CiaAerea(), new Aeroporto(new Endereco()), new Aeroporto(new Endereco())), new Aviao(new CiaAerea()));
+		HorarioBC.getInstance().findByFilter(filter);
+	}		
 	
 	@Test
 	public void testFindByFilterCodigoHorario(){

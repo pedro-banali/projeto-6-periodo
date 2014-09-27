@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.AeroportoBC;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Aeroporto;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Endereco;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.tests.laboratorioQueries.populate.enums.AeroportoEnum;
@@ -42,6 +43,17 @@ public class TesteAeroportoLabQueries {
 	///////////////////////////////////////////////////////////
 	// DADOS DO AEROPORTO
 	///////////////////////////////////////////////////////////
+	
+	@Test(expected = TicketsAereosBSIException.class)
+	public void testFindByFilterNulo(){
+		AeroportoBC.getInstance().findByFilter(null);
+	}	
+	
+	@Test(expected = TicketsAereosBSIException.class)
+	public void testFindByFilterVazio(){
+		Aeroporto filter = new Aeroporto(new Endereco());
+		AeroportoBC.getInstance().findByFilter(filter);
+	}
 	
 	@Test
 	public void testFindByFilterCodigoAeroporto(){

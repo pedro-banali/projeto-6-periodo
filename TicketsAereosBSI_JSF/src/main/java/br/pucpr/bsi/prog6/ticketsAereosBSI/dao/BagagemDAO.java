@@ -78,7 +78,9 @@ public class BagagemDAO extends PatternDAO<Bagagem> {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
-		} finally {session.close();}
+		} finally {//session.close();
+			
+		}
 	}
 
 }

@@ -20,7 +20,18 @@ public class BilheteDTO {
 	
 	public BilheteDTO(String cidadeOrigem, String cidadeDestino, String aeroportoOrigem, String aeroportoDestino,
 	String ciaAerea, Long idBilhete, Long idHorario, Date dataPartida, TipoBilheteEnum tipoBilhete, SituacaoBilheteEnum situacaoBilheteEnum)
-	{}
+	{
+		
+		this.cidadeOrigem = cidadeOrigem;
+		this.cidadeDestino = cidadeDestino;
+		this.aeroportoOrigem =  aeroportoOrigem;
+		this.aeroportoDestino = aeroportoDestino;
+		this.ciaAerea = ciaAerea;
+		this.idBilhete = idBilhete;
+		this.idHorario = idHorario;
+		this.tipoBilhete = tipoBilhete;
+		this.situacaoBilheteEnum = situacaoBilheteEnum;
+	}
 
 	public String getCidadeOrigem() {
 		return cidadeOrigem;

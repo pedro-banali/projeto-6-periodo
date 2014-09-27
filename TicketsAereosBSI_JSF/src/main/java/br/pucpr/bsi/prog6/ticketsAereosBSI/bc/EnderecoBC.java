@@ -104,7 +104,7 @@ public class EnderecoBC extends PatternBC<Endereco> {
 		if(object != null )
 		{
 			if( StringUtils.isBlank(object.getRua())
-					&& object.getNumero() < 0
+					&& object.getNumero() <= 0
 					&& StringUtils.isBlank(object.getComplemento())
 					&& StringUtils.isBlank(object.getBairro())
 					&& StringUtils.isBlank(object.getCidade())

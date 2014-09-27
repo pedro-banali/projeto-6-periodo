@@ -5,8 +5,12 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.PapelBC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.PassageiroBC;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.model.CiaAerea;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Endereco;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Papel;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Passageiro;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.tests.laboratorioQueries.populate.enums.EnderecoEnum;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.tests.laboratorioQueries.populate.enums.PassageiroEnum;
@@ -41,8 +45,19 @@ public class TestePassageiroLabQueries {
 	}
 	
 	///////////////////////////////////////////////////////////
-	// DADOS DO FUNCIONARIO
+	// DADOS DO PAPEL
 	///////////////////////////////////////////////////////////
+		
+	@Test(expected = TicketsAereosBSIException.class)
+	public void testFindByFilterNulo(){
+		PassageiroBC.getInstance().findByFilter(null);
+	}	
+	
+	@Test(expected = TicketsAereosBSIException.class)
+	public void testFindByFilterVazio(){
+		Passageiro filter = new Passageiro(new Endereco());
+		PassageiroBC.getInstance().findByFilter(filter);
+	}	
 	
 	@Test
 	public void testFindByFilterDataNascimentoPassageiro(){
@@ -169,7 +184,6 @@ public class TestePassageiroLabQueries {
 			List<Passageiro> passageiroFilter = PassageiroBC.getInstance().findByFilter(filter);
 			
 			//verifica se o tamanho do filtro eh 1
-			//TODO arrumar o tamanho correto
 			Assert.assertEquals(passageiroFilter.size(), 1);
 			
 			for (Passageiro passageiro : passageiroFilter) {
@@ -185,8 +199,7 @@ public class TestePassageiroLabQueries {
 			filter.getEndereco().setNumero(enderecoEnum.getNumero());
 			List<Passageiro> passageiroFilter = PassageiroBC.getInstance().findByFilter(filter);
 			
-			//verifica se o tamanho do filtro eh 1
-			//TODO arrumar o tamanho correto
+			//verifica se o tamanho do filtro eh 6
 			Assert.assertEquals(passageiroFilter.size(), 6);
 			
 			for (Passageiro passageiro : passageiroFilter) {
@@ -229,7 +242,6 @@ public class TestePassageiroLabQueries {
 			List<Passageiro> passageiroFilter = PassageiroBC.getInstance().findByFilter(filter);
 			
 			//verifica se o tamanho do filtro eh 1
-			//TODO arrumar o tamanho correto
 			Assert.assertEquals(passageiroFilter.size(), 1);
 			
 			for (Passageiro passageiro : passageiroFilter) {
@@ -246,7 +258,6 @@ public class TestePassageiroLabQueries {
 			List<Passageiro> passageiroFilter = PassageiroBC.getInstance().findByFilter(filter);
 			
 			//verifica se o tamanho do filtro eh 1
-			//TODO arrumar o tamanho correto
 			Assert.assertEquals(passageiroFilter.size(), 1);
 			
 			for (Passageiro passageiro : passageiroFilter) {

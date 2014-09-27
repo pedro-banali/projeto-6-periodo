@@ -104,7 +104,7 @@ private static HorarioBC instance;
 		// TODO Auto-generated method stub
 		if(object != null)
 		{
-			if(StringUtils.isNotBlank(object.getCodigo()) &&
+			if(StringUtils.isBlank(object.getCodigo()) &&
 					object.getPartida() == null &&
 					object.getChegada() == null &&
 					!AviaoBC.getInstance().validateForFindData(object.getAviao()) &&

@@ -5,7 +5,10 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.AeroportoBC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.FuncionarioBC;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Aeroporto;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.CiaAerea;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Endereco;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Funcionario;
@@ -47,6 +50,17 @@ public class TesteFuncionarioLabQueries {
 	///////////////////////////////////////////////////////////
 	// DADOS DO FUNCIONARIO
 	///////////////////////////////////////////////////////////
+	
+	@Test(expected = TicketsAereosBSIException.class)
+	public void testFindByFilterNulo(){
+		FuncionarioBC.getInstance().findByFilter(null);
+	}	
+	
+	@Test(expected = TicketsAereosBSIException.class)
+	public void testFindByFilterVazio(){
+		Funcionario filter = new Funcionario(new Endereco(), new Papel(new CiaAerea()));
+		FuncionarioBC.getInstance().findByFilter(filter);
+	}	
 	
 	@Test
 	public void testFindByFilterCodigoFuncionario(){

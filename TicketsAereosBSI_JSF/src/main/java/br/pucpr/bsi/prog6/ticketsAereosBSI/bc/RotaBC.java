@@ -91,12 +91,15 @@ public class RotaBC extends PatternBC<Rota> {
 	protected boolean validateForFindData(Rota object) {
 		// TODO Auto-generated method stub]
 		if (object != null) {
-			if (StringUtils.isNotBlank(object.getNome()) &&
-					StringUtils.isNotBlank(object.getDescricao()) &&
-					StringUtils.isNotBlank(object.getDestino().getNome()) &&
-					StringUtils.isNotBlank(object.getOrigem().getNome())&&
-					StringUtils.isNotBlank(object.getDestino().getEndereco().getCidade()) &&
-					StringUtils.isNotBlank(object.getOrigem().getEndereco().getCidade()) &&
+			if(StringUtils.isBlank(object.getOrigem().getCodigo()) || StringUtils.isBlank(object.getDestino().getCodigo()))
+				return false;
+			
+			if (StringUtils.isBlank(object.getNome()) &&
+					StringUtils.isBlank(object.getDescricao()) &&
+					StringUtils.isBlank(object.getDestino().getNome()) &&
+					StringUtils.isBlank(object.getOrigem().getNome())&&
+					StringUtils.isBlank(object.getDestino().getEndereco().getCidade()) &&
+					StringUtils.isBlank(object.getOrigem().getEndereco().getCidade()) &&
 					!CiaAereaBC.getInstance().validateForFindData(object.getCiaAerea()))
 			{
 				return false;

@@ -5,10 +5,13 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.PapelBC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.RotaBC;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Aeroporto;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.CiaAerea;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Endereco;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Papel;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Rota;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.tests.laboratorioQueries.populate.enums.AeroportoEnum;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.tests.laboratorioQueries.populate.enums.CiaAereaEnum;
@@ -43,8 +46,19 @@ public class TesteRotaLabQueries {
 	}
 	
 	///////////////////////////////////////////////////////////
-	// DADOS DO ROTA
+	// DADOS DA ROTA
 	///////////////////////////////////////////////////////////
+	
+	@Test(expected = TicketsAereosBSIException.class)
+	public void testFindByFilterNulo(){
+		RotaBC.getInstance().findByFilter(null);
+	}	
+	
+	@Test(expected = TicketsAereosBSIException.class)
+	public void testFindByFilterVazio(){
+		Rota filter = new Rota(new CiaAerea(), new Aeroporto(new Endereco()), new Aeroporto(new Endereco()));
+		RotaBC.getInstance().findByFilter(filter);
+	}		
 	
 	@Test
 	public void testFindByFilterNomeRota(){
@@ -110,8 +124,7 @@ public class TesteRotaLabQueries {
 			filter.getOrigem().setNome(aeroportoEnum.getNome());
 			List<Rota> rotaFilter = RotaBC.getInstance().findByFilter(filter);
 			
-			//verifica se o tamanho do filtro eh 1
-			//TODO arrumar o tamanho correto
+			//verifica se o tamanho do filtro eh 15
 			Assert.assertEquals(rotaFilter.size(), 15);
 			
 			for (Rota rota : rotaFilter) {
@@ -127,8 +140,7 @@ public class TesteRotaLabQueries {
 			filter.getOrigem().getEndereco().setCidade(aeroportoEnum.getEnderecoEnum().getCidade());
 			List<Rota> rotaFilter = RotaBC.getInstance().findByFilter(filter);
 			
-			//verifica se o tamanho do filtro eh 1
-			//TODO arrumar o tamanho correto
+			//verifica se o tamanho do filtro eh 15
 			Assert.assertEquals(rotaFilter.size(), 15);
 			
 			for (Rota rota : rotaFilter) {
@@ -144,8 +156,7 @@ public class TesteRotaLabQueries {
 			filter.getDestino().setNome(aeroportoEnum.getNome());
 			List<Rota> rotaFilter = RotaBC.getInstance().findByFilter(filter);
 			
-			//verifica se o tamanho do filtro eh 1
-			//TODO arrumar o tamanho correto
+			//verifica se o tamanho do filtro eh 15
 			Assert.assertEquals(rotaFilter.size(), 15);
 			
 			for (Rota rota : rotaFilter) {
@@ -161,8 +172,7 @@ public class TesteRotaLabQueries {
 			filter.getDestino().getEndereco().setCidade(aeroportoEnum.getEnderecoEnum().getCidade());
 			List<Rota> rotaFilter = RotaBC.getInstance().findByFilter(filter);
 			
-			//verifica se o tamanho do filtro eh 1
-			//TODO arrumar o tamanho correto
+			//verifica se o tamanho do filtro eh 15
 			Assert.assertEquals(rotaFilter.size(), 15);
 			
 			for (Rota rota : rotaFilter) {

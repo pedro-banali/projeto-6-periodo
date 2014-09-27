@@ -102,8 +102,12 @@ public class FuncionarioBC extends PessoaBC<Funcionario> {
 		if (object != null) {
 			if (StringUtils.isBlank(object.getCodigo())
 					&& StringUtils.isBlank(object.getContaCorrente())
-					&& !PapelBC.getInstance().validateForFindData(object.getPapel())
-					&& !super.validateForFindData(object)) {
+					&& StringUtils.isBlank(object.getTelefone())
+					&& StringUtils.isBlank(object.getTelefone())
+					&& PapelBC.getInstance().validateForFindData(object.getPapel())
+					&& !super.validateForFindData(object)
+					&& StringUtils.isBlank(object.getPapel().getNome())
+					&& StringUtils.isBlank(object.getPapel().getCiaAerea().getNome())) {
 					return false;
 			}
 			else

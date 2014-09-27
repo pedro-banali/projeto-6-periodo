@@ -5,9 +5,13 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.AeroportoBC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.AviaoBC;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Aeroporto;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Aviao;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.CiaAerea;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Endereco;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.tests.laboratorioQueries.populate.enums.AviaoEnum;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.tests.laboratorioQueries.populate.enums.CiaAereaEnum;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.tests.util.Verificador;
@@ -37,6 +41,21 @@ public class TesteAviaoLabQueries {
 		//buscando um id inexistente
 		Aviao aviaoIdInvalido = AviaoBC.getInstance().findById(100000);
 		Assert.assertNull(aviaoIdInvalido);
+	}
+	
+	///////////////////////////////////////////////////////////
+	// DADOS DO AVIAO
+	///////////////////////////////////////////////////////////
+		
+	@Test(expected = TicketsAereosBSIException.class)
+	public void testFindByFilterNulo(){
+		AviaoBC.getInstance().findByFilter(null);
+	}	
+	
+	@Test(expected = TicketsAereosBSIException.class)
+	public void testFindByFilterVazio(){
+		Aviao filter = new Aviao(new CiaAerea());
+		AviaoBC.getInstance().findByFilter(filter);
 	}
 	
 	@Test

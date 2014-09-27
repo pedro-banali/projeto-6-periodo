@@ -2,6 +2,8 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.AeroportoDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Aeroporto;
@@ -86,12 +88,16 @@ private static AeroportoBC instance;
 	@Override
 	protected boolean validateForFindData(Aeroporto object) {
 		// TODO Auto-generated method stub
-		if(object == null && 
-			(object.getCodigo() == null || object.getCodigo().equals("")) && 
-			(object.getNome() == null || object.getNome().equals("")))
+		if(object != null )
+		{
+			if(StringUtils.isBlank(object.getCodigo()) && 
+					StringUtils.isBlank(object.getNome())
+					&& !EnderecoBC.getInstance().validateForFindData(object.getEndereco()))
 			return false;
+			else return true;
+		}
 		else
-			return EnderecoBC.getInstance().validateForFindData(object.getEndereco());
+			return false;
 			
 	}
 

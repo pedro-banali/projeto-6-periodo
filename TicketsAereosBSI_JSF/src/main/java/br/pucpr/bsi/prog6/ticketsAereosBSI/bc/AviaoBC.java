@@ -95,9 +95,12 @@ private static AviaoBC instance;
 		if(object != null) 
 		{
 			
-			if(StringUtils.isNotBlank(object.getCodigo()) && object.getCarga() < 0)
-				return CiaAereaBC.getInstance().validateForFindData(object.getCiaAerea());
-			
+			if(StringUtils.isBlank(object.getCodigo()) 
+					&& object.getCarga() <= 0
+					&& object.getId() <= 0
+					&& !CiaAereaBC.getInstance().validateForFindData(object.getCiaAerea()))
+				return false;
+			else
 			return true;
 		}
 		else

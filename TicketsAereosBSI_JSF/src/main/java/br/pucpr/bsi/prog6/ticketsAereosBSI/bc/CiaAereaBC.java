@@ -44,7 +44,10 @@ public class CiaAereaBC extends PatternBC<CiaAerea> {
 
 	@Override
 	public List<CiaAerea> findByFilter(CiaAerea filter) {
-		validateForFindData(filter);
+		if(!(validateForFindData(filter)))
+		{
+			throw new TicketsAereosBSIException("ER0001");
+		}
 		return CiaAereaDAO.getInstance().findByFilter(filter);
 	}
 	
@@ -82,11 +85,14 @@ public class CiaAereaBC extends PatternBC<CiaAerea> {
 
 	@Override
 	protected boolean validateForFindData(CiaAerea object) {
-		if(object != null &&
-				StringUtils.isNotBlank(object.getNome())){
-			return false;	
+		if(object != null){
+				if(StringUtils.isBlank(object.getNome())
+						&& !(object.getId() != null))
+					return false;	
+				else return true;
 		}
-		throw new TicketsAereosBSIException("ER0001");
+		else
+		return false;
 	}
 }
 

@@ -9,6 +9,7 @@ import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,11 +39,11 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 	
 	@Column(name="tipo", updatable=false, insertable=false)
 	@Enumerated(EnumType.STRING)
-	private TipoBilheteEnum tipoBilheteEnum;
+	private TipoBilheteEnum tipoBilhete;
 	
 	@Column(name="situacao")
 	@Enumerated(EnumType.STRING)
-	private SituacaoBilheteEnum situacaoEnum;
+	private SituacaoBilheteEnum situacaoBilhete;
 	
 	@ManyToOne
 	@JoinColumn(name="id_passageiro")
@@ -52,20 +53,20 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 	@JoinColumn(name="id_horario")
 	private Horario horario;
 	
-	@OneToMany(mappedBy="bilhete")
+	@OneToMany(mappedBy="bilhete",  fetch=FetchType.EAGER)
 	private List<Bagagem> bagagens;
 	
 	public Bilhete(Horario horario, Passageiro passageiro)
 	{
 				
-		this.situacaoEnum = SituacaoBilheteEnum.DISPONIVEL;
+		this.situacaoBilhete = SituacaoBilheteEnum.DISPONIVEL;
 		
 	}
 	
 	public Bilhete(Horario horario)
 	{
 		this.horario = horario;		
-		this.situacaoEnum = SituacaoBilheteEnum.DISPONIVEL;		
+		this.situacaoBilhete = SituacaoBilheteEnum.DISPONIVEL;		
 	}
 	
 	protected Bilhete() {
@@ -91,13 +92,13 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 		this.assento = assento;
 	}
 	public TipoBilheteEnum getTipoBilheteEnum() {
-		return tipoBilheteEnum;
+		return tipoBilhete;
 	}
-	public void setTipoBilheteEnum(TipoBilheteEnum tipoBilheteEnum) {
-		this.tipoBilheteEnum = tipoBilheteEnum;
+	public void setTipoBilheteEnum(TipoBilheteEnum tipoBilhete) {
+		this.tipoBilhete = tipoBilhete;
 	}
 	public SituacaoBilheteEnum getSituacaoEnum() {
-		return situacaoEnum;
+		return situacaoBilhete;
 	}
 
 	public Passageiro getPassageiro() {
@@ -113,9 +114,9 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 		this.horario = horario;
 	}
 	
-	public void setSituacaoEnum(SituacaoBilheteEnum situacao) {
+	public void setSituacaoEnum(SituacaoBilheteEnum situacaoBilhete) {
 		// TODO Auto-generated method stub
-		this.situacaoEnum = situacao;
+		this.situacaoBilhete = situacaoBilhete;
 	}
 
 	public List<Bagagem> getBagagens() {
@@ -179,9 +180,9 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 				return false;
 		} else if (!passageiro.equals(other.passageiro))
 			return false;
-		if (situacaoEnum != other.situacaoEnum)
+		if (situacaoBilhete != other.situacaoBilhete)
 			return false;
-		if (tipoBilheteEnum != other.tipoBilheteEnum)
+		if (tipoBilhete != other.tipoBilhete)
 			return false;
 		return true;
 	}
