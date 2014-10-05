@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 public class Rota  implements IdentifierInterface, Serializable {
 	/**
@@ -33,6 +36,8 @@ public class Rota  implements IdentifierInterface, Serializable {
 	@JoinColumn(name="id_destino")
 	private Aeroporto destino;
 	
+	
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(targetEntity = Horario.class, mappedBy = "rota", fetch = FetchType.LAZY)
 	private List<Horario> horarios;
 	

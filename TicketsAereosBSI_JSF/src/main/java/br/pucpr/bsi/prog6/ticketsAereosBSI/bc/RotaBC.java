@@ -90,10 +90,7 @@ public class RotaBC extends PatternBC<Rota> {
 	@Override
 	protected boolean validateForFindData(Rota object) {
 		// TODO Auto-generated method stub]
-		if (object != null) {
-			if(StringUtils.isBlank(object.getOrigem().getCodigo()) || StringUtils.isBlank(object.getDestino().getCodigo()))
-				return false;
-			
+		if (object != null) {			
 			if (StringUtils.isBlank(object.getNome()) &&
 					StringUtils.isBlank(object.getDescricao()) &&
 					StringUtils.isBlank(object.getDestino().getNome()) &&

@@ -90,9 +90,10 @@ public class PassageiroBC extends PessoaBC<Passageiro> {
 	protected boolean validateForFindData(Passageiro object) {
 		// TODO Auto-generated method stub
 		if (object != null)
-		{
-			if (StringUtils.isNotBlank(object.getNome())
-					&& StringUtils.isNotBlank(object.getNumeroCartao())
+		{	
+			if (StringUtils.isBlank(object.getNome())
+					&& StringUtils.isBlank(object.getNumeroCartao())
+					&& StringUtils.isBlank(object.getDocumento())
 					&& !super.validateForFindData(object)) {
 				return false;
 			} else {

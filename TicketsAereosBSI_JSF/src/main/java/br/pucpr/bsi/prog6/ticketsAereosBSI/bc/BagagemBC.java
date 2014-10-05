@@ -97,12 +97,14 @@ public class BagagemBC extends PatternBC<Bagagem> {
 	@Override
 	protected boolean validateForFindData(Bagagem object) {
 		// TODO Auto-generated method stub
-		if (object == null && (object.getPeso() <= 0)
+		if (object != null)
+		{
+			if((object.getPeso() <= 0)
 				&& (object.getTipoBagagemEnum() == null)
-				&& (object.getBilhete().getHorario().getPartida() == null)) {
+				&& (object.getBilhete().getHorario().getPartida() == null)) 
 			return false;
 		}
-
+		
 		return true;
 	}
 

@@ -94,10 +94,10 @@ private static AviaoBC instance;
 	protected boolean validateForFindData(Aviao object) {
 		if(object != null) 
 		{
-			
 			if(StringUtils.isBlank(object.getCodigo()) 
 					&& object.getCarga() <= 0
 					&& object.getId() <= 0
+					&& StringUtils.isBlank(object.getCiaAerea().getNome())
 					&& !CiaAereaBC.getInstance().validateForFindData(object.getCiaAerea()))
 				return false;
 			else

@@ -105,6 +105,7 @@ private static HorarioBC instance;
 		if(object != null)
 		{
 			if(StringUtils.isBlank(object.getCodigo()) &&
+					StringUtils.isBlank(object.getAviao().getCodigo()) &&
 					object.getPartida() == null &&
 					object.getChegada() == null &&
 					!AviaoBC.getInstance().validateForFindData(object.getAviao()) &&

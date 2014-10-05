@@ -10,6 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 public class CiaAerea implements IdentifierInterface, Serializable {
  
@@ -20,10 +23,15 @@ public class CiaAerea implements IdentifierInterface, Serializable {
 	private Long id;
 	private String nome;
 	
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy="ciaAerea", fetch=FetchType.LAZY)
 	private List<Aviao> avioes;
+	
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy="ciaAerea", fetch=FetchType.LAZY)
 	private List<Papel> papeis;
+	
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy="ciaAerea", fetch=FetchType.LAZY)
 	private List<Rota> rotas;
 	

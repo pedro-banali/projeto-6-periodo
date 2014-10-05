@@ -49,7 +49,9 @@ public class AviaoDAO extends PatternDAO<Aviao> {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
-		}finally{ session.close(); }
+		}finally{ 
+			session.close(); 
+			}
 	}
 
 	@Override

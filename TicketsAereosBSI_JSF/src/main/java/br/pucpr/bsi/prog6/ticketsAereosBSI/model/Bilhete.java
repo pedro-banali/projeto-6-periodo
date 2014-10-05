@@ -18,6 +18,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.SituacaoBilheteEnum;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.TipoBilheteEnum;
 
@@ -53,7 +56,9 @@ public abstract class Bilhete implements IdentifierInterface, Serializable  {
 	@JoinColumn(name="id_horario")
 	private Horario horario;
 	
-	@OneToMany(mappedBy="bilhete",  fetch=FetchType.EAGER)
+	
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(mappedBy="bilhete")
 	private List<Bagagem> bagagens;
 	
 	public Bilhete(Horario horario, Passageiro passageiro)

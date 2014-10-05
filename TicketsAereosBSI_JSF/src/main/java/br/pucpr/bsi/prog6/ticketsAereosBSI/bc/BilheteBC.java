@@ -48,10 +48,12 @@ public abstract class BilheteBC<T extends Bilhete> extends PatternBC<T> {
 		if (object != null) {
 			if (object.getSituacaoEnum() != null
 					&& object.getHorario().getPartida() != null) {
-				if (StringUtils.isNotBlank(object.getHorario().getRota().getOrigem().getCodigo())
-						|| StringUtils.isNotBlank(object.getHorario().getRota().getOrigem().getEndereco().getCidade())) {
+				if (StringUtils.isNotBlank(object.getHorario().getRota()
+						.getOrigem().getCodigo())
+						|| StringUtils.isNotBlank(object.getHorario().getRota()
+								.getOrigem().getEndereco().getCidade())) {
 					if (StringUtils.isNotBlank(object.getHorario().getRota()
-							.getDestino().getCodigo()) || object.getHorario() != null
+							.getDestino().getCodigo())
 							|| StringUtils.isNotBlank(object.getHorario()
 									.getRota().getDestino().getEndereco()
 									.getCidade())) {

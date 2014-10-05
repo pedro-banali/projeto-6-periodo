@@ -90,10 +90,13 @@ public class PapelBC extends PatternBC<Papel> {
 	protected boolean validateForFindData(Papel object) {
 		// TODO Auto-generated method stub
 		if (object != null) {
-			if (StringUtils.isNotBlank(object.getNome())
-					&& StringUtils.isNotBlank(object.getDescricao())
+
+			if (StringUtils.isBlank(object.getNome())
+					&& StringUtils.isBlank(object.getDescricao())
+					&& StringUtils.isBlank(object.getCiaAerea().getNome())
+					&& object.getId() <= 0
 					&& !CiaAereaBC.getInstance().validateForFindData(object.getCiaAerea())) {
-				return true;
+				return false;
 			}
 			return true;
 		} else {

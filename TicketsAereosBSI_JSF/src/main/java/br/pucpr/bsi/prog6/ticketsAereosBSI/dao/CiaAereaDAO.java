@@ -56,8 +56,9 @@ public class CiaAereaDAO extends PatternDAO<CiaAerea> {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<CiaAerea> findByFilter(CiaAerea filter) {
+		Session session = HibernateUtil.getSession();
 		try {
-			Session session = HibernateUtil.getSession();
+			
 			Criteria c = session.createCriteria(CiaAerea.class);
 			if (StringUtils.isNotBlank(filter.getNome())) {
 				c.add(Restrictions.like("nome", "%" + filter.getNome() + "%"));
@@ -66,6 +67,8 @@ public class CiaAereaDAO extends PatternDAO<CiaAerea> {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}finally{
+			session.close();
 		}
 	}
 }

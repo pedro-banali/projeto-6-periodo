@@ -15,7 +15,7 @@ private static AeroportoBC instance;
 	private AeroportoBC(){
 		
 	}
-	
+	 
 	public static AeroportoBC getInstance() {
 	      if (instance == null)
 	         instance = new AeroportoBC();

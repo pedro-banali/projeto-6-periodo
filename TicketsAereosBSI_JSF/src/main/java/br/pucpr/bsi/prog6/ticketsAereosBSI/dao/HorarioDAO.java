@@ -9,7 +9,6 @@ import org.hibernate.criterion.Restrictions;
 
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.util.HibernateUtil;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Horario;
-import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Rota;
 
 public class HorarioDAO extends PatternDAO<Horario> {
 

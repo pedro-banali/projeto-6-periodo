@@ -77,8 +77,8 @@ public class PapelDAO extends PatternDAO<Papel> {
 			e.printStackTrace();
 			return null;
 		}finally{
-//			if(session != null)
-//				session.close();
+			if(session != null)
+				session.close();
 		}
 	}
 

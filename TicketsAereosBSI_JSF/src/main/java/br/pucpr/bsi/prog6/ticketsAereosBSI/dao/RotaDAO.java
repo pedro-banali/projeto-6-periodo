@@ -66,7 +66,7 @@ public class RotaDAO extends PatternDAO<Rota>{
 			e.printStackTrace();
 			return null;
 		} finally {
-			//session.close();
+			session.close();
 		}
 	}
 }

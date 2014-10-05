@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 
 @Entity
@@ -29,6 +32,7 @@ public class Papel implements IdentifierInterface, Serializable {
 	private String nome;
 	private String descricao;
 	
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(targetEntity = Funcionario.class, mappedBy="papel", fetch=FetchType.LAZY)
 	private List<Funcionario> funcionarios;
 	
