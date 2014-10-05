@@ -2,9 +2,9 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.dao.util;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
 
 /**
  * @author Mauda
@@ -18,8 +18,8 @@ public class HibernateUtil {
 		if (sessionFactory == null) {
 			Configuration configuration = new Configuration();
 			configuration.configure();
-			ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-					.applySettings(configuration.getProperties()).build();
+			ServiceRegistry serviceRegistry = new ServiceRegistryBuilder()
+					.applySettings(configuration.getProperties()).buildServiceRegistry();
 			sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 		}
 		return sessionFactory;
