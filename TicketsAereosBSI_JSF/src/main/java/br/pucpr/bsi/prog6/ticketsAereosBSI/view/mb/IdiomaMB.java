@@ -8,7 +8,7 @@ import java.util.Locale;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
+
 
 /**
  * Locales validos:
