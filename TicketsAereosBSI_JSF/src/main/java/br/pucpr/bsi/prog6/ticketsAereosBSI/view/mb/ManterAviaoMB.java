@@ -1,10 +1,10 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.view.mb;
 
-import static br.pucpr.bsi.prog6.ticketsAereosBSI.view.mb.PesquisarCiaAereaMB.CIAAEREA_SELECIONADA;
-import static br.pucpr.bsi.prog6.ticketsAereosBSI.view.mb.PesquisarCiaAereaMB.FILTRO_PESQUISA;
-
 import java.io.Serializable;
 import java.util.List;
+
+import static br.pucpr.bsi.prog6.ticketsAereosBSI.view.mb.PesquisarAviaoMB.AVIAO_SELECIONADA;
+import static br.pucpr.bsi.prog6.ticketsAereosBSI.view.mb.PesquisarAviaoMB.FILTRO_PESQUISA;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -12,8 +12,10 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.log4j.Logger;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.AviaoBC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.CiaAereaBC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Aviao;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.CiaAerea;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.view.mb.utils.ViewUtil;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.view.messages.MessagesUtils;
@@ -25,7 +27,7 @@ import br.pucpr.bsi.prog6.ticketsAereosBSI.view.messages.MessagesUtils;
 
 @ManagedBean
 @ViewScoped
-public class ManterCiaAereaMB implements Serializable{
+public class ManterAviaoMB implements Serializable{
 	
 	public enum Acoes {
 		EDITAR, EXCLUIR, INCLUIR, VISUALIZAR;
@@ -38,10 +40,11 @@ public class ManterCiaAereaMB implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	//Utilizado para logs via Log4J
-	private static Logger log = Logger.getLogger(ManterCiaAereaMB.class);
+	private static Logger log = Logger.getLogger(ManterAviaoMB.class);
 	
-	private CiaAerea ciaAerea = new CiaAerea();
-	private CiaAerea filtroPesquisa;
+	private Aviao aviao = new Aviao(new CiaAerea());
+	private List<CiaAerea> companhiasAereas;
+	private Aviao filtroPesquisa;
 	
 	private Acoes acao = Acoes.INCLUIR;
 	
@@ -49,19 +52,27 @@ public class ManterCiaAereaMB implements Serializable{
 	// Construtores
 	/////////////////////////////////////
 	
-	public ManterCiaAereaMB() {
+	public ManterAviaoMB() {
 	}
 	
 	@PostConstruct
 	private void init(){
+		
+		companhiasAereas = CiaAereaBC.getInstance().findAll();
+		
 		acao = (Acoes) ViewUtil.getParameter(Acoes.class);
+		
+		
 		if(acao != null && !Acoes.INCLUIR.equals(acao)){
-			ciaAerea = (CiaAerea) ViewUtil.getParameter(CIAAEREA_SELECIONADA);
-			if(ciaAerea == null){
+			
+			
+			
+			aviao = (Aviao) ViewUtil.getParameter(AVIAO_SELECIONADA);
+			if(aviao == null){
 				throw new TicketsAereosBSIException("ER0052");
 			}
-			log.debug("Valor do CiaAerea:" + ciaAerea);
-			filtroPesquisa = (CiaAerea) ViewUtil.getParameter(FILTRO_PESQUISA);
+			log.debug("Valor do Aviao:" + aviao);
+			filtroPesquisa = (Aviao) ViewUtil.getParameter(FILTRO_PESQUISA);
 			log.debug("Valor do Filtro:" + filtroPesquisa);
 		} else  {
 			acao = Acoes.INCLUIR;
@@ -76,11 +87,11 @@ public class ManterCiaAereaMB implements Serializable{
 	//Action de Salvar Usuario
 	public String salvar() {
 		if(isAcaoIncluir()){
-			CiaAereaBC.getInstance().insert(this.ciaAerea);
+			AviaoBC.getInstance().insert(this.aviao);
 		} else if(isAcaoEditar()){
-			CiaAereaBC.getInstance().update(this.ciaAerea);
+			AviaoBC.getInstance().update(this.aviao);
 		} else if(isAcaoExcluir()){
-			CiaAereaBC.getInstance().delete(this.ciaAerea);
+			AviaoBC.getInstance().delete(this.aviao);
 		}
 		MessagesUtils.addInfo("sucesso", "IN0000");
 		return voltar();
@@ -88,12 +99,12 @@ public class ManterCiaAereaMB implements Serializable{
 	
 	public String voltar(){
 		ViewUtil.setRequestParameter(FILTRO_PESQUISA, filtroPesquisa);
-		return "pesquisarCiaAerea";
+		return "pesquisarAviao";
 	}
 	
 	//Action para reset do cadastro
 	public void limpar() {
-		ciaAerea = new CiaAerea();
+		this.aviao = new Aviao(new CiaAerea());
 	}
 	
 	/////////////////////////////////////
@@ -120,28 +131,37 @@ public class ManterCiaAereaMB implements Serializable{
 	// Getters and Setters
 	/////////////////////////////////////
 	
-	public CiaAerea getCiaAerea() {
-		return ciaAerea;
+	public Aviao getAviao() {
+		return aviao;
 	}
 	
-	public void setAviao(CiaAerea aviao) {
-		this.ciaAerea = aviao;
+	public void setAviao(Aviao aviao) {
+		this.aviao = aviao;
 	}
 	
 	public void setAcao(Acoes acao) {
 		this.acao = acao;
 	}
 	
+	
+	
+	public List<CiaAerea> getCompanhiasAereas() {
+		return companhiasAereas;
+	}
+
+	public void setCompanhiasAereas(List<CiaAerea> companhiasAereas) {
+		this.companhiasAereas = companhiasAereas;
+	}
+
 	public String getTitle(){
 		switch(acao){
 			case EDITAR:
-				return MessagesUtils.getLabel("editarCiaAerea");
+				return MessagesUtils.getLabel("editarAviao");
 			case EXCLUIR:
-				return MessagesUtils.getLabel("excluirCiaAerea");
+				return MessagesUtils.getLabel("excluirAviao");
 			case INCLUIR:
-				return MessagesUtils.getLabel("incluirCiaAerea");
+				return MessagesUtils.getLabel("incluirAviao");
 			case VISUALIZAR:
-				return MessagesUtils.getLabel("visualizarCiaAerea");
 		}
 		return null;
 	}

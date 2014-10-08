@@ -55,16 +55,15 @@ public class TicketsAereosBSIExceptionHandler extends ExceptionHandlerWrapper {
                 //Caso seja uma excecao de TicketsAereos, permanecer na mesma pagina
                 if(t.getMessage().contains("TicketsAereosBSIException")){
                 	nav.handleNavigation(fc, null, null);	
+                    String message = t.getMessage().substring(t.getMessage().lastIndexOf(":")+2);
+                    MessagesUtils.addError("erro", message);
                 } else {
                 	nav.handleNavigation(fc, null, "error");
+                    MessagesUtils.addError("erro", "ER0000");
                 }
                 
                 fc.renderResponse();
- 
-                // remove the comment below if you want to report the error in a jsf error message
-                String message = t.getMessage().substring(t.getMessage().lastIndexOf(":")+2);
-                MessagesUtils.addError("erro", message);
- 
+                
             } finally {
                 //remove it from queue
                 i.remove();

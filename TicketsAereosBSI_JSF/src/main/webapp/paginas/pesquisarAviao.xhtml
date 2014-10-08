@@ -16,18 +16,11 @@
 						<f:facet name="header">
 							#{msg['filtroPesquisa']}
 						</f:facet>
-					<p:panelGrid columns="6" columnClasses="labelField, textField, labelField, textField, labelField, textField">
-						<h:outputLabel for="ciaAerea" value="#{msg['ciaAerea']}:"/>
-						<p:selectOneMenu id="comboCiaAerea" value="#{pesquisarAviaoMB.filtroPesquisa.ciaAerea}">
-							<f:selectItem itemLabel="-- #{msg['selecione']} --" />
-							<f:selectItems value="#{pesquisarCiaAereaMB.allCiaAereas}" var="ciaAerea" item="#{ciaAerea}" itemLabel="#{ciaAerea}"/>
-						</p:selectOneMenu>
-						
+					<p:panelGrid columns="4" columnClasses="labelField, textField, labelField, textField">
 						<h:outputLabel for="codigo" value="#{msg['codigo']}:"/>
-						<p:inputText id="codigo" value="#{pesquisarAviaoMB.filtroPesquisa.codigo}"/>
-						
+						<p:inputText id="codigo" value="#{pesquisarAviaoMB.filtroPesquisa.codigo}" />
 						<h:outputLabel for="carga" value="#{msg['carga']}:"/>
-						<p:inputText id="carga" value="#{pesquisarAviaoMB.filtroPesquisa.carga}"/>
+						<p:inputText id="carga" value="#{pesquisarAviaoMB.filtroPesquisa.carga}" />
 					</p:panelGrid>
 				
 					<p:panel styleClass="noBorder">
@@ -42,21 +35,15 @@
 					<p:dataTable value="#{pesquisarAviaoMB.avioes}" var="aviao"
 							rendered="#{not empty pesquisarAviaoMB.avioes}"
 							selectionMode="single"
-							selection="#{pesquisarAviaoMB.aviaoSelecionado}"
+							selection="#{pesquisarAvioes.aviaoSelecionada}"
 							rowKey="#{aviao.id}">
 						
 						<f:facet name="header">
 							#{msg['resultados']}
 						</f:facet>
 
-						<p:column headerText="#{msg['codigo']}">
-							#{aviao.codigo}
-						</p:column>
-						<p:column headerText="#{msg['carga']}">
-							#{aviao.carga}
-						</p:column>
-						<p:column headerText="#{msg['ciaAerea']}">
-							#{aviao.ciaAerea.nome}
+						<p:column headerText="#{msg['nome']}">
+							#{aviao.nome}
 						</p:column>
 
 						<f:facet name="footer">
