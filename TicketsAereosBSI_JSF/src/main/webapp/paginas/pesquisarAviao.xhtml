@@ -13,37 +13,56 @@
 					<h1>#{msg['pesquisarAviao']}</h1>
 				</f:facet>
 				<p:panel toggleable="true" toggleSpeed="500">
-						<f:facet name="header">
+					<f:facet name="header">
 							#{msg['filtroPesquisa']}
 						</f:facet>
-					<p:panelGrid columns="4" columnClasses="labelField, textField, labelField, textField">
-						<h:outputLabel for="codigo" value="#{msg['codigo']}:"/>
+					<p:panelGrid columns="6"
+						columnClasses="labelField, textField, labelField, textField, labelField, textField">
+						<h:outputLabel for="comboCiaAerea" value="#{msg['ciaAerea']}:" />
+						
+						<p:selectOneMenu id="comboCiaAerea" value="#{pesquisarAviaoMB.filtroPesquisa.ciaAerea}" converter="ciaAereaConverter">
+						<f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true"/>  
+						<f:selectItems value="#{pesquisarAviaoMB.ciaAereas}"
+							var="ciaAerea" itemLabel="#{ciaAerea.nome}"
+							itemValue="#{ciaAerea}" />
+						</p:selectOneMenu>
+						
+						<h:outputLabel for="codigo" value="#{msg['codigo']}:" />
 						<p:inputText id="codigo" value="#{pesquisarAviaoMB.filtroPesquisa.codigo}" />
-						<h:outputLabel for="carga" value="#{msg['carga']}:"/>
-						<p:inputText id="carga" value="#{pesquisarAviaoMB.filtroPesquisa.carga}" />
+						<h:outputLabel for="carga" value="#{msg['carga']}:" />
+						<p:inputText id="carga"
+							value="#{pesquisarAviaoMB.filtroPesquisa.carga}" />
 					</p:panelGrid>
-				
+
 					<p:panel styleClass="noBorder">
 						<p:commandButton value="#{msg['pesquisar']}"
 							action="#{pesquisarAviaoMB.pesquisar}" update="resultados" />
 					</p:panel>
 				</p:panel>
 
-				<p:spacer height="25px"/>
+				<p:spacer height="25px" />
 
 				<p:panel id="resultados" styleClass="noBorder">
 					<p:dataTable value="#{pesquisarAviaoMB.avioes}" var="aviao"
-							rendered="#{not empty pesquisarAviaoMB.avioes}"
-							selectionMode="single"
-							selection="#{pesquisarAvioes.aviaoSelecionada}"
-							rowKey="#{aviao.id}">
-						
+						rendered="#{not empty pesquisarAviaoMB.avioes}"
+						selectionMode="single"
+						selection="#{pesquisarAviaoMB.aviaoSelecionada}"
+						rowKey="#{aviao.id}">
+
 						<f:facet name="header">
 							#{msg['resultados']}
 						</f:facet>
 
 						<p:column headerText="#{msg['nome']}">
-							#{aviao.nome}
+							#{aviao.codigo}
+						</p:column>
+						
+						<p:column headerText="#{msg['ciaAerea']}">
+							#{aviao.ciaAerea.nome}
+						</p:column>
+						
+						<p:column headerText="#{msg['carga']}">
+							#{aviao.carga}
 						</p:column>
 
 						<f:facet name="footer">

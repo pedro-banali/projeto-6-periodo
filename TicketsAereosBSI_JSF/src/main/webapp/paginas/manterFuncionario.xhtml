@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/templates/layoutTeste.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="centerContent">
+		<h:form>
+			<p:panel>
+				<f:facet name="header">
+					<h1>
+						<h:outputText value="#{manterFuncionarioMB.title}" />
+					</h1>
+				</f:facet>
+				<p:panelGrid columns="3" columnClasses="labelField, textField">
+					<h:outputLabel for="ciaAerea" value="#{msg['ciaAerea']}:" />
+					<p:selectOneMenu id="ciaAerea"
+						value="#{manterPapelMB.papel.ciaAerea}" converter="ciaAereaConverter">
+						<f:selectItem itemLabel="Selecione o tipo de usuário" itemValue="" noSelectionOption="true"/>  
+						<f:selectItems value="#{manterPapelMB.companhiasAereas}"
+							var="ciaAerea" itemLabel="#{ciaAerea.nome}"
+							itemValue="#{ciaAerea}" />
+					</p:selectOneMenu>
+					
+					<h:outputLabel for="papeis" value="#{msg['ciaAerea']}:" />
+					<p:selectOneMenu id="papeis"
+						value="#{manterFuncionarioMB.papel}" converter="papelConverter">
+						<f:selectItem itemLabel="Selecione o Papel" itemValue="" noSelectionOption="true"/>  
+						<f:selectItems value="#{manterPapelMB.companhiasAereas}"
+							var="ciaAerea" itemLabel="#{ciaAerea.nome}"
+							itemValue="#{ciaAerea}" />
+					</p:selectOneMenu>
+					
+					<h:outputLabel for="nome" value="#{msg['nome']}:" />
+					<p:inputText id="nome" value="#{manterFuncionarioMB.funcionario.nome}"
+						disabled="#{manterFuncionarioMB.acaoVisualizar}" />
+						
+					<h:outputLabel for="email" value="#{msg['email']}:" />
+					<p:inputText id="email" value="#{manterFuncionarioMB.funcionario.email}"
+						disabled="#{manterFuncionarioMB.acaoVisualizar}" />
+					
+					<h:outputLabel for="usuario" value="#{msg['usuario']}:" />
+					<p:inputText id="usuario" value="#{manterFuncionarioMB.funcionario.usuario}"
+						disabled="#{manterFuncionarioMB.acaoVisualizar}" />
+						
+					<h:outputLabel for="codigo" value="#{msg['codigo']}:" />
+					<p:inputText id="codigo" value="#{manterFuncionarioMB.funcionario.aviao.codigo}"
+						disabled="#{manterFuncionarioMB.acaoVisualizar}" />
+
+					<h:outputLabel for="cidade" value="#{msg['cidade']}:" />
+					<p:inputText id="cidade" value="#{manterFuncionarioMB.funcionario.endereco.cidade}"
+						disabled="#{manterFuncionarioMB.acaoVisualizar}" />	
+						
+					<h:outputLabel for="estado" value="#{msg['estado']}:" />
+					<p:inputText id="estado" value="#{manterFuncionarioMB.funcionario.endereco.estado}"
+						disabled="#{manterFuncionarioMB.acaoVisualizar}" />					
+					
+
+				</p:panelGrid>
+
+				<f:facet name="footer">
+					<p:panel toggleTitle="#{msg['acoes']}" styleClass="noBorder">
+						<p:commandButton id="submit" value="#{msg['salvar']}"
+							action="#{manterFuncionarioMB.salvar}" ajax="false"
+							rendered="#{not manterFuncionarioMB.acaoVisualizar}" />
+
+						<p:commandButton id="reset" value="#{msg['voltar']}"
+							action="#{manterFuncionarioMB.voltar}" ajax="false" />
+					</p:panel>
+				</f:facet>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

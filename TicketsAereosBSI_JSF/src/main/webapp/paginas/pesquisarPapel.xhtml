@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/templates/layoutTeste.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="centerContent">
+		<h:form>
+			<p:panel>
+				<f:facet name="header">
+					<h1>#{msg['pesquisarPapel']}</h1>
+				</f:facet>
+				<p:panelGrid columns="6"
+						columnClasses="labelField, textField, labelField, textField, labelField, textField">
+						<h:outputLabel for="comboPapeis" value="#{msg['ciaAerea']}:" />
+						
+						<p:selectOneMenu id="comboPapeis" value="#{pesquisarPapelMB.filtroPesquisa.ciaAerea}" converter="ciaAereaConverter">
+						<f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true"/>  
+						<f:selectItems value="#{pesquisarPapelMB.ciaAereas}"
+							var="ciaAerea" itemLabel="#{ciaAerea.nome}"
+							itemValue="#{ciaAerea}" />
+						</p:selectOneMenu>
+						
+						<h:outputLabel for="nome" value="#{msg['nome']}:" />
+						<p:inputText id="nome" value="#{pesquisarPapelMB.filtroPesquisa.nome}" />
+						<h:outputLabel for="descricao" value="#{msg['descricao']}:" />
+						<p:inputText id="descricao"
+							value="#{pesquisarPapelMB.filtroPesquisa.descricao}" />
+							
+						<p:panel styleClass="noBorder">
+							<p:commandButton value="#{msg['pesquisar']}"
+								action="#{pesquisarPapelMB.pesquisar}" update="resultados" />
+						</p:panel>
+				</p:panelGrid>
+
+				<p:spacer height="25px"/>
+
+				<p:panel id="resultados" styleClass="noBorder">
+					<p:dataTable value="#{pesquisarPapelMB.papeis}" var="papel"
+							rendered="#{not empty pesquisarPapelMB.papeis}"
+							selectionMode="single"
+							selection="#{pesquisarPapelMB.papelSelecionado}"
+							rowKey="#{papel.id}">
+						
+						<f:facet name="header">
+							#{msg['resultados']}
+						</f:facet>
+
+						<p:column headerText="#{msg['ciaAerea']}">
+							#{papel.ciaAerea.nome}
+						</p:column>
+						
+						<p:column headerText="#{msg['nome']}">
+							#{papel.nome}
+						</p:column>
+						
+						<p:column headerText="#{msg['descricao']}">
+							#{papel.descricao}
+						</p:column>
+
+						
+						<f:facet name="footer">
+							<p:commandButton value="#{msg['editar']}"
+								action="#{pesquisarPapelMB.editar}" ajax="false" />
+							<p:commandButton value="#{msg['excluir']}"
+								action="#{pesquisarPapelMB.excluir}" ajax="false" />
+							<p:commandButton value="#{msg['visualizar']}"
+								action="#{pesquisarPapelMB.visualizar}" ajax="false" />
+						</f:facet>
+					</p:dataTable>
+				</p:panel>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

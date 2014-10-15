@@ -11,23 +11,23 @@
 			<p:panel>
 				<f:facet name="header">
 					<h1>
-						<h:outputText value="#{manterAviaoMB.title}" />
+						<h:outputText value="#{manterPapelMB.title}" />
 					</h1>
 				</f:facet>
 				<p:panelGrid columns="2" columnClasses="labelField, textField">
-					<h:outputLabel for="codigo" value="#{msg['nome']}:" />
-					<p:inputText id="codigo" value="#{manterAviaoMB.aviao.codigo}"
-						disabled="#{manterAviaoMB.acaoVisualizar}" />
+					<h:outputLabel for="nome" value="#{msg['nome']}:" />
+					<p:inputText id="nome" value="#{manterPapelMB.papel.nome}"
+						disabled="#{manterPapelMB.acaoVisualizar}" />
+						
+					<h:outputLabel for="descricao" value="#{msg['descricao']}:" />
+					<p:inputText id="descricao" value="#{manterPapelMB.papel.descricao}"
+						disabled="#{manterPapelMB.acaoVisualizar}" />
 
-					<h:outputLabel for="carga" value="#{msg['carga']}:" />
-					<p:inputText id="carga" value="#{manterAviaoMB.aviao.carga}"
-						disabled="#{manterAviaoMB.acaoVisualizar}" />
-					
 					<h:outputLabel for="ciaAerea" value="#{msg['ciaAerea']}:" />
 					<p:selectOneMenu id="ciaAerea"
-						value="#{manterAviaoMB.aviao.ciaAerea}" converter="ciaAereaConverter">
+						value="#{manterPapelMB.papel.ciaAerea}" converter="ciaAereaConverter">
 						<f:selectItem itemLabel="Selecione o tipo de usuário" itemValue="" noSelectionOption="true"/>  
-						<f:selectItems value="#{manterAviaoMB.companhiasAereas}"
+						<f:selectItems value="#{manterPapelMB.companhiasAereas}"
 							var="ciaAerea" itemLabel="#{ciaAerea.nome}"
 							itemValue="#{ciaAerea}" />
 					</p:selectOneMenu>
@@ -36,11 +36,11 @@
 				<f:facet name="footer">
 					<p:panel toggleTitle="#{msg['acoes']}" styleClass="noBorder">
 						<p:commandButton id="submit" value="#{msg['salvar']}"
-							action="#{manterAviaoMB.salvar}" ajax="false"
-							rendered="#{not manterAviaoMB.acaoVisualizar}" />
+							action="#{manterPapelMB.salvar}" ajax="false"
+							rendered="#{not manterPapelMB.acaoVisualizar}" />
 
 						<p:commandButton id="reset" value="#{msg['voltar']}"
-							action="#{manterAviaoMB.voltar}" ajax="false" />
+							action="#{manterPapelMB.voltar}" ajax="false" />
 					</p:panel>
 				</f:facet>
 			</p:panel>

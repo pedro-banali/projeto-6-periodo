@@ -1,10 +1,9 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.view.mb;
 
-import java.io.Serializable;
-import java.util.List;
+import static br.pucpr.bsi.prog6.ticketsAereosBSI.view.mb.PesquisarPapelMB.FILTRO_PESQUISA;
+import static br.pucpr.bsi.prog6.ticketsAereosBSI.view.mb.PesquisarPapelMB.PAPEL_SELECIONADO;
 
-import static br.pucpr.bsi.prog6.ticketsAereosBSI.view.mb.PesquisarAviaoMB.AVIAO_SELECIONADA;
-import static br.pucpr.bsi.prog6.ticketsAereosBSI.view.mb.PesquisarAviaoMB.FILTRO_PESQUISA;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -12,22 +11,18 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.log4j.Logger;
 
-import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.AviaoBC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.CiaAereaBC;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.PapelBC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
-import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Aviao;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.CiaAerea;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Papel;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.view.mb.utils.ViewUtil;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.view.messages.MessagesUtils;
 
-/**
- * @author Everson Mauda
- * @version 1.0.0
- */
-
 @ManagedBean
 @ViewScoped
-public class ManterAviaoMB implements Serializable{
+public class ManterPapelMB {
+
 	
 	public enum Acoes {
 		EDITAR, EXCLUIR, INCLUIR, VISUALIZAR;
@@ -42,9 +37,9 @@ public class ManterAviaoMB implements Serializable{
 	//Utilizado para logs via Log4J
 	private static Logger log = Logger.getLogger(ManterAviaoMB.class);
 	
-	private Aviao aviao = new Aviao(new CiaAerea());
+	private Papel papel = new Papel(new CiaAerea());
 	private List<CiaAerea> companhiasAereas;
-	private Aviao filtroPesquisa;
+	private Papel filtroPesquisa;
 	
 	private Acoes acao = Acoes.INCLUIR;
 	
@@ -52,7 +47,7 @@ public class ManterAviaoMB implements Serializable{
 	// Construtores
 	/////////////////////////////////////
 	
-	public ManterAviaoMB() {
+	public ManterPapelMB() {
 	}
 	
 	@PostConstruct
@@ -67,12 +62,12 @@ public class ManterAviaoMB implements Serializable{
 			
 			
 			
-			aviao = (Aviao) ViewUtil.getParameter(AVIAO_SELECIONADA);
-			if(aviao == null){
+			papel = (Papel) ViewUtil.getParameter(PAPEL_SELECIONADO);
+			if(papel == null){
 				throw new TicketsAereosBSIException("ER0052");
 			}
-			log.debug("Valor do Aviao:" + aviao);
-			filtroPesquisa = (Aviao) ViewUtil.getParameter(FILTRO_PESQUISA);
+			log.debug("Valor do Aviao:" + papel);
+			filtroPesquisa = (Papel) ViewUtil.getParameter(FILTRO_PESQUISA);
 			log.debug("Valor do Filtro:" + filtroPesquisa);
 		} else  {
 			acao = Acoes.INCLUIR;
@@ -87,11 +82,11 @@ public class ManterAviaoMB implements Serializable{
 	//Action de Salvar Usuario
 	public String salvar() {
 		if(isAcaoIncluir()){
-			AviaoBC.getInstance().insert(this.aviao);
+			PapelBC.getInstance().insert(this.papel);
 		} else if(isAcaoEditar()){
-			AviaoBC.getInstance().update(this.aviao);
+			PapelBC.getInstance().update(this.papel);
 		} else if(isAcaoExcluir()){
-			AviaoBC.getInstance().delete(this.aviao);
+			PapelBC.getInstance().delete(this.papel);
 		}
 		MessagesUtils.addInfo("sucesso", "IN0000");
 		return voltar();
@@ -104,7 +99,7 @@ public class ManterAviaoMB implements Serializable{
 	
 	//Action para reset do cadastro
 	public void limpar() {
-		this.aviao = new Aviao(new CiaAerea());
+		this.papel = new Papel(new CiaAerea());
 	}
 	
 	/////////////////////////////////////
@@ -131,12 +126,12 @@ public class ManterAviaoMB implements Serializable{
 	// Getters and Setters
 	/////////////////////////////////////
 	
-	public Aviao getAviao() {
-		return aviao;
+	public Papel getPapel() {
+		return papel;
 	}
 	
-	public void setAviao(Aviao aviao) {
-		this.aviao = aviao;
+	public void setPapel(Papel papel) {
+		this.papel = papel;
 	}
 	
 	public void setAcao(Acoes acao) {
@@ -154,13 +149,14 @@ public class ManterAviaoMB implements Serializable{
 	public String getTitle(){
 		switch(acao){
 			case EDITAR:
-				return MessagesUtils.getLabel("editarAviao");
+				return MessagesUtils.getLabel("editarPapel");
 			case EXCLUIR:
-				return MessagesUtils.getLabel("excluirAviao");
+				return MessagesUtils.getLabel("excluirPapel");
 			case INCLUIR:
-				return MessagesUtils.getLabel("incluirAviao");
+				return MessagesUtils.getLabel("incluirPapel");
 			case VISUALIZAR:
 		}
 		return null;
 	}
+	
 }

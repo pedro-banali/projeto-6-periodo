@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/templates/layoutTeste.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="centerContent">
+		<h:form>
+			<p:panel>
+				<f:facet name="header">
+					<h1>#{msg['pesquisarFuncionario']}</h1>
+				</f:facet>
+				<p:panelGrid columns="6" columnClasses="labelField, textField">
+					<h:outputLabel for="ciaAerea" value="#{msg['ciaAerea']}:" />
+					
+					<p:selectOneMenu id="ciaAerea"
+						value="#{pesquisarFuncionarioMB.filtroPesquisa.papel.ciaAerea}" converter="ciaAereaConverter">
+						<f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true"/>  
+						<f:selectItems value="#{pesquisarFuncionarioMB.ciaAereas}"
+							var="ciaAerea" itemLabel="#{ciaAerea.nome}"
+							itemValue="#{ciaAerea}" />
+							<p:ajax event="change" update="papeis" listener="#{pesquisarFuncionarioMB.listarPapeis}" />
+					</p:selectOneMenu>
+					
+					<h:outputLabel for="papeis" value="#{msg['papel']}:" />
+					<p:selectOneMenu id="papeis" disabled="#{pesquisarFuncionarioMB.papeis == null}"
+						value="#{pesquisarFuncionarioMB.filtroPesquisa.papel}" converter="papelConverter">
+						<f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true"/>  
+						<f:selectItems value="#{pesquisarFuncionarioMB.papeis}"
+							var="papel" itemLabel="#{papel.nome}"
+							itemValue="#{papel}" />
+						
+					</p:selectOneMenu>
+					
+					<h:outputLabel for="nome" value="#{msg['nome']}:" />
+					<p:inputText id="nome" value="#{pesquisarFuncionarioMB.filtroPesquisa.nome}" />
+						
+					<h:outputLabel for="email" value="#{msg['email']}:" />
+					<p:inputText id="email" value="#{pesquisarFuncionarioMB.filtroPesquisa.email}" />
+					
+					<h:outputLabel for="usuario" value="#{msg['usuario']}:" />
+					<p:inputText id="usuario" value="#{pesquisarFuncionarioMB.filtroPesquisa.usuario}" />
+						
+					<h:outputLabel for="codigo" value="#{msg['codigo']}:" />
+					<p:inputText id="codigo" value="#{pesquisarFuncionarioMB.filtroPesquisa.codigo}" />
+
+					<h:outputLabel for="cidade" value="#{msg['cidade']}:" />
+					<p:inputText id="cidade" value="#{pesquisarFuncionarioMB.filtroPesquisa.endereco.cidade}"/>	
+						
+					<h:outputLabel for="estado" value="#{msg['estado']}:" />
+					<p:inputText id="estado" value="#{pesquisarFuncionarioMB.filtroPesquisa.endereco.estado}" />					
+					
+					<p:panel styleClass="noBorder">
+						<p:commandButton value="#{msg['pesquisar']}"
+							action="#{pesquisarFuncionarioMB.pesquisar}" update="resultados" />
+					</p:panel>
+				</p:panelGrid>
+
+				<p:spacer height="25px"/>
+
+				<p:panel id="resultados" styleClass="noBorder">
+					<p:dataTable value="#{pesquisarFuncionarioMB.funcionarios}" var="funcionario"
+							rendered="#{not empty pesquisarFuncionarioMB.funcionarios}"
+							selectionMode="single"
+							selection="#{pesquisarFuncionarioMB.funcionarioSelecionado}"
+							rowKey="#{funcionario.id}">
+						
+						<f:facet name="header">
+							#{msg['resultados']}
+						</f:facet>
+
+						<p:column headerText="#{msg['codigo']}">
+							#{funcionario.codigo}
+						</p:column>
+						
+						<p:column headerText="#{msg['nome']}">
+							#{funcionario.nome}
+						</p:column>
+						
+						<p:column headerText="#{msg['email']}">
+							#{funcionario.email}
+						</p:column>
+						
+						<p:column headerText="#{msg['papel']}">
+							#{funcionario.papel.nome}
+						</p:column>
+						
+						<p:column headerText="#{msg['estado']}">
+							#{funcionario.endereco.estado}
+						</p:column>
+
+						
+						<f:facet name="footer">
+							<p:commandButton value="#{msg['editar']}"
+								action="#{pesquisarFuncionarioMB.editar}" ajax="false" />
+							<p:commandButton value="#{msg['excluir']}"
+								action="#{pesquisarFuncionarioMB.excluir}" ajax="false" />
+							<p:commandButton value="#{msg['visualizar']}"
+								action="#{pesquisarFuncionarioMB.visualizar}" ajax="false" />
+						</f:facet>
+					</p:dataTable>
+				</p:panel>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

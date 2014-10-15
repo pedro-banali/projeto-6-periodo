@@ -23,6 +23,14 @@
 					<p:menuitem value="#{msg.cadastrar}" url="/paginas/manterAviao.jsf" />
 					<p:menuitem value="#{msg.pesquisar}" url="/paginas/pesquisarAviao.jsf" />
 				</p:submenu>
+				<p:submenu label="#{msg['papel']}">
+					<p:menuitem value="#{msg.cadastrar}" url="/paginas/manterPapel.jsf" />
+					<p:menuitem value="#{msg.pesquisar}" url="/paginas/pesquisarPapel.jsf" />
+				</p:submenu>
+				<p:submenu label="#{msg['funcionario']}">
+					<p:menuitem value="#{msg.cadastrar}" url="/paginas/manterFuncionario.jsf" />
+					<p:menuitem value="#{msg.pesquisar}" url="/paginas/pesquisarFuncionario.jsf" />
+				</p:submenu>
 				<f:facet name="options">
 					<p:commandLink actionListener="#{idiomaMB.mudarBrPt}" ajax="@all">
 						<h:graphicImage value="/resources/images/br.png" width="32"

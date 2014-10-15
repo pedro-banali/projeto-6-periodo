@@ -1,6 +1,5 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.view.mb;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -9,55 +8,49 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.log4j.Logger;
 
-import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.AviaoBC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.CiaAereaBC;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.PapelBC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
-import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Aviao;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.CiaAerea;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Papel;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.view.mb.ManterPapelMB.Acoes;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.view.mb.utils.ViewUtil;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.view.messages.MessagesUtils;
 
-/**
- * @author Everson Mauda
- * @version 1.0.0
- */
-
 @ManagedBean
 @ViewScoped
-public class PesquisarAviaoMB implements Serializable{
+public class PesquisarPapelMB {
 	
 	/////////////////////////////////////
 	// Atributos
 	/////////////////////////////////////
 	
-	private static final long serialVersionUID = 1L;
-	
-	public static final String AVIAO_SELECIONADA = "aviaoSelecionada";
+	public static final String PAPEL_SELECIONADO = "papelSelecionado";
 	public static final String FILTRO_PESQUISA = "filtroPesquisa";
 	
 	//Utilizado para logs via Log4J
-	private static Logger log = Logger.getLogger(PesquisarAviaoMB.class);
+	private static Logger log = Logger.getLogger(PesquisarPapelMB.class);
 	
-	private Aviao filtroPesquisa;
+	private Papel filtroPesquisa;
 	
-	private List<Aviao> avioes;
+	private List<Papel> papeis;
 	private List<CiaAerea> ciaAereas;
-	private Aviao aviaoSelecionada;
+	private Papel papelSelecionado;
 	
 	/////////////////////////////////////
 	// Construtores
 	/////////////////////////////////////
 	
-	public PesquisarAviaoMB() {
+	public PesquisarPapelMB() {
 	}
 	
 	@PostConstruct
 	private void init(){
-		filtroPesquisa = (Aviao) ViewUtil.getParameter(FILTRO_PESQUISA);
+		filtroPesquisa = (Papel) ViewUtil.getParameter(FILTRO_PESQUISA);
 		ciaAereas = CiaAereaBC.getInstance().findAll();
 		log.debug("Valor do Filtro:" + filtroPesquisa);
 		if(filtroPesquisa == null){
-			this.filtroPesquisa = new Aviao(new CiaAerea());
+			this.filtroPesquisa = new Papel(new CiaAerea());
 		} else {
 			pesquisar();
 		}
@@ -69,8 +62,8 @@ public class PesquisarAviaoMB implements Serializable{
 	
 	//Action de Pesquisar a partir do filtro
 	public void pesquisar() {
-		avioes = AviaoBC.getInstance().findByFilter(filtroPesquisa);
-		if(avioes.isEmpty()){
+		papeis = PapelBC.getInstance().findByFilter(filtroPesquisa);
+		if(papeis.isEmpty()){
 			MessagesUtils.addInfo("informacao", "IN0001");
 		}
 	}
@@ -78,22 +71,22 @@ public class PesquisarAviaoMB implements Serializable{
 	public String editar(){
 		log.debug("Iniciando a operacao de editar");
 		validate();
-		setParameters(ManterAviaoMB.Acoes.EDITAR);
-		return "manterAviao";
+		setParameters(ManterPapelMB.Acoes.EDITAR);
+		return "manterPapel";
 	}
 	
 	public String excluir(){
 		log.debug("Iniciando a operacao de excluir");
 		validate();
-		setParameters(ManterAviaoMB.Acoes.EXCLUIR);
-		return "manterAviao";
+		setParameters(ManterPapelMB.Acoes.EXCLUIR);
+		return "manterPapel";
 	}
 	
 	public String visualizar(){
 		log.debug("Iniciando a operacao de visualizar");
 		validate();
-		setParameters(ManterAviaoMB.Acoes.VISUALIZAR);
-		return "manterAviao";
+		setParameters(ManterPapelMB.Acoes.VISUALIZAR);
+		return "manterPapel";
 	}
 	
 	/////////////////////////////////////
@@ -101,37 +94,33 @@ public class PesquisarAviaoMB implements Serializable{
 	/////////////////////////////////////
 	
 	private void validate(){
-		if(aviaoSelecionada == null){
+		if(papelSelecionado == null){
 			throw new TicketsAereosBSIException("ER0052");
 		}
 	}
 	
-	private void setParameters(ManterAviaoMB.Acoes acao){
-		ViewUtil.setRequestParameter(AVIAO_SELECIONADA, aviaoSelecionada);
+	private void setParameters(Acoes editar){
+		ViewUtil.setRequestParameter(PAPEL_SELECIONADO, papelSelecionado);
 		ViewUtil.setRequestParameter(FILTRO_PESQUISA, filtroPesquisa);
-		ViewUtil.setRequestParameter(acao);
-	}
-	
-	/////////////////////////////////////
-	// Getters and Setters
-	/////////////////////////////////////
-	
-	public Aviao getFiltroPesquisa() {
-		return filtroPesquisa;
-	}
-	
-	public List<Aviao> getAvioes() {
-		return avioes;
-	}
-	
-	public Aviao getAviaoSelecionada() {
-		return aviaoSelecionada;
-	}
-	
-	public void setAviaoSelecionada(Aviao selecionada) {
-		aviaoSelecionada = selecionada;
+		ViewUtil.setRequestParameter(editar);
 	}
 
+	public Papel getFiltroPesquisa() {
+		return filtroPesquisa;
+	}
+
+	public void setFiltroPesquisa(Papel filtroPesquisa) {
+		this.filtroPesquisa = filtroPesquisa;
+	}
+
+	public List<Papel> getPapeis() {
+		return papeis;
+	}
+
+	public void setPapeis(List<Papel> papeis) {
+		this.papeis = papeis;
+	}
+	
 	public List<CiaAerea> getCiaAereas() {
 		return ciaAereas;
 	}
@@ -139,4 +128,14 @@ public class PesquisarAviaoMB implements Serializable{
 	public void setCiaAereas(List<CiaAerea> ciaAereas) {
 		this.ciaAereas = ciaAereas;
 	}
+	
+	public Papel getPapelSelecionado() {
+		return papelSelecionado;
+	}
+
+	public void setPapelSelecionado(Papel papelSelecionado) {
+		this.papelSelecionado = papelSelecionado;
+	}
+	
+	
 }

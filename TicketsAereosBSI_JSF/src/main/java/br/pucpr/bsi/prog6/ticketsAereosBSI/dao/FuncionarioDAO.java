@@ -142,7 +142,6 @@ public class FuncionarioDAO extends PessoaDAO<Funcionario>{
 			}
 			if(StringUtils.isNotBlank(filter.getPapel().getCiaAerea().getNome()))
 			{
-				c.createAlias("papel", "papel");
 				c.createAlias("papel.ciaAerea", "ciaAerea");
 				c.add(Restrictions.like("ciaAerea.nome", "%" + filter.getPapel().getCiaAerea().getNome() + "%"));
 			}
