@@ -47,6 +47,7 @@ public class PesquisarFuncionarioMB implements Serializable{
 	private List<Funcionario> funcionarios;
 	private List<Papel> papeis;
 	private List<CiaAerea> ciaAereas;
+	private Papel papel;
 	private Funcionario funcionarioSelecionado;
 	
 	/////////////////////////////////////
@@ -75,6 +76,13 @@ public class PesquisarFuncionarioMB implements Serializable{
 	
 	//Action de Pesquisar a partir do filtro
 	public void pesquisar() {
+		CiaAerea ciaAerea;
+		if(papel != null)
+		{
+			ciaAerea = filtroPesquisa.getPapel().getCiaAerea();
+			filtroPesquisa.setPapel(new Papel(ciaAerea));
+			//filtroPesquisa.getPapel().setCiaAerea(ciaAerea);
+		}
 		funcionarios = FuncionarioBC.getInstance().findByFilter(filtroPesquisa);
 		if(funcionarios.isEmpty()){
 			MessagesUtils.addInfo("informacao", "IN0001");
@@ -92,14 +100,14 @@ public class PesquisarFuncionarioMB implements Serializable{
 		log.debug("Iniciando a operacao de excluir");
 		validate();
 		setParameters(ManterFuncionarioMB.Acoes.EXCLUIR);
-		return "manterAviao";
+		return "manterFuncionario";
 	}
 	
 	public String visualizar(){
 		log.debug("Iniciando a operacao de visualizar");
 		validate();
 		setParameters(ManterFuncionarioMB.Acoes.VISUALIZAR);
-		return "manterAviao";
+		return "manterFuncionario";
 	}
 	
 	/////////////////////////////////////
@@ -173,4 +181,14 @@ public class PesquisarFuncionarioMB implements Serializable{
 	public void setPapeis(List<Papel> papeis) {
 		this.papeis = papeis;
 	}
+
+	public Papel getPapel() {
+		return papel;
+	}
+
+	public void setPapel(Papel papel) {
+		this.papel = papel;
+	}
+	
+	
 }

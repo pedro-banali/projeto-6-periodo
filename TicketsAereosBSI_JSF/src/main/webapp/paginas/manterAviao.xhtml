@@ -24,13 +24,17 @@
 						disabled="#{manterAviaoMB.acaoVisualizar}" />
 					
 					<h:outputLabel for="ciaAerea" value="#{msg['ciaAerea']}:" />
-					<p:selectOneMenu id="ciaAerea"
+					<p:selectOneMenu id="ciaAerea" rendered="#{not manterAviaoMB.acaoVisualizar}" 
 						value="#{manterAviaoMB.aviao.ciaAerea}" converter="ciaAereaConverter">
 						<f:selectItem itemLabel="Selecione o tipo de usuário" itemValue="" noSelectionOption="true"/>  
 						<f:selectItems value="#{manterAviaoMB.companhiasAereas}"
 							var="ciaAerea" itemLabel="#{ciaAerea.nome}"
 							itemValue="#{ciaAerea}" />
 					</p:selectOneMenu>
+					
+					<p:inputText id="ciaAereaVisualizar" value="#{manterAviaoMB.aviao.codigo}"
+						disabled="#{manterAviaoMB.acaoVisualizar}"
+						rendered="#{manterAviaoMB.acaoVisualizar}" />
 				</p:panelGrid>
 
 				<f:facet name="footer">

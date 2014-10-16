@@ -63,7 +63,6 @@ public class ManterFuncionarioMB implements Serializable{
 	private void init(){
 		
 		companhiasAereas = CiaAereaBC.getInstance().findAll();
-		papeis = PapelBC.getInstance().findAll();
 		
 		acao = (Acoes) ViewUtil.getParameter(Acoes.class);
 		
@@ -115,6 +114,11 @@ public class ManterFuncionarioMB implements Serializable{
 	/////////////////////////////////////
 	// Metodos Utilitarios
 	/////////////////////////////////////
+	
+	public void listarPapeis()
+	{
+		papeis = PapelBC.getInstance().findByFilter(funcionario.getPapel());
+	}
 	
 	public boolean isAcaoEditar(){
 		return Acoes.EDITAR.equals(acao);
@@ -175,15 +179,15 @@ public class ManterFuncionarioMB implements Serializable{
 	}
 
 	public String getTitle(){
-		switch(acao){
-			case EDITAR:
-				return MessagesUtils.getLabel("editarFuncionario");
-			case EXCLUIR:
-				return MessagesUtils.getLabel("excluirFuncionario");
-			case INCLUIR:
-				return MessagesUtils.getLabel("incluirFuncionario");
-			case VISUALIZAR:
-		}
-		return null;
+//		switch(acao){
+//			case EDITAR:
+//				return MessagesUtils.getLabel("editarFuncionario");
+//			case EXCLUIR:
+//				return MessagesUtils.getLabel("excluirFuncionario");
+//			case INCLUIR:
+//				return MessagesUtils.getLabel("incluirFuncionario");
+//			case VISUALIZAR:
+//		}
+		return "";
 	}
 }

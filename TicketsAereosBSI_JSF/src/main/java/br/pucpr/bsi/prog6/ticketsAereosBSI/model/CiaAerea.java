@@ -90,38 +90,12 @@ public class CiaAerea implements IdentifierInterface, Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
+		if(obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if(obj.getClass()!= getClass())
 			return false;
-		CiaAerea other = (CiaAerea) obj;
-		if (avioes == null) {
-			if (other.avioes != null)
-				return false;
-		} else if (!avioes.equals(other.avioes))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (papeis == null) {
-			if (other.papeis != null)
-				return false;
-		} else if (!papeis.equals(other.papeis))
-			return false;
-		if (rotas == null) {
-			if (other.rotas != null)
-				return false;
-		} else if (!rotas.equals(other.rotas))
-			return false;
+		if (((IdentifierInterface)obj).getId() != id)
+			return false;		
 		return true;
 	}
 	

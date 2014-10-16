@@ -101,35 +101,12 @@ public class Papel implements IdentifierInterface, Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
+		if(obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if(obj.getClass()!= getClass())
 			return false;
-		Papel other = (Papel) obj;
-		if (ciaAerea == null) {
-			if (other.ciaAerea != null)
-				return false;
-		} else if (!ciaAerea.equals(other.ciaAerea))
-			return false;
-		if (descricao == null) {
-			if (other.descricao != null)
-				return false;
-		} else if (!descricao.equals(other.descricao))
-			return false;
-		if (funcionarios == null) {
-			if (other.funcionarios != null)
-				return false;
-		} else if (!funcionarios.equals(other.funcionarios))
-			return false;
-		if (id != other.id)
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
+		if (((IdentifierInterface)obj).getId() != id)
+			return false;		
 		return true;
 	}
 	

@@ -35,7 +35,7 @@ public class ManterPapelMB {
 	private static final long serialVersionUID = 1L;
 	
 	//Utilizado para logs via Log4J
-	private static Logger log = Logger.getLogger(ManterAviaoMB.class);
+	private static Logger log = Logger.getLogger(ManterPapelMB.class);
 	
 	private Papel papel = new Papel(new CiaAerea());
 	private List<CiaAerea> companhiasAereas;
@@ -66,7 +66,7 @@ public class ManterPapelMB {
 			if(papel == null){
 				throw new TicketsAereosBSIException("ER0052");
 			}
-			log.debug("Valor do Aviao:" + papel);
+			log.debug("Valor do Papel:" + papel);
 			filtroPesquisa = (Papel) ViewUtil.getParameter(FILTRO_PESQUISA);
 			log.debug("Valor do Filtro:" + filtroPesquisa);
 		} else  {
@@ -94,7 +94,7 @@ public class ManterPapelMB {
 	
 	public String voltar(){
 		ViewUtil.setRequestParameter(FILTRO_PESQUISA, filtroPesquisa);
-		return "pesquisarAviao";
+		return "pesquisarPapel";
 	}
 	
 	//Action para reset do cadastro

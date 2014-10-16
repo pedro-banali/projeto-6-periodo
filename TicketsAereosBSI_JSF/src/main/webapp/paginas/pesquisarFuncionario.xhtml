@@ -26,7 +26,7 @@
 					
 					<h:outputLabel for="papeis" value="#{msg['papel']}:" />
 					<p:selectOneMenu id="papeis" disabled="#{pesquisarFuncionarioMB.papeis == null}"
-						value="#{pesquisarFuncionarioMB.filtroPesquisa.papel}" converter="papelConverter">
+						value="#{pesquisarFuncionarioMB.papel}" converter="papelConverter">
 						<f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true"/>  
 						<f:selectItems value="#{pesquisarFuncionarioMB.papeis}"
 							var="papel" itemLabel="#{papel.nome}"
