@@ -20,14 +20,14 @@
 						<f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true"/>  
 						<f:selectItems value="#{pesquisarPapelMB.ciaAereas}"
 							var="ciaAerea" itemLabel="#{ciaAerea.nome}"
-							itemValue="#{ciaAerea}" />
+							itemValue="#{ciaAerea}" maxlength="50" />
 						</p:selectOneMenu>
 						
 						<h:outputLabel for="nome" value="#{msg['nome']}:" />
 						<p:inputText id="nome" value="#{pesquisarPapelMB.filtroPesquisa.nome}" />
 						<h:outputLabel for="descricao" value="#{msg['descricao']}:" />
 						<p:inputText id="descricao"
-							value="#{pesquisarPapelMB.filtroPesquisa.descricao}" />
+							value="#{pesquisarPapelMB.filtroPesquisa.descricao}" maxlength="200" />
 							
 						<p:panel styleClass="noBorder">
 							<p:commandButton value="#{msg['pesquisar']}"

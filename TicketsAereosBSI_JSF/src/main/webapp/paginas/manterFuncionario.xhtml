@@ -10,11 +10,11 @@
 		<h:form>
 			<p:panel>
 				<f:facet name="header">
-					<h1></h1>
+						<h1>#{msg['manterFuncionario']}</h1>
 				</f:facet>
 				<p:panelGrid columns="6"  columnClasses="labelField, textField">
 					<h:outputLabel for="ciaAerea" value="#{msg['ciaAerea']}:" />
-					<p:selectOneMenu id="ciaAerea"
+					<p:selectOneMenu id="ciaAerea" ajax="false"
 						value="#{manterFuncionarioMB.funcionario.papel.ciaAerea}"
 						rendered="#{not manterFuncionarioMB.acaoVisualizar}"
 						converter="ciaAereaConverter">
@@ -28,67 +28,73 @@
 					</p:selectOneMenu>
 					
 
-					<p:inputText id="ciaAereaVisualizar"
+					<p:inputText id="ciaAereaVisualizar" 
 						value="#{manterFuncionarioMB.funcionario.papel.ciaAerea.nome}"
 						rendered="#{manterFuncionarioMB.acaoVisualizar}"
 						disabled="#{manterFuncionarioMB.acaoVisualizar}" />
 					
 					<h:outputLabel for="papeis" value="#{msg['papel']}:"  />
-					<p:selectOneMenu id="papeis"
+					<p:selectOneMenu id="papeis" 
+						disabled="#{manterFuncionarioMB.papeis == null}"
 						rendered="#{not manterFuncionarioMB.acaoVisualizar}"
-						value="#{manterFuncionarioMB.funcionario.papel}"
+						value="#{manterFuncionarioMB.papel}"
 						converter="papelConverter">
 						<f:selectItem itemLabel="Selecione" itemValue=""
 							noSelectionOption="true" />
-						<f:selectItems value="#{manterFuncionarioMB.papeis}"
+						<f:selectItems value="#{manterFuncionarioMB.papeis}" 
 							var="papel" itemLabel="#{papel.nome}" itemValue="#{papel}" />
 					</p:selectOneMenu>
 					
-					<p:inputText id="papel"
+					<p:inputText id="papel" ajax="false"
 						value="#{manterFuncionarioMB.funcionario.papel.nome}"
 						rendered="#{manterFuncionarioMB.acaoVisualizar}"
 						disabled="#{manterFuncionarioMB.acaoVisualizar}" />
 					
 					<h:outputLabel for="nome" value="#{msg['nome']}:" />
 					<p:inputText id="nome"
+						maxlength="50" ajax="false"
 						value="#{manterFuncionarioMB.funcionario.nome}"
 						disabled="#{manterFuncionarioMB.acaoVisualizar}" />
 
 					<h:outputLabel for="email" value="#{msg['email']}:" />
 					<p:inputText id="email"
+						maxlength="50" ajax="false"
 						value="#{manterFuncionarioMB.funcionario.email}"
 						disabled="#{manterFuncionarioMB.acaoVisualizar}" />
 					
 					<h:outputLabel for="telefone" value="#{msg['telefone']}:" />
 					<p:inputText id="telefone"
+						maxlength="15" ajax="false"
 						value="#{manterFuncionarioMB.funcionario.telefone}"
 						disabled="#{manterFuncionarioMB.acaoVisualizar}" />
 					
 					<h:outputLabel for="dataNascimento" value="#{msg['dataNascimento']}:" />
-					<p:inputText id="dataNascimento"
-						
+					<p:calendar id="dataNascimento" pattern="dd/MM/yyyy"
+						ajax="false"
 						value="#{manterFuncionarioMB.funcionario.dataNascimento}"
-						disabled="#{manterFuncionarioMB.acaoVisualizar}" >
-						<f:convertDateTime pattern="dd/MM/yyyy" />	
-					</p:inputText>
+						disabled="#{manterFuncionarioMB.acaoVisualizar}" />
 					
 					<h:outputLabel for="usuario" value="#{msg['usuario']}:" />
 					<p:inputText id="usuario"
+						maxlength="50" ajax="false"
 						value="#{manterFuncionarioMB.funcionario.usuario}"
 						disabled="#{manterFuncionarioMB.acaoVisualizar}" />
 					
 					<h:outputLabel for="senha" value="#{msg['senha']}:" />
 					<p:inputText id="senha"
+						maxlength="50"
 						value="#{manterFuncionarioMB.funcionario.senha}"
 						disabled="#{manterFuncionarioMB.acaoVisualizar}" />
 						
 					<h:outputLabel for="codigo" value="#{msg['codigo']}:" />
 					<p:inputText id="codigo"
+						maxlength="10" ajax="false"
 						value="#{manterFuncionarioMB.funcionario.codigo}"
 						disabled="#{manterFuncionarioMB.acaoVisualizar}" />
 					
 					<h:outputLabel for="contaCorrente" value="#{msg['contaCorrente']}:" />
 					<p:inputText id="contaCorrente"
+						maxlength="15" ajax="false"
 						value="#{manterFuncionarioMB.funcionario.contaCorrente}"
 						disabled="#{manterFuncionarioMB.acaoVisualizar}" />
 					
@@ -100,37 +106,43 @@
 
 						<h:outputLabel for="rua" value="#{msg['rua']}:" />
 						<p:inputText id="rua"
+							maxlength="50" ajax="false"
 							value="#{manterFuncionarioMB.funcionario.endereco.rua}"
 							disabled="#{manterFuncionarioMB.acaoVisualizar}" />
 						
 
 						<h:outputLabel for="comp" value="#{msg['complemento']}:" />
 						<p:inputText id="comp"
+							maxlength="50" ajax="false"
 							value="#{manterFuncionarioMB.funcionario.endereco.complemento}"
 							disabled="#{manterFuncionarioMB.acaoVisualizar}" />
 
 						<h:outputLabel for="cidade" value="#{msg['cidade']}:" />
 						<p:inputText id="cidade"
+							maxlength="50" ajax="false"
 							value="#{manterFuncionarioMB.funcionario.endereco.cidade}"
 							disabled="#{manterFuncionarioMB.acaoVisualizar}" />
 
 						<h:outputLabel for="pais" value="#{msg['pais']}:" />
 						<p:inputText id="pais"
+							maxlength="50" ajax="false"
 							value="#{manterFuncionarioMB.funcionario.endereco.pais}"
 							disabled="#{manterFuncionarioMB.acaoVisualizar}" />
 				
 						<h:outputLabel for="numero" value="#{msg['numero']}:" />
-						<p:inputText id="numero"
+						<p:inputText id="numero" ajax="false"
 							value="#{manterFuncionarioMB.funcionario.endereco.numero}"
 							disabled="#{manterFuncionarioMB.acaoVisualizar}" />
 						
 						<h:outputLabel for="bairro" value="#{msg['bairro']}:" />
 						<p:inputText id="bairro"
+							maxlength="50" ajax="false"
 							value="#{manterFuncionarioMB.funcionario.endereco.bairro}"
 							disabled="#{manterFuncionarioMB.acaoVisualizar}" />
 							
 						<h:outputLabel for="estado" value="#{msg['estado']}:" />
 						<p:inputText id="estado"
+							maxlength="50" ajax="false"
 							value="#{manterFuncionarioMB.funcionario.endereco.estado}"
 							disabled="#{manterFuncionarioMB.acaoVisualizar}" />
 

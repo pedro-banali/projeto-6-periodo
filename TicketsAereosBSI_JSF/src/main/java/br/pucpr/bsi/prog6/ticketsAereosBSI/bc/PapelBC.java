@@ -3,9 +3,7 @@ package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.hibernate.criterion.Restrictions;
 
-import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.CiaAereaDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.PapelDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Papel;
@@ -75,15 +73,17 @@ public class PapelBC extends PatternBC<Papel> {
 	protected void validateForDataModification(Papel object) {
 		// TODO Auto-generated method stub
 		if (object == null) {
-			throw new TicketsAereosBSIException("Papel Nulo");
+			throw new TicketsAereosBSIException("ER0090");
 		} else if (object.getNome() == null) {
-			throw new TicketsAereosBSIException("Nome nulo");
+			throw new TicketsAereosBSIException("ER0091");
 		} else if (object.getNome().trim().equals(""))
-			throw new TicketsAereosBSIException("Nome Vazio");
+			throw new TicketsAereosBSIException("ER0091");
 		else if (object.getDescricao() == null)
-			throw new TicketsAereosBSIException("Descricao nula");
+			throw new TicketsAereosBSIException("ER0092");
 		else if (object.getDescricao().trim().equals(""))
-			throw new TicketsAereosBSIException("Descricao Vazia");
+			throw new TicketsAereosBSIException("ER0092");
+		else
+			CiaAereaBC.getInstance().validateForDataModification(object.getCiaAerea());
 	}
 
 	@Override

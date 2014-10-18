@@ -21,7 +21,7 @@
 
 					<h:outputLabel for="carga" value="#{msg['carga']}:" />
 					<p:inputText id="carga" value="#{manterAviaoMB.aviao.carga}"
-						disabled="#{manterAviaoMB.acaoVisualizar}" />
+						disabled="#{manterAviaoMB.acaoVisualizar}" maxlength="10" />
 					
 					<h:outputLabel for="ciaAerea" value="#{msg['ciaAerea']}:" />
 					<p:selectOneMenu id="ciaAerea" rendered="#{not manterAviaoMB.acaoVisualizar}" 
@@ -34,7 +34,7 @@
 					
 					<p:inputText id="ciaAereaVisualizar" value="#{manterAviaoMB.aviao.codigo}"
 						disabled="#{manterAviaoMB.acaoVisualizar}"
-						rendered="#{manterAviaoMB.acaoVisualizar}" />
+						rendered="#{manterAviaoMB.acaoVisualizar}" maxlength="20" />
 				</p:panelGrid>
 
 				<f:facet name="footer">

@@ -15,8 +15,6 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
-import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
-
 @Entity
 public class Papel implements IdentifierInterface, Serializable {
 	
@@ -81,9 +79,9 @@ public class Papel implements IdentifierInterface, Serializable {
 	public CiaAerea getCiaAerea() {
 		return ciaAerea;
 	}
-	public void setCiaAerea(CiaAerea ciaAerea) throws TicketsAereosBSIException{
-		if(ciaAerea == null)
-			throw new TicketsAereosBSIException("Cia Aerea");
+	public void setCiaAerea(CiaAerea ciaAerea){
+//		if(ciaAerea == null)
+//			throw new TicketsAereosBSIException("Cia Aerea");
 		
 		this.ciaAerea = ciaAerea;
 	}

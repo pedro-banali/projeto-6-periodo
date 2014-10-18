@@ -1,9 +1,6 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
-import java.util.Date;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -81,18 +78,27 @@ public class FuncionarioBC extends PessoaBC<Funcionario> {
 		Funcionario funcionario;
 
 		funcionario = (Funcionario) object;
-		
-		super.validateForDataModification(object);
-		
-		if (funcionario.getContaCorrente() == null)
-			throw new TicketsAereosBSIException("ER0071");
-		else if (funcionario.getCodigo() == null)
-			throw new TicketsAereosBSIException("ER0071");
 
-		EnderecoBC.getInstance().validateForDataModification(
-				object.getEndereco());
-		PapelBC.getInstance().validateForDataModification(
-				funcionario.getPapel());
+		if (funcionario != null) {
+
+			PapelBC.getInstance().validateForDataModification(
+					funcionario.getPapel());
+
+			super.validateForDataModification(object);
+
+			EnderecoBC.getInstance().validateForDataModification(
+					object.getEndereco());
+
+			if (funcionario.getContaCorrente() == null)
+				throw new TicketsAereosBSIException("ER0071");
+			else if (funcionario.getCodigo() == null)
+				throw new TicketsAereosBSIException("ER0071");
+
+		} else
+		{
+				throw new TicketsAereosBSIException("ER0110");
+		}
+
 	}
 
 	@Override
@@ -103,12 +109,11 @@ public class FuncionarioBC extends PessoaBC<Funcionario> {
 			if (StringUtils.isBlank(object.getCodigo())
 					&& StringUtils.isBlank(object.getContaCorrente())
 					&& StringUtils.isBlank(object.getTelefone())
-					&& !PapelBC.getInstance().validateForFindData(object.getPapel())
+					&& !PapelBC.getInstance().validateForFindData(
+							object.getPapel())
 					&& !super.validateForFindData(object)) {
-					return false;
-			}
-			else
-			{
+				return false;
+			} else {
 				return true;
 			}
 		} else {

@@ -89,6 +89,12 @@ public class CiaAerea implements IdentifierInterface, Serializable {
 	
 
 	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return super.hashCode();
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if(obj == null)
 			return false;

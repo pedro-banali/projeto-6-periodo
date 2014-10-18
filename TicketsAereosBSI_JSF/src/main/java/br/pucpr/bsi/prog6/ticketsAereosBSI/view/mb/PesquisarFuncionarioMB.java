@@ -48,6 +48,9 @@ public class PesquisarFuncionarioMB implements Serializable{
 	private List<Papel> papeis;
 	private List<CiaAerea> ciaAereas;
 	private Papel papel;
+	private Papel filtroPapel;
+	private CiaAerea ciaAerea;
+
 	private Funcionario funcionarioSelecionado;
 	
 	/////////////////////////////////////
@@ -58,33 +61,85 @@ public class PesquisarFuncionarioMB implements Serializable{
 	}
 	
 	@PostConstruct
-	private void init(){
+	private void init() {
 		filtroPesquisa = (Funcionario) ViewUtil.getParameter(FILTRO_PESQUISA);
 		ciaAereas = CiaAereaBC.getInstance().findAll();
-		//setPapeis(PapelBC.getInstance().findAll());
 		log.debug("Valor do Filtro:" + filtroPesquisa);
-		if(filtroPesquisa == null){
-			this.filtroPesquisa = new Funcionario(new Endereco(), new Papel(new CiaAerea()));
+		if (filtroPesquisa == null) {
+			this.filtroPesquisa = new Funcionario(new Endereco(), new Papel(
+					new CiaAerea()));
 		} else {
+			if (filtroPesquisa.getPapel().getCiaAerea().getNome() != null){
+				if (filtroPesquisa.getPapel().getNome() != null){
+					filtroPapel = filtroPesquisa.getPapel();
+					ciaAerea = filtroPesquisa.getPapel().getCiaAerea();
+					filtroPesquisa.setPapel(new Papel(ciaAerea));
+					//filtroPesquisa.getPapel().setCiaAerea(ciaAerea);
+				}
+				papeis = PapelBC.getInstance().findByFilter(filtroPesquisa.getPapel());
+				if (filtroPapel != null)
+				{
+					filtroPesquisa.setPapel(filtroPapel);
+					//filtroPapel = null;
+				}
+				
+				
+			}
 			pesquisar();
 		}
 	}
+
 	
 	/////////////////////////////////////
 	// Actions
 	/////////////////////////////////////
 	
+	public static Logger getLog() {
+		return log;
+	}
+
+	public static void setLog(Logger log) {
+		PesquisarFuncionarioMB.log = log;
+	}
+
+	public Papel getFiltroPapel() {
+		return filtroPapel;
+	}
+
+	public void setFiltroPapel(Papel filtroPapel) {
+		this.filtroPapel = filtroPapel;
+	}
+
+	public CiaAerea getCiaAerea() {
+		return ciaAerea;
+	}
+
+	public void setCiaAerea(CiaAerea ciaAerea) {
+		this.ciaAerea = ciaAerea;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	//Action de Pesquisar a partir do filtro
 	public void pesquisar() {
-		CiaAerea ciaAerea;
-		if(papel != null)
-		{
-			ciaAerea = filtroPesquisa.getPapel().getCiaAerea();
-			filtroPesquisa.setPapel(new Papel(ciaAerea));
-			//filtroPesquisa.getPapel().setCiaAerea(ciaAerea);
+		if (filtroPapel != null) {
+
+			if (filtroPesquisa.getPapel().getCiaAerea().getId() != filtroPapel
+					.getCiaAerea().getId()) {
+				ciaAerea = filtroPesquisa.getPapel().getCiaAerea();
+				filtroPesquisa.setPapel(new Papel(ciaAerea));
+			}
+
+			if (filtroPapel.getNome() != "") {
+				filtroPesquisa.setPapel(filtroPapel);
+			}
 		}
+
 		funcionarios = FuncionarioBC.getInstance().findByFilter(filtroPesquisa);
-		if(funcionarios.isEmpty()){
+		if (funcionarios.isEmpty()) {
+			this.filtroPesquisa.setPapel(new Papel(new CiaAerea()));
 			MessagesUtils.addInfo("informacao", "IN0001");
 		}
 	}
@@ -188,6 +243,16 @@ public class PesquisarFuncionarioMB implements Serializable{
 
 	public void setPapel(Papel papel) {
 		this.papel = papel;
+	}
+	
+	public void setarPapel() {
+		CiaAerea ciaAerea;
+		ciaAerea = filtroPesquisa.getPapel().getCiaAerea();
+		if(papel != null)
+		{
+			papel.setCiaAerea(ciaAerea);
+			this.filtroPesquisa.setPapel(papel);
+		}
 	}
 	
 	

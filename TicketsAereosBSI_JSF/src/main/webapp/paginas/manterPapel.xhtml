@@ -17,11 +17,11 @@
 				<p:panelGrid columns="2" columnClasses="labelField, textField">
 					<h:outputLabel for="nome" value="#{msg['nome']}:" />
 					<p:inputText id="nome" value="#{manterPapelMB.papel.nome}"
-						disabled="#{manterPapelMB.acaoVisualizar}" />
+						disabled="#{manterPapelMB.acaoVisualizar}" maxlength="50" />
 						
 					<h:outputLabel for="descricao" value="#{msg['descricao']}:" />
 					<p:inputText id="descricao" value="#{manterPapelMB.papel.descricao}"
-						disabled="#{manterPapelMB.acaoVisualizar}" />
+						disabled="#{manterPapelMB.acaoVisualizar}" maxlength="200" />
 
 					<h:outputLabel for="ciaAerea" value="#{msg['ciaAerea']}:" />
 					<p:selectOneMenu id="ciaAerea" rendered="#{not manterPapelMB.acaoVisualizar}"

@@ -4,7 +4,6 @@ import static br.pucpr.bsi.prog6.ticketsAereosBSI.view.mb.PesquisarCiaAereaMB.CI
 import static br.pucpr.bsi.prog6.ticketsAereosBSI.view.mb.PesquisarCiaAereaMB.FILTRO_PESQUISA;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;

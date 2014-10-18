@@ -28,10 +28,10 @@
 						</p:selectOneMenu>
 						
 						<h:outputLabel for="codigo" value="#{msg['codigo']}:" />
-						<p:inputText id="codigo" value="#{pesquisarAviaoMB.filtroPesquisa.codigo}" />
+						<p:inputText id="codigo" value="#{pesquisarAviaoMB.filtroPesquisa.codigo}" maxlength="10" />
 						<h:outputLabel for="carga" value="#{msg['carga']}:" />
 						<p:inputText id="carga"
-							value="#{pesquisarAviaoMB.filtroPesquisa.carga}" />
+							value="#{pesquisarAviaoMB.filtroPesquisa.carga}" maxlength="10"/>
 					</p:panelGrid>
 
 					<p:panel styleClass="noBorder">

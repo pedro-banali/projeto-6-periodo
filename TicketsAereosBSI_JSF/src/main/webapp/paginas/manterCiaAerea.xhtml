@@ -17,7 +17,7 @@
 				<p:panelGrid columns="2" columnClasses="labelField, textField">
 					<h:outputLabel for="codigo" value="#{msg['nome']}:" />
 					<p:inputText id="codigo" value="#{manterCiaAereaMB.ciaAerea.nome}"
-						disabled="#{manterCiaAereaMB.acaoVisualizar}" />
+						disabled="#{manterCiaAereaMB.acaoVisualizar}" maxlength="50" />
 				</p:panelGrid>
 
 				<f:facet name="footer">
