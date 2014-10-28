@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+
+	<!-- algum conteudo aqui -->
+	<composite:interface>
+		<composite:attribute name="endereco"
+			type="br.pucpr.bsi.prog6.ticketsAereosBSI.model.Endereco"
+			required="true" />
+	</composite:interface>
+	<composite:implementation>
+		<p:panel id="endereco" header="#{msg['endereco']}" toggleable="true">
+			<p:panelGrid columns="6" columnClasses="labelField, textField">
+
+				<h:outputLabel for="rua" value="#{msg['rua']}:" />
+				<p:inputText id="rua" maxlength="50" ajax="false"
+					value="#{cc.attrs.rua}"
+					disabled="#{cc.attrs.acaoVisualizar or cc.attrs.acaoExcluir}" />
+
+
+				<h:outputLabel for="comp" value="#{msg['complemento']}:" />
+				<p:inputText id="comp" maxlength="50" ajax="false"
+					value="#{cc.attrs.endereco.complemento}"
+					disabled="#{cc.attrs.acaoVisualizar or cc.attrs.acaoExcluir}" />
+
+				<h:outputLabel for="cidade" value="#{msg['cidade']}:" />
+				<p:inputText id="cidade" maxlength="50" ajax="false"
+					value="#{cc.attrs.endereco.cidade}"
+					disabled="#{cc.attrs.acaoVisualizar or cc.attrs.acaoExcluir}" />
+
+				<h:outputLabel for="pais" value="#{msg['pais']}:" />
+				<p:inputText id="pais" maxlength="50" ajax="false"
+					value="#{cc.attrs.endereco.pais}"
+					disabled="#{cc.attrs.acaoVisualizar or cc.attrs.acaoExcluir}" />
+
+				<h:outputLabel for="numero" value="#{msg['numero']}:" />
+				<p:inputText id="numero" ajax="false"
+					value="#{cc.attrs.endereco.numero}"
+					disabled="#{cc.attrs.acaoVisualizar or cc.attrs.acaoExcluir}" />
+
+				<h:outputLabel for="bairro" value="#{msg['bairro']}:" />
+				<p:inputText id="bairro" maxlength="50" ajax="false"
+					value="#{cc.attrs.endereco.bairro}"
+					disabled="#{cc.attrs.acaoVisualizar or cc.attrs.acaoExcluir}" />
+
+				<h:outputLabel for="estado" value="#{msg['estado']}:" />
+					<p:inputText id="estado" maxlength="50" ajax="false"
+						value="#{cc.attrs.endereco.estado}"
+					disabled="#{cc.attrs.acaoVisualizar or cc.attrs.acaoExcluir}" />
+
+			</p:panelGrid>
+		</p:panel>
+	</composite:implementation>
+</h:body>
+
+</html>

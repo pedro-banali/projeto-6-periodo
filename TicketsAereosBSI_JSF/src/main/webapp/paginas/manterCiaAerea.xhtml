@@ -17,14 +17,14 @@
 				<p:panelGrid columns="2" columnClasses="labelField, textField">
 					<h:outputLabel for="codigo" value="#{msg['nome']}:" />
 					<p:inputText id="codigo" value="#{manterCiaAereaMB.ciaAerea.nome}"
-						disabled="#{manterCiaAereaMB.acaoVisualizar}" maxlength="50" />
+						disabled="#{manterCiaAereaMB.acaoVisualizar or manterCiaAereaMB.acaoExcluir}" maxlength="50" />
 				</p:panelGrid>
 
 				<f:facet name="footer">
 					<p:panel toggleTitle="#{msg['acoes']}" styleClass="noBorder">
 						<p:commandButton id="submit" value="#{msg['salvar']}"
 								action="#{manterCiaAereaMB.salvar}" ajax="false"
-								rendered="#{not manterCiaAereaMB.acaoVisualizar}" />
+								rendered="#{not manterCiaAereaMB.acaoVisualizar or not manterCiaAereaMB.acaoExcluir}" />
 							
 						<p:commandButton id="reset" value="#{msg['voltar']}"
 								action="#{manterCiaAereaMB.voltar}" ajax="false" />

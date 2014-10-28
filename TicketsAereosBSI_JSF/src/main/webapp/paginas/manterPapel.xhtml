@@ -17,14 +17,14 @@
 				<p:panelGrid columns="2" columnClasses="labelField, textField">
 					<h:outputLabel for="nome" value="#{msg['nome']}:" />
 					<p:inputText id="nome" value="#{manterPapelMB.papel.nome}"
-						disabled="#{manterPapelMB.acaoVisualizar}" maxlength="50" />
+						disabled="#{manterPapelMB.acaoVisualizar or manterPapelMB.acaoExcluir}" maxlength="50" />
 						
 					<h:outputLabel for="descricao" value="#{msg['descricao']}:" />
 					<p:inputText id="descricao" value="#{manterPapelMB.papel.descricao}"
-						disabled="#{manterPapelMB.acaoVisualizar}" maxlength="200" />
+						disabled="#{manterPapelMB.acaoVisualizar or manterPapelMB.acaoExcluir}" maxlength="200" />
 
 					<h:outputLabel for="ciaAerea" value="#{msg['ciaAerea']}:" />
-					<p:selectOneMenu id="ciaAerea" rendered="#{not manterPapelMB.acaoVisualizar}"
+					<p:selectOneMenu id="ciaAerea" rendered="#{not manterPapelMB.acaoVisualizar or not manterPapelMB.acaoExcluir}"
 						value="#{manterPapelMB.papel.ciaAerea}" converter="ciaAereaConverter">
 						<f:selectItem itemLabel="Selecione o tipo de usuário" itemValue="" noSelectionOption="true"/>  
 						<f:selectItems value="#{manterPapelMB.companhiasAereas}"
@@ -34,15 +34,15 @@
 					
 					<p:inputText id="ciaAereaVisualizar"
 						value="#{manterPapelMB.papel.ciaAerea.nome}"
-						rendered="#{manterPapelMB.acaoVisualizar}"
-						disabled="#{manterPapelMB.acaoVisualizar}" />
+						rendered="#{manterPapelMB.acaoVisualizar or manterPapelMB.acaoExcluir}"
+						disabled="#{manterPapelMB.acaoVisualizar or manterPapelMB.acaoExcluir}" />
 				</p:panelGrid>
 
 				<f:facet name="footer">
 					<p:panel toggleTitle="#{msg['acoes']}" styleClass="noBorder">
 						<p:commandButton id="submit" value="#{msg['salvar']}"
 							action="#{manterPapelMB.salvar}" ajax="false"
-							rendered="#{not manterPapelMB.acaoVisualizar}" />
+							rendered="#{not manterPapelMB.acaoVisualizar or not manterPapelMB.acaoExcluir}" />
 
 						<p:commandButton id="reset" value="#{msg['voltar']}"
 							action="#{manterPapelMB.voltar}" ajax="false" />

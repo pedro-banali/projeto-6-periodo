@@ -31,6 +31,10 @@
 					<p:menuitem value="#{msg.cadastrar}" url="/paginas/manterFuncionario.jsf" />
 					<p:menuitem value="#{msg.pesquisar}" url="/paginas/pesquisarFuncionario.jsf" />
 				</p:submenu>
+				<p:submenu label="#{msg['aeroporto']}">
+					<p:menuitem value="#{msg.cadastrar}" url="/paginas/manterAeroporto.jsf" />
+					<p:menuitem value="#{msg.pesquisar}" url="/paginas/pesquisarAeroporto.jsf" />
+				</p:submenu>
 				<f:facet name="options">
 					<p:commandLink actionListener="#{idiomaMB.mudarBrPt}" ajax="@all">
 						<h:graphicImage value="/resources/images/br.png" width="32"

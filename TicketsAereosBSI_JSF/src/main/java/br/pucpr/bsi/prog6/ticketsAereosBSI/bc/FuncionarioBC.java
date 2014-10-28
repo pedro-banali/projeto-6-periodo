@@ -81,23 +81,28 @@ public class FuncionarioBC extends PessoaBC<Funcionario> {
 
 		if (funcionario != null) {
 
-			PapelBC.getInstance().validateForDataModification(
-					funcionario.getPapel());
+
 
 			super.validateForDataModification(object);
-
-			EnderecoBC.getInstance().validateForDataModification(
-					object.getEndereco());
-
+			
 			if (funcionario.getContaCorrente() == null)
 				throw new TicketsAereosBSIException("ER0071");
 			else if (funcionario.getCodigo() == null)
 				throw new TicketsAereosBSIException("ER0071");
 
-		} else
-		{
-				throw new TicketsAereosBSIException("ER0110");
-		}
+			} 
+			else
+			{
+					throw new TicketsAereosBSIException("ER0110");
+			}
+			
+			PapelBC.getInstance().validateForDataModification(
+					funcionario.getPapel());
+			
+			EnderecoBC.getInstance().validateForDataModification(
+					object.getEndereco());
+
+		
 
 	}
 
