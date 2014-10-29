@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/templates/layoutTeste.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="centerContent">
+		<h:form>
+			<p:panel>
+				<f:facet name="header">
+					<h1>#{msg['pesquisarAviao']}</h1>
+				</f:facet>
+				<p:panelGrid columns="2" columnClasses="labelField, textField">
+					<h:outputLabel for="ciaAerea" value="#{msg['ciaAerea']}:" />
+					<p:selectOneMenu id="ciaAerea" value="">
+						<f:selectItem itemLabel="Selecione o tipo de Cia Aerea"
+							itemValue="" noSelectionOption="true" />
+						<!-- 						<f:selectItems value="#{manterAviaoMB.companhiasAereas}" -->
+						<!-- 							var="ciaAerea" itemLabel="#{ciaAerea.nome}" -->
+						<!-- 							itemValue="#{ciaAerea}" /> -->
+						<f:selectItem itemLabel="Cia1" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItem itemLabel="Cia2" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItem itemLabel="Cia3" itemValue=""
+							noSelectionOption="true" />
+					</p:selectOneMenu>
+
+					<h:outputLabel for="rota" value="Rota" />
+					<p:selectOneMenu id="rota" value="">
+						<f:selectItem itemLabel="Selecione Origem" itemValue=""
+							noSelectionOption="true" />
+						<!-- 						<f:selectItems value="#{manterAviaoMB.companhiasAereas}" -->
+						<!-- 							var="ciaAerea" itemLabel="#{ciaAerea.nome}" -->
+						<!-- 							itemValue="#{ciaAerea}" /> -->
+						<f:selectItem itemLabel="rota1" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItem itemLabel="rota2" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItem itemLabel="rota3" itemValue=""
+							noSelectionOption="true" />
+					</p:selectOneMenu>
+
+					<h:outputLabel for="aviao" value="Aviao" />
+					<p:selectOneMenu id="aviao"
+						rendered="#{not manterAviaoMB.acaoVisualizar}"
+						value="#{manterAviaoMB.aviao.ciaAerea}"
+						converter="ciaAereaConverter"
+						disabled="#{manterAviaoMB.acaoVisualizar || manterAviaoMB.acaoExcluir}">
+						<f:selectItem itemLabel="Selecione Origem" itemValue=""
+							noSelectionOption="true" />
+						<!-- 						<f:selectItems value="#{manterAviaoMB.companhiasAereas}" -->
+						<!-- 							var="ciaAerea" itemLabel="#{ciaAerea.nome}" -->
+						<!-- 							itemValue="#{ciaAerea}" /> -->
+						<f:selectItem itemLabel="aviao1" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItem itemLabel="aviao2" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItem itemLabel="aviao3" itemValue=""
+							noSelectionOption="true" />
+					</p:selectOneMenu>
+
+					<h:outputLabel for="codigo" value="Codigo" />
+					<p:inputText id="codigo" value="" />
+					<!-- 						 disabled="#{manterAviaoMB.acaoVisualizar || manterAviaoMB.acaoExcluir}" -->
+
+					<h:outputLabel for="partida" value="Partida" />
+					<p:inputText id="partida" value="" />
+					<!-- 						 disabled="#{manterAviaoMB.acaoVisualizar || manterAviaoMB.acaoExcluir}" -->
+
+					<h:outputLabel for="chegada" value="Chegada" />
+					<p:inputText id="chegada" value="" />
+					<!-- 						 disabled="#{manterAviaoMB.acaoVisualizar || manterAviaoMB.acaoExcluir}" -->
+
+
+
+				</p:panelGrid>
+
+				<p:commandButton value="#{msg['pesquisar']}" update="resultados" />
+			</p:panel>
+
+
+
+			<p:spacer height="25px" />
+
+			<p:panel id="resultados" styleClass="noBorder">
+				<p:dataTable value="#{pesquisarAviaoMB.avioes}" var="aviao"
+					rendered="#{not empty pesquisarAviaoMB.avioes}"
+					selectionMode="single"
+					selection="#{pesquisarAviaoMB.aviaoSelecionada}"
+					rowKey="#{aviao.id}">
+
+					<f:facet name="header">
+							#{msg['resultados']}
+						</f:facet>
+
+					<p:column headerText="Codigo">
+
+					</p:column>
+
+					<p:column headerText="Partida">
+
+					</p:column>
+
+					<p:column headerText="Chegada">
+
+					</p:column>
+
+					<p:column headerText="Origem">
+
+					</p:column>
+
+					<p:column headerText="Destino">
+
+					</p:column>
+
+					<p:column headerText="Qnt Bilhetes">
+
+					</p:column>
+
+
+					<f:facet name="footer">
+						<p:commandButton value="#{msg['editar']}" ajax="false" />
+						<p:commandButton value="#{msg['excluir']}" ajax="false" />
+						<p:commandButton value="#{msg['visualizar']}" ajax="false" />
+					</f:facet>
+				</p:dataTable>
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -8,7 +8,6 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.util.HibernateUtil;
-import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Passageiro;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Rota;
 
 public class RotaDAO extends PatternDAO<Rota>{
@@ -33,6 +32,9 @@ public class RotaDAO extends PatternDAO<Rota>{
 		try {
 
 			Criteria c = session.createCriteria(Rota.class);
+			c.createAlias("destino", "aeroportoD");
+			c.createAlias("origem", "aeroportoO");
+			
 			if (StringUtils.isNotBlank(filter.getNome())) {
 				c.add(Restrictions.like("nome", "%" + filter.getNome() + "%"));
 			}
@@ -44,21 +46,21 @@ public class RotaDAO extends PatternDAO<Rota>{
 				c.add(Restrictions.like("ciaAerea.nome", "%" + filter.getCiaAerea().getNome() + "%"));
 			}
 			if (StringUtils.isNotBlank(filter.getOrigem().getEndereco().getCidade())) {
-				c.createAlias("origem", "aeroportoO");
+				
 				c.createAlias("aeroportoO.endereco", "enderecoO");
 				c.add(Restrictions.like("enderecoO.cidade", "%"+ filter.getOrigem().getEndereco().getCidade() + "%"));
 			}
 			if (StringUtils.isNotBlank(filter.getDestino().getEndereco().getCidade())) {
-				c.createAlias("destino", "aeroportoD");
+
 				c.createAlias("aeroportoD.endereco", "enderecoD");
 				c.add(Restrictions.like("enderecoD.cidade", "%"+ filter.getDestino().getEndereco().getCidade() + "%"));
 			}
 			if (StringUtils.isNotBlank(filter.getDestino().getNome())) {
-				c.createAlias("destino", "aeroportoD");
+
 				c.add(Restrictions.like("aeroportoD.nome", "%"+ filter.getDestino().getNome() + "%"));
 			}
 			if (StringUtils.isNotBlank(filter.getOrigem().getNome())) {
-				c.createAlias("origem", "aeroportoO");
+//				c.createAlias("origem", "aeroportoO");
 				c.add(Restrictions.like("aeroportoO.nome", "%"+ filter.getOrigem().getNome() + "%"));
 			}
 			return ((List<Rota>) c.list());

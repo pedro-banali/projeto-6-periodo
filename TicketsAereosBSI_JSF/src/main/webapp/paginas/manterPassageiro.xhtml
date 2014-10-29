@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/templates/layoutTeste.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ta="http://java.sun.com/jsf/composite/ticketsAereos">
+	<ui:define name="centerContent">
+		<h:form>
+			<p:panel>
+					<f:facet name="header">
+					<h1>
+						<h:outputText value="#{manterPassageiroMB.title}" />
+					</h1>
+				</f:facet>
+				<p:panelGrid columns="6"  columnClasses="labelField, textField">
+					
+					<h:outputLabel for="nome" value="#{msg['nome']}:" />
+					<p:inputText id="nome"
+						value="#{manterPassageiroMB.passageiro.nome}"
+						disabled="#{manterPassageiroMB.acaoVisualizar || manterPassageiroMB.acaoExcluir}" />
+
+					<h:outputLabel for="email" value="#{msg['email']}:" />
+					<p:inputText id="email"
+						value="#{manterPassageiroMB.passageiro.email}"
+						disabled="#{manterPassageiroMB.acaoVisualizar || manterPassageiroMB.acaoExcluir}" />
+					
+					<h:outputLabel for="telefone" value="#{msg['telefone']}:" />
+					<p:inputText id="telefone"
+						value="#{manterPassageiroMB.passageiro.telefone}"
+						disabled="#{manterPassageiroMB.acaoVisualizar || manterPassageiroMB.acaoExcluir}" maxlength="11"/>
+					
+					<h:outputLabel for="dataNascimento" value="#{msg['dataNascimento']}:" />
+					<p:calendar id="dataNascimento"
+						pattern="dd/MM/yyyy"
+						value="#{manterPassageiroMB.passageiro.dataNascimento}"
+						disabled="#{manterPassageiroMB.acaoVisualizar || manterPassageiroMB.acaoExcluir}" >
+					</p:calendar>
+					
+					<h:outputLabel for="usuario" value="#{msg['usuario']}:" />
+					<p:inputText id="usuario"
+						value="#{manterPassageiroMB.passageiro.usuario}"
+						disabled="#{manterPassageiroMB.acaoVisualizar || manterPassageiroMB.acaoExcluir}" />
+					
+					<h:outputLabel for="senha" value="#{msg['senha']}:" />
+					<p:password id="senha"
+						value="#{manterPassageiroMB.passageiro.senha}"
+						disabled="#{manterPassageiroMB.acaoVisualizar || manterPassageiroMB.acaoExcluir}" />
+						
+					<h:outputLabel for="numeroCartao" value="#{msg['numeroCartao']}:" />
+					<p:inputText id="numeroCartao"
+						value="#{manterPassageiroMB.passageiro.numeroCartao}"
+						disabled="#{manterPassageiroMB.acaoVisualizar || manterPassageiroMB.acaoExcluir}" />
+					
+					<h:outputLabel for="documento" value="#{msg['documento']}:" />
+					<p:inputText id="documento"
+						value="#{manterPassageiroMB.passageiro.documento}"
+						disabled="#{manterPassageiroMB.acaoVisualizar || manterPassageiroMB.acaoExcluir}" />
+					
+				</p:panelGrid>
+
+				<p:panel id="endereco" header="#{msg['endereco']}"
+					toggleable="true">
+					<ta:endereco endereco="#{manterPassageiroMB.passageiro.endereco}" desabilitar="#{manterPassageiroMB.acaoVisualizar || manterPassageiroMB.acaoExcluir}"/>
+					
+				</p:panel>
+
+				<f:facet name="footer">
+					<p:panel toggleTitle="#{msg['acoes']}" styleClass="noBorder">
+						<p:commandButton id="submit" value="#{msg['salvar']}"
+							action="#{manterPassageiroMB.salvar}" ajax="false"
+							rendered="#{not manterPassageiroMB.acaoVisualizar}" />
+
+						<p:commandButton id="reset" value="#{msg['voltar']}"
+							action="#{manterPassageiroMB.voltar}" ajax="false" />
+					</p:panel>
+				</f:facet>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
