@@ -76,10 +76,16 @@ public class PassageiroBC extends PessoaBC<Passageiro> {
 		super.validateForDataModification(object);
 
 		passageiro = (Passageiro) object;
-
-		if (passageiro.getDocumento() == null)
+		
+		if (StringUtils.isBlank(object.getNome()))
+			throw new TicketsAereosBSIException("ER0115");
+		if (StringUtils.isBlank(object.getUsuario()))
+			throw new TicketsAereosBSIException("ER0118");
+		if (StringUtils.isBlank(object.getTelefone()))
+			throw new TicketsAereosBSIException("ER0117");
+		if (StringUtils.isBlank(object.getDocumento()))
 			throw new TicketsAereosBSIException("ER0100");
-		else if (passageiro.getNumeroCartao() == null)
+		else if (StringUtils.isBlank(object.getNumeroCartao()))
 			throw new TicketsAereosBSIException("ER0101");
 
 		EnderecoBC.getInstance().validateForDataModification(
@@ -91,9 +97,10 @@ public class PassageiroBC extends PessoaBC<Passageiro> {
 		// TODO Auto-generated method stub
 		if (object != null)
 		{	
-			if (StringUtils.isBlank(object.getNome())
-					&& StringUtils.isBlank(object.getNumeroCartao())
-					&& StringUtils.isBlank(object.getDocumento())
+			if (StringUtils.isNotBlank(object.getNome())
+					&& StringUtils.isNotBlank(object.getUsuario())
+					&& StringUtils.isNotBlank(object.getNumeroCartao())
+					&& StringUtils.isNotBlank(object.getDocumento())
 					&& !super.validateForFindData(object)) {
 				return false;
 			} else {

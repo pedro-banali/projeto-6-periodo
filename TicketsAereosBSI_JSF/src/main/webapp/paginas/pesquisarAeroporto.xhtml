@@ -13,43 +13,40 @@
 					<h1>#{msg['pesquisarAeroporto']}</h1>
 				</f:facet>
 				<p:panel toggleable="true" toggleSpeed="500">
-					<f:facet name="header">
+						<f:facet name="header">
 							#{msg['filtroPesquisa']}
 						</f:facet>
-					<p:panelGrid columns="4"
-						columnClasses="labelField, textField, labelField, textField, labelField, textField">
+					<p:panelGrid columns="4" columnClasses="labelField, textField, labelField, textField">
 						
-						<h:outputLabel for="nome" value="#{msg['codigo']}:" />
-						<p:inputText id="nome" value="#{pesquisarAeroportoMB.filtroPesquisa.nome}" maxlength="50" />
+						<h:outputLabel for="nome" value="#{msg['nome']}:"/>
+						<p:inputText id="nome" value="#{pesquisarAeroportoMB.filtroPesquisa.nome}" />
 						
-						<h:outputLabel for="codigo" value="#{msg['codigo']}:" />
-						<p:inputText id="codigo" value="#{pesquisarAeroportoMB.filtroPesquisa.codigo}" maxlength="50" />
+						<h:outputLabel for="codigo" value="#{msg['codigo']}:"/>
+						<p:inputText id="codigo" value="#{pesquisarAeroportoMB.filtroPesquisa.codigo}" />
 						
-						<h:outputLabel for="cidade" value="#{msg['cidade']}:" />
-						<p:inputText id="cidade"
-							value="#{pesquisarAeroportoMB.filtroPesquisa.endereco.cidade}" maxlength="50"/>
+						<h:outputLabel for="cidade" value="#{msg['cidade']}:"/>
+						<p:inputText id="cidade" value="#{pesquisarAeroportoMB.filtroPesquisa.endereco.cidade}" />
 						
-						<h:outputLabel for="estado" value="#{msg['estado']}:" />
-						<p:inputText id="estado"
-							value="#{pesquisarAeroportoMB.filtroPesquisa.endereco.estado}" maxlength="50"/>
-					
+						<h:outputLabel for="estado" value="#{msg['estado']}:"/>
+						<p:inputText id="estado" value="#{pesquisarAeroportoMB.filtroPesquisa.endereco.estado}" />
+						
 					</p:panelGrid>
-
+				
 					<p:panel styleClass="noBorder">
 						<p:commandButton value="#{msg['pesquisar']}"
 							action="#{pesquisarAeroportoMB.pesquisar}" update="resultados" />
 					</p:panel>
 				</p:panel>
 
-				<p:spacer height="25px" />
+				<p:spacer height="25px"/>
 
 				<p:panel id="resultados" styleClass="noBorder">
-					<p:dataTable value="#{pesquisarAeroportoMB.aeroportos}" var="aeroporto"
-						rendered="#{not empty pesquisarAeroportoMB.aeroportos}"
-						selectionMode="single"
-						selection="#{pesquisarAeroportoMB.aeroportoSelecionado}"
-						rowKey="#{aeroporto.id}">
-
+						<p:dataTable value="#{pesquisarAeroportoMB.aeroportos}" var="aeroporto"
+							rendered="#{not empty pesquisarAeroportoMB.aeroportos}"
+							selectionMode="single"
+							selection="#{pesquisarAeroportoMB.aeroportoSelecionado}"
+							rowKey="#{aeroporto.id}">
+						
 						<f:facet name="header">
 							#{msg['resultados']}
 						</f:facet>
@@ -57,17 +54,12 @@
 						<p:column headerText="#{msg['codigo']}">
 							#{aeroporto.codigo}
 						</p:column>
-						
 						<p:column headerText="#{msg['nome']}">
 							#{aeroporto.nome}
 						</p:column>
-						
-
-						
-						<p:column headerText="#{msg['cidade-estado']}">
+						<p:column headerText="#{msg['cidade']} / #{msg['estado']}">
 							#{aeroporto.endereco.cidade} / #{aeroporto.endereco.estado}
 						</p:column>
-
 						<f:facet name="footer">
 							<p:commandButton value="#{msg['editar']}"
 								action="#{pesquisarAeroportoMB.editar}" ajax="false" />

@@ -15,24 +15,34 @@
 					</h1>
 				</f:facet>
 				<p:panelGrid columns="2" columnClasses="labelField, textField">
-					<h:outputLabel for="codigo" value="#{msg['nome']}:" />
-					<p:inputText id="codigo" value="#{manterAviaoMB.aviao.codigo}"
-						disabled="#{manterAviaoMB.acaoVisualizar or manterAviaoMB.acaoExcluir}" />
-
-					<h:outputLabel for="carga" value="#{msg['carga']}:" />
-					<p:inputText id="carga" value="#{manterAviaoMB.aviao.carga}"
-						disabled="#{manterAviaoMB.acaoVisualizar or manterAviaoMB.acaoExcluir}" maxlength="10" />
 					
 					<h:outputLabel for="ciaAerea" value="#{msg['ciaAerea']}:" />
-					<p:selectOneMenu id="ciaAerea" rendered="#{not manterAviaoMB.acaoVisualizar or not manterAviaoMB.acaoExcluir}" 
-						value="#{manterAviaoMB.aviao.ciaAerea}" converter="ciaAereaConverter">
-						<f:selectItem itemLabel="Selecione o tipo de usuário" itemValue="" noSelectionOption="true"/>  
+					
+					<p:selectOneMenu id="ciaAerea"
+						rendered="#{not manterAviaoMB.acaoVisualizar and not manterAviaoMB.acaoExcluir}"
+						value="#{manterAviaoMB.aviao.ciaAerea}"
+						converter="ciaAereaConverter">
+						<f:selectItem itemLabel="Selecione o tipo de usuário" itemValue=""
+							noSelectionOption="true" />
 						<f:selectItems value="#{manterAviaoMB.companhiasAereas}"
 							var="ciaAerea" itemLabel="#{ciaAerea.nome}"
 							itemValue="#{ciaAerea}" />
 					</p:selectOneMenu>
 					
-					<p:inputText id="ciaAereaVisualizar" value="#{manterAviaoMB.aviao.codigo}"
+					<h:outputLabel for="codigo" value="#{msg['codigo']}:" />
+					<p:inputText id="codigo" value="#{manterAviaoMB.aviao.codigo}"
+						disabled="#{manterAviaoMB.acaoVisualizar or manterAviaoMB.acaoExcluir}" />
+
+					<h:outputLabel for="carga" value="#{msg['carga']}:" />
+					<p:inputText id="carga" value="#{manterAviaoMB.aviao.carga}"
+						disabled="#{manterAviaoMB.acaoVisualizar or manterAviaoMB.acaoExcluir}"
+						maxlength="10" />
+
+					
+
+
+					<p:inputText id="ciaAereaVisualizar"
+						value="#{manterAviaoMB.aviao.codigo}"
 						disabled="#{manterAviaoMB.acaoVisualizar or not manterAviaoMB.acaoExcluir}"
 						rendered="#{manterAviaoMB.acaoVisualizar}" maxlength="20" />
 				</p:panelGrid>

@@ -60,13 +60,8 @@
 						disabled="#{manterPassageiroMB.acaoVisualizar || manterPassageiroMB.acaoExcluir}" />
 					
 				</p:panelGrid>
-
-				<p:panel id="endereco" header="#{msg['endereco']}"
-					toggleable="true">
-					<ta:endereco endereco="#{manterPassageiroMB.passageiro.endereco}" desabilitar="#{manterPassageiroMB.acaoVisualizar || manterPassageiroMB.acaoExcluir}"/>
-					
-				</p:panel>
-
+				<ta:endereco endereco="#{manterPassageiroMB.passageiro.endereco}" desabilitar="#{manterPassageiroMB.acaoVisualizar || manterPassageiroMB.acaoExcluir}"/>
+				
 				<f:facet name="footer">
 					<p:panel toggleTitle="#{msg['acoes']}" styleClass="noBorder">
 						<p:commandButton id="submit" value="#{msg['salvar']}"

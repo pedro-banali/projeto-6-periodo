@@ -19,7 +19,7 @@
 					<h:outputLabel for="ciaAerea" value="#{msg['ciaAerea']}:" />
 					<p:selectOneMenu id="ciaAerea"
 						value="#{manterFuncionarioMB.funcionario.papel.ciaAerea}"
-						rendered="#{not manterFuncionarioMB.acaoVisualizar}"
+						rendered="#{not manterFuncionarioMB.acaoVisualizar and not manterFuncionarioMB.acaoExcluir}"
 						converter="ciaAereaConverter">
 						<f:selectItem itemLabel="Selecione" itemValue=""
 							noSelectionOption="true" />
@@ -33,12 +33,12 @@
 
 					<p:inputText id="ciaAereaVisualizar"
 						value="#{manterFuncionarioMB.funcionario.papel.ciaAerea.nome}"
-						rendered="#{manterFuncionarioMB.acaoVisualizar}"
-						disabled="#{manterFuncionarioMB.acaoVisualizar || manterFuncionarioMB.acaoExcluir}" />
+						rendered="#{manterFuncionarioMB.acaoVisualizar or  manterFuncionarioMB.acaoExcluir}"
+						disabled="#{manterFuncionarioMB.acaoVisualizar or manterFuncionarioMB.acaoExcluir}" />
 					
 					<h:outputLabel for="papeis" value="#{msg['papel']}:"  />
 					<p:selectOneMenu id="papeis"
-						rendered="#{not manterFuncionarioMB.acaoVisualizar}"
+						rendered="#{not manterFuncionarioMB.acaoVisualizar and not manterFuncionarioMB.acaoExcluir}"
 						value="#{manterFuncionarioMB.funcionario.papel}"
 						converter="papelConverter">
 						<f:selectItem itemLabel="Selecione" itemValue=""
@@ -49,58 +49,56 @@
 					
 					<p:inputText id="papel"
 						value="#{manterFuncionarioMB.funcionario.papel.nome}"
-						rendered="#{manterFuncionarioMB.acaoVisualizar}"
-						disabled="#{manterFuncionarioMB.acaoVisualizar || manterFuncionarioMB.acaoExcluir}" />
+						rendered="#{manterFuncionarioMB.acaoVisualizar or  manterFuncionarioMB.acaoExcluir}"
+						disabled="#{manterFuncionarioMB.acaoVisualizar or manterFuncionarioMB.acaoExcluir}" />
 					
 					<h:outputLabel for="nome" value="#{msg['nome']}:" />
 					<p:inputText id="nome"
 						value="#{manterFuncionarioMB.funcionario.nome}"
-						disabled="#{manterFuncionarioMB.acaoVisualizar || manterFuncionarioMB.acaoExcluir}" />
+						disabled="#{manterFuncionarioMB.acaoVisualizar or manterFuncionarioMB.acaoExcluir}" />
 
 					<h:outputLabel for="email" value="#{msg['email']}:" />
 					<p:inputText id="email"
 						value="#{manterFuncionarioMB.funcionario.email}"
-						disabled="#{manterFuncionarioMB.acaoVisualizar || manterFuncionarioMB.acaoExcluir}" />
+						disabled="#{manterFuncionarioMB.acaoVisualizar or manterFuncionarioMB.acaoExcluir}" />
 					
 					<h:outputLabel for="telefone" value="#{msg['telefone']}:" />
 					<p:inputText id="telefone"
 						value="#{manterFuncionarioMB.funcionario.telefone}"
-						disabled="#{manterFuncionarioMB.acaoVisualizar || manterFuncionarioMB.acaoExcluir}" maxlength="11"/>
+						disabled="#{manterFuncionarioMB.acaoVisualizar or manterFuncionarioMB.acaoExcluir}" maxlength="11"/>
 					
 					<h:outputLabel for="dataNascimento" value="#{msg['dataNascimento']}:" />
 					<p:calendar id="dataNascimento"
 						pattern="dd/MM/yyyy"
 						value="#{manterFuncionarioMB.funcionario.dataNascimento}"
-						disabled="#{manterFuncionarioMB.acaoVisualizar || manterFuncionarioMB.acaoExcluir}" >
+						disabled="#{manterFuncionarioMB.acaoVisualizar or manterFuncionarioMB.acaoExcluir}" >
 					</p:calendar>
 					
 					<h:outputLabel for="usuario" value="#{msg['usuario']}:" />
 					<p:inputText id="usuario"
 						value="#{manterFuncionarioMB.funcionario.usuario}"
-						disabled="#{manterFuncionarioMB.acaoVisualizar || manterFuncionarioMB.acaoExcluir}" />
+						disabled="#{manterFuncionarioMB.acaoVisualizar or manterFuncionarioMB.acaoExcluir}" />
 					
 					<h:outputLabel for="senha" value="#{msg['senha']}:" />
 					<p:password id="senha"
 						value="#{manterFuncionarioMB.funcionario.senha}"
-						disabled="#{manterFuncionarioMB.acaoVisualizar || manterFuncionarioMB.acaoExcluir}" />
+						disabled="#{manterFuncionarioMB.acaoVisualizar or manterFuncionarioMB.acaoExcluir}" />
 						
 					<h:outputLabel for="codigo" value="#{msg['codigo']}:" />
 					<p:inputText id="codigo"
 						value="#{manterFuncionarioMB.funcionario.codigo}"
-						disabled="#{manterFuncionarioMB.acaoVisualizar || manterFuncionarioMB.acaoExcluir}" />
+						disabled="#{manterFuncionarioMB.acaoVisualizar or manterFuncionarioMB.acaoExcluir}" />
 					
 					<h:outputLabel for="contaCorrente" value="#{msg['contaCorrente']}:" />
 					<p:inputText id="contaCorrente"
 						value="#{manterFuncionarioMB.funcionario.contaCorrente}"
-						disabled="#{manterFuncionarioMB.acaoVisualizar || manterFuncionarioMB.acaoExcluir}" />
+						disabled="#{manterFuncionarioMB.acaoVisualizar or manterFuncionarioMB.acaoExcluir}" />
 					
 				</p:panelGrid>
 
-				<p:panel id="endereco" header="#{msg['enderecoFuncionario']}"
-					toggleable="true">
-					<ta:endereco endereco="#{manterFuncionarioMB.funcionario.endereco}" desabilitar="#{manterFuncionarioMB.acaoVisualizar || manterFuncionarioMB.acaoExcluir}"/>
+
+					<ta:endereco endereco="#{manterFuncionarioMB.funcionario.endereco}" desabilitar="#{manterFuncionarioMB.acaoVisualizar or manterFuncionarioMB.acaoExcluir}"/>
 					
-				</p:panel>
 
 				<f:facet name="footer">
 					<p:panel toggleTitle="#{msg['acoes']}" styleClass="noBorder">

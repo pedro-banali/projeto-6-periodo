@@ -10,34 +10,35 @@
 	<ui:define name="centerContent">
 		<h:form>
 			<p:panel>
-				<f:facet name="header">
-						<h1>#{msg['manterAeroporto']}</h1>
+					<f:facet name="header">
+					<h1>
+						<h:outputText value="#{manterAeroportoMB.title}" />
+					</h1>
 				</f:facet>
-				<p:panelGrid columns="4"  columnClasses="labelField, textField">
-			
+				<p:panelGrid columns="2"  columnClasses="labelField, textField">
 					
 					<h:outputLabel for="nome" value="#{msg['nome']}:" />
 					<p:inputText id="nome"
-						maxlength="50" ajax="false"
 						value="#{manterAeroportoMB.aeroporto.nome}"
-						disabled="#{manterAeroportoMB.acaoVisualizar or manterAeroportoMB.acaoExcluir}" />
+						disabled="#{manterAeroportoMB.acaoVisualizar || manterAeroportoMB.acaoExcluir}" />
 
 					<h:outputLabel for="codigo" value="#{msg['codigo']}:" />
 					<p:inputText id="codigo"
-						maxlength="50" ajax="false"
 						value="#{manterAeroportoMB.aeroporto.codigo}"
-						disabled="#{manterAeroportoMB.acaoVisualizar or manterAeroportoMB.acaoExcluir}" />
-					
+						disabled="#{manterAeroportoMB.acaoVisualizar || manterAeroportoMB.acaoExcluir}" />
+				
 					
 				</p:panelGrid>
 
-				<ta:endereco nome="#{manterAeroportoMB.aeroporto.endereco}"/>
-				
+
+				<ta:endereco endereco="#{manterAeroportoMB.aeroporto.endereco}" desabilitar="#{manterAeroportoMB.acaoVisualizar || manterAeroportoMB.acaoExcluir}"/>
+
+
 				<f:facet name="footer">
 					<p:panel toggleTitle="#{msg['acoes']}" styleClass="noBorder">
 						<p:commandButton id="submit" value="#{msg['salvar']}"
 							action="#{manterAeroportoMB.salvar}" ajax="false"
-							rendered="#{not manterAeroportoMB.acaoVisualizar or not manterAeroportoMB.acaoExcluir}" />
+							rendered="#{not manterAeroportoMB.acaoVisualizar}" />
 
 						<p:commandButton id="reset" value="#{msg['voltar']}"
 							action="#{manterAeroportoMB.voltar}" ajax="false" />

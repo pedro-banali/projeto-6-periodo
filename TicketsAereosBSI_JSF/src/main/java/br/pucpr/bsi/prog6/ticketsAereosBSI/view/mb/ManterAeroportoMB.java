@@ -4,6 +4,7 @@ import static br.pucpr.bsi.prog6.ticketsAereosBSI.view.mb.PesquisarAeroportoMB.F
 import static br.pucpr.bsi.prog6.ticketsAereosBSI.view.mb.PesquisarAeroportoMB.AEROPORTO_SELECIONADO;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -11,10 +12,14 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.log4j.Logger;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.CiaAereaBC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.AeroportoBC;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.PapelBC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
-import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Aeroporto;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.model.CiaAerea;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Endereco;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Aeroporto;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Papel;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.view.mb.utils.ViewUtil;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.view.messages.MessagesUtils;
 
@@ -54,7 +59,8 @@ public class ManterAeroportoMB implements Serializable{
 	
 	@PostConstruct
 	private void init(){
-				
+		
+		
 		acao = (Acoes) ViewUtil.getParameter(Acoes.class);
 		
 		
@@ -64,7 +70,7 @@ public class ManterAeroportoMB implements Serializable{
 			
 			aeroporto = (Aeroporto) ViewUtil.getParameter(AEROPORTO_SELECIONADO);
 			if(aeroporto == null){
-				throw new TicketsAereosBSIException("ER0052");
+				throw new TicketsAereosBSIException("ER0013");
 			}
 			log.debug("Valor do Aeroporto:" + aeroporto);
 			filtroPesquisa = (Aeroporto) ViewUtil.getParameter(FILTRO_PESQUISA);
@@ -127,25 +133,17 @@ public class ManterAeroportoMB implements Serializable{
 	/////////////////////////////////////
 	
 	
-	public String getTitle(){
-		switch(acao){
-			case EDITAR:
-				return MessagesUtils.getLabel("editarAeroporto");
-			case EXCLUIR:
-				return MessagesUtils.getLabel("excluirAeroporto");
-			case INCLUIR:
-				return MessagesUtils.getLabel("incluirAeroporto");
-			case VISUALIZAR:
-		}
-		return null;
+	
+	public void setAcao(Acoes acao) {
+		this.acao = acao;
 	}
-
+	
 	public Aeroporto getAeroporto() {
 		return aeroporto;
 	}
 
-	public void setAeroporto(Aeroporto aeroporto) {
-		this.aeroporto = aeroporto;
+	public void setAeroporto(Aeroporto Aeroporto) {
+		this.aeroporto = Aeroporto;
 	}
 
 	public Aeroporto getFiltroPesquisa() {
@@ -156,13 +154,18 @@ public class ManterAeroportoMB implements Serializable{
 		this.filtroPesquisa = filtroPesquisa;
 	}
 
-	public Acoes getAcao() {
-		return acao;
-	}
 
-	public void setAcao(Acoes acao) {
-		this.acao = acao;
+	public String getTitle(){
+		switch(acao){
+			case EDITAR:
+				return MessagesUtils.getLabel("editarAeroporto");
+			case EXCLUIR:
+				return MessagesUtils.getLabel("excluirAeroporto");
+			case INCLUIR:
+				return MessagesUtils.getLabel("incluirAeroporto");
+			case VISUALIZAR:
+				return MessagesUtils.getLabel("visualizarAeroporto");
+		}
+		return "";
 	}
-	
-	
 }

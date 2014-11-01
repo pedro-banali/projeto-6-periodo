@@ -16,7 +16,7 @@
 					<h:outputLabel for="ciaAerea" value="#{msg['ciaAerea']}:" />
 					
 					<p:selectOneMenu id="ciaAerea"
-						value="#{pesquisarFuncionarioMB.filtroPesquisa.papel.ciaAerea}" converter="ciaAereaConverter">
+						value="#{pesquisarFuncionarioMB.ciaAerea}" converter="ciaAereaConverter">
 						<f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true"/>  
 						<f:selectItems value="#{pesquisarFuncionarioMB.ciaAereas}"
 							var="ciaAerea" itemLabel="#{ciaAerea.nome}"

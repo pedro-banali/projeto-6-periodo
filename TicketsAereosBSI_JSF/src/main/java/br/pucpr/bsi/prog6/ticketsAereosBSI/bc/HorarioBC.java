@@ -80,8 +80,8 @@ private static HorarioBC instance;
 			throw new TicketsAereosBSIException("ER0081");
 		else if(object.getChegada() == null)
 			throw new TicketsAereosBSIException("ER0082");
-		else if(object.getPartida().compareTo(new Date()) < 0)
-			throw new TicketsAereosBSIException("ER0084");
+//		else if(object.getPartida().compareTo(new Date()) < 0)
+//			throw new TicketsAereosBSIException("ER0084");
 		else if(object.getChegada().compareTo(object.getPartida()) <  0)
 			throw new TicketsAereosBSIException("ER0084");
 		else if(object.getQtdEconomica() < 0)

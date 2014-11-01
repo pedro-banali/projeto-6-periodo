@@ -56,9 +56,9 @@ public abstract class PessoaBC<T extends Pessoa> extends PatternBC<T> {
 		// TODO Auto-generated method stub
 		if (object != null) {
 			if (StringUtils.isBlank(object.getNome())
-					&& StringUtils.isBlank(object.getEmail())
-					&& StringUtils.isBlank(object.getTelefone())
-					&& StringUtils.isBlank(object.getUsuario())
+					&& StringUtils.isNotBlank(object.getEmail())
+					&& StringUtils.isNotBlank(object.getTelefone())
+					&& StringUtils.isNotBlank(object.getUsuario())
 					&& object.getDataNascimento() == null
 					&& !EnderecoBC.getInstance().validateForFindData(
 							object.getEndereco())) {

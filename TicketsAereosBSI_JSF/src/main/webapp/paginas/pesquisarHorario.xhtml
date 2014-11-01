@@ -10,125 +10,123 @@
 		<h:form>
 			<p:panel>
 				<f:facet name="header">
-					<h1>#{msg['pesquisarAviao']}</h1>
+					<h1>#{msg['pesquisarHorario']}</h1>
 				</f:facet>
-				<p:panelGrid columns="2" columnClasses="labelField, textField">
-					<h:outputLabel for="ciaAerea" value="#{msg['ciaAerea']}:" />
-					<p:selectOneMenu id="ciaAerea" value="">
-						<f:selectItem itemLabel="Selecione o tipo de Cia Aerea"
-							itemValue="" noSelectionOption="true" />
-						<!-- 						<f:selectItems value="#{manterAviaoMB.companhiasAereas}" -->
-						<!-- 							var="ciaAerea" itemLabel="#{ciaAerea.nome}" -->
-						<!-- 							itemValue="#{ciaAerea}" /> -->
-						<f:selectItem itemLabel="Cia1" itemValue=""
+				<p:panelGrid columns="6" columnClasses="labelField, textField">
+									<h:outputLabel for="ciaAerea" value="#{msg['ciaAerea']}:" />
+					<p:selectOneMenu id="ciaAerea" ajax="false"
+						value="#{pesquisarHorarioMB.ciaAerea}"
+						converter="ciaAereaConverter">
+						<f:selectItem itemLabel="#{msg['select']}" itemValue=""
 							noSelectionOption="true" />
-						<f:selectItem itemLabel="Cia2" itemValue=""
-							noSelectionOption="true" />
-						<f:selectItem itemLabel="Cia3" itemValue=""
-							noSelectionOption="true" />
+						<f:selectItems value="#{pesquisarHorarioMB.companhiasAereas}"
+							var="ciaAerea" itemLabel="#{ciaAerea.nome}"
+							itemValue="#{ciaAerea}" />
+						<p:ajax event="change" update="rotas"
+							listener="#{pesquisarHorarioMB.listarRotas}" />
+						<p:ajax event="change" update="avioes"
+							listener="#{pesquisarHorarioMB.listarAvioes}" />
 					</p:selectOneMenu>
-
-					<h:outputLabel for="rota" value="Rota" />
-					<p:selectOneMenu id="rota" value="">
-						<f:selectItem itemLabel="Selecione Origem" itemValue=""
+					
+					<h:outputLabel for="rotas" value="#{msg['rotas']}:"  />
+					<p:selectOneMenu id="rotas"  ajax="false"
+						value="#{pesquisarHorarioMB.rota}"
+						disabled="#{pesquisarHorarioMB.rotas == null}"
+						converter="rotaConverter">
+						<f:selectItem itemLabel="#{msg['select']}" itemValue=""
 							noSelectionOption="true" />
-						<!-- 						<f:selectItems value="#{manterAviaoMB.companhiasAereas}" -->
-						<!-- 							var="ciaAerea" itemLabel="#{ciaAerea.nome}" -->
-						<!-- 							itemValue="#{ciaAerea}" /> -->
-						<f:selectItem itemLabel="rota1" itemValue=""
-							noSelectionOption="true" />
-						<f:selectItem itemLabel="rota2" itemValue=""
-							noSelectionOption="true" />
-						<f:selectItem itemLabel="rota3" itemValue=""
-							noSelectionOption="true" />
+						<f:selectItems value="#{pesquisarHorarioMB.rotas}" var="rota"
+							itemLabel="#{rota.nome}" itemValue="#{rota}" />
 					</p:selectOneMenu>
-
-					<h:outputLabel for="aviao" value="Aviao" />
-					<p:selectOneMenu id="aviao"
-						rendered="#{not manterAviaoMB.acaoVisualizar}"
-						value="#{manterAviaoMB.aviao.ciaAerea}"
-						converter="ciaAereaConverter"
-						disabled="#{manterAviaoMB.acaoVisualizar || manterAviaoMB.acaoExcluir}">
-						<f:selectItem itemLabel="Selecione Origem" itemValue=""
+						
+					<h:outputLabel for="avioes" value="#{msg['avioes']}:"  />
+					<p:selectOneMenu id="avioes"  ajax="false"
+						value="#{pesquisarHorarioMB.aviao}"
+						disabled="#{pesquisarHorarioMB.avioes == null}"
+						converter="aviaoConverter">
+						<f:selectItem itemLabel="#{msg['select']}" itemValue=""
 							noSelectionOption="true" />
-						<!-- 						<f:selectItems value="#{manterAviaoMB.companhiasAereas}" -->
-						<!-- 							var="ciaAerea" itemLabel="#{ciaAerea.nome}" -->
-						<!-- 							itemValue="#{ciaAerea}" /> -->
-						<f:selectItem itemLabel="aviao1" itemValue=""
-							noSelectionOption="true" />
-						<f:selectItem itemLabel="aviao2" itemValue=""
-							noSelectionOption="true" />
-						<f:selectItem itemLabel="aviao3" itemValue=""
-							noSelectionOption="true" />
-					</p:selectOneMenu>
-
-					<h:outputLabel for="codigo" value="Codigo" />
-					<p:inputText id="codigo" value="" />
-					<!-- 						 disabled="#{manterAviaoMB.acaoVisualizar || manterAviaoMB.acaoExcluir}" -->
-
-					<h:outputLabel for="partida" value="Partida" />
-					<p:inputText id="partida" value="" />
-					<!-- 						 disabled="#{manterAviaoMB.acaoVisualizar || manterAviaoMB.acaoExcluir}" -->
-
-					<h:outputLabel for="chegada" value="Chegada" />
-					<p:inputText id="chegada" value="" />
-					<!-- 						 disabled="#{manterAviaoMB.acaoVisualizar || manterAviaoMB.acaoExcluir}" -->
-
-
-
+						<f:selectItems value="#{pesquisarHorarioMB.avioes}" 
+							var="aviao" itemLabel="#{aviao.codigo}" itemValue="#{aviao}" />
+					</p:selectOneMenu>					
+					
+					<h:outputLabel for="codigo" value="#{msg['codigo']}:" />
+					<p:inputText id="codigo"
+						maxlength="50" ajax="false"
+						value="#{pesquisarHorarioMB.filtroPesquisa.codigo}"
+						 />
+						
+					<h:outputLabel for="partida" value="#{msg['partida']}:" />
+					<p:calendar id="partida"
+						ajax="false"
+						value="#{pesquisarHorarioMB.filtroPesquisa.partida}"
+						 pattern="dd/MM/yyyy">
+					</p:calendar>
+					
+					<h:outputLabel for="chegada" value="#{msg['chegada']}:" />
+					<p:calendar id="chegada"
+						ajax="false"
+						value="#{pesquisarHorarioMB.filtroPesquisa.chegada}"
+						pattern="dd/MM/yyyy">
+					</p:calendar>
+					
+					<p:panel styleClass="noBorder">
+						<p:commandButton value="#{msg['pesquisar']}"
+							action="#{pesquisarHorarioMB.pesquisar}" update="resultados" />
+					</p:panel>
 				</p:panelGrid>
-
-				<p:commandButton value="#{msg['pesquisar']}" update="resultados" />
-			</p:panel>
+				
 
 
+				<p:spacer height="25px"/>
 
-			<p:spacer height="25px" />
-
-			<p:panel id="resultados" styleClass="noBorder">
-				<p:dataTable value="#{pesquisarAviaoMB.avioes}" var="aviao"
-					rendered="#{not empty pesquisarAviaoMB.avioes}"
-					selectionMode="single"
-					selection="#{pesquisarAviaoMB.aviaoSelecionada}"
-					rowKey="#{aviao.id}">
-
-					<f:facet name="header">
+				<p:panel id="resultados" styleClass="noBorder">
+					<p:dataTable value="#{pesquisarHorarioMB.horarios}" var="horario"
+							rendered="#{not empty pesquisarHorarioMB.horarios}"
+							selectionMode="single"
+							selection="#{pesquisarHorarioMB.horarioSelecionado}"
+							rowKey="#{horario.id}">
+						
+						<f:facet name="header">
 							#{msg['resultados']}
 						</f:facet>
 
-					<p:column headerText="Codigo">
+						<p:column headerText="#{msg['codigo']}">
+							#{horario.codigo}
+						</p:column>
+						
+						<p:column headerText="#{msg['partida']}">
+							#{horario.partida}
+						</p:column>
+						
+						<p:column headerText="#{msg['chegada']}">
+							#{horario.chegada}
+						</p:column>
+						
+						<p:column headerText="#{msg['aeroportoChegada']}">
+							#{horario.rota.origem.nome}
+						</p:column>
+						
+						<p:column headerText="#{msg['aeroportoDestino']}">
+							#{horario.rota.destino.nome}
+						</p:column>
+						
+						<p:column headerText="#{msg['quantiadeBilhete']}">
+							#{horario.qtdEconomica + horario.qtdPrimeira + horario.qtdExecutiva}
+						</p:column>
 
-					</p:column>
-
-					<p:column headerText="Partida">
-
-					</p:column>
-
-					<p:column headerText="Chegada">
-
-					</p:column>
-
-					<p:column headerText="Origem">
-
-					</p:column>
-
-					<p:column headerText="Destino">
-
-					</p:column>
-
-					<p:column headerText="Qnt Bilhetes">
-
-					</p:column>
-
-
-					<f:facet name="footer">
-						<p:commandButton value="#{msg['editar']}" ajax="false" />
-						<p:commandButton value="#{msg['excluir']}" ajax="false" />
-						<p:commandButton value="#{msg['visualizar']}" ajax="false" />
-					</f:facet>
-				</p:dataTable>
+						
+						<f:facet name="footer">
+							<p:commandButton value="#{msg['editar']}"
+								action="#{pesquisarHorarioMB.editar}" ajax="false" />
+							<p:commandButton value="#{msg['excluir']}"
+								action="#{pesquisarHorarioMB.excluir}" ajax="false" />
+							<p:commandButton value="#{msg['visualizar']}"
+								action="#{pesquisarHorarioMB.visualizar}" ajax="false" />
+						</f:facet>
+					</p:dataTable>
+				</p:panel>
 			</p:panel>
-
 		</h:form>
 	</ui:define>
 </ui:composition>

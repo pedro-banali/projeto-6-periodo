@@ -24,7 +24,7 @@
 						disabled="#{manterPapelMB.acaoVisualizar or manterPapelMB.acaoExcluir}" maxlength="200" />
 
 					<h:outputLabel for="ciaAerea" value="#{msg['ciaAerea']}:" />
-					<p:selectOneMenu id="ciaAerea" rendered="#{not manterPapelMB.acaoVisualizar or not manterPapelMB.acaoExcluir}"
+					<p:selectOneMenu id="ciaAerea" rendered="#{not manterPapelMB.acaoVisualizar and not manterPapelMB.acaoExcluir}"
 						value="#{manterPapelMB.papel.ciaAerea}" converter="ciaAereaConverter">
 						<f:selectItem itemLabel="Selecione o tipo de usuário" itemValue="" noSelectionOption="true"/>  
 						<f:selectItems value="#{manterPapelMB.companhiasAereas}"

@@ -60,6 +60,11 @@ public class HorarioDAO extends PatternDAO<Horario> {
 		try {
 
 			Criteria c = session.createCriteria(Horario.class);
+			c.createAlias("rota", "rota");
+			c.createAlias("rota.destino", "aeroportoD");
+			c.createAlias("rota.origem", "aeroportoO");
+			c.createAlias("aviao", "aviao");
+			
 			if (StringUtils.isNotBlank(filter.getCodigo())) {
 				c.add(Restrictions.like("codigo", "%" + filter.getCodigo()
 						+ "%"));
@@ -71,43 +76,42 @@ public class HorarioDAO extends PatternDAO<Horario> {
 				c.add(Restrictions.eq("chegada", filter.getChegada()));
 			}
 			if (StringUtils.isNotBlank(filter.getAviao().getCodigo())) {
-				c.createAlias("aviao", "aviao");
+				
 				c.add(Restrictions.like("aviao.codigo", "%"
 						+ filter.getAviao().getCodigo() + "%"));
 			}
 			if (StringUtils.isNotBlank(filter.getRota().getOrigem()
 					.getEndereco().getCidade())) {
-				c.createAlias("rota", "rota");
-				c.createAlias("rota.origem", "aeroportoO");
-				c.createAlias("aeroportoO.endereco", "endereco");
-				c.add(Restrictions.like("endereco.cidade", "%"
+
+				
+				c.createAlias("aeroportoO.endereco", "enderecoO");
+				c.add(Restrictions.like("enderecoO.cidade", "%"
 						+ filter.getRota().getOrigem().getEndereco()
 								.getCidade() + "%"));
 			}
 			if (StringUtils.isNotBlank(filter.getRota().getDestino()
 					.getEndereco().getCidade())) {
-				c.createAlias("rota", "rota");
-				c.createAlias("rota.destino", "aeroportoD");
-				c.createAlias("aeroportoD.endereco", "endereco");
-				c.add(Restrictions.like("endereco.cidade", "%"
+				
+				
+				c.createAlias("aeroportoD.endereco", "enderecoD");
+				c.add(Restrictions.like("enderecoD.cidade", "%"
 						+ filter.getRota().getDestino().getEndereco()
 								.getCidade() + "%"));
 			}
 			if (StringUtils.isNotBlank(filter.getRota().getOrigem().getNome())) {
-				c.createAlias("rota", "rota");
-				c.createAlias("rota.origem", "aeroportoO");
+
+	
 				c.add(Restrictions.like("aeroportoO.nome", "%"
 						+ filter.getRota().getOrigem().getNome() + "%"));
 			}
 			if (StringUtils.isNotBlank(filter.getRota().getDestino().getNome())) {
-				c.createAlias("rota", "rota");
-				c.createAlias("rota.destino", "aeroportoD");
+
 				c.add(Restrictions.like("aeroportoD.nome", "%"
 						+ filter.getRota().getDestino().getNome() + "%"));
 			}
 			if (StringUtils
 					.isNotBlank(filter.getRota().getCiaAerea().getNome())) {
-				c.createAlias("rota", "rota");
+
 				c.createAlias("rota.ciaAerea", "ciaAerea");
 				c.add(Restrictions.like("ciaAerea.nome", "%"
 						+ filter.getRota().getCiaAerea().getNome() + "%"));

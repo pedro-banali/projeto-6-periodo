@@ -183,6 +183,9 @@ public class PesquisarFuncionarioMB implements Serializable{
 	
 	public void listarPapeis()
 	{
+		if(ciaAerea != null)
+			filtroPesquisa.getPapel().setCiaAerea(ciaAerea);
+		
 		papeis = PapelBC.getInstance().findByFilter(filtroPesquisa.getPapel());
 	}
 	

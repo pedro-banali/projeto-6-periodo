@@ -5,98 +5,121 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:sa="http://java.sun.com/jsf/composite/componentesUtils">
 	<ui:define name="centerContent">
 		<h:form>
 			<p:panel>
 				<f:facet name="header">
-					<h1>
-						<h:outputText value="#{manterAviaoMB.title}" />
-					</h1>
+						<h1>#{manterHorarioMB.title}</h1>
 				</f:facet>
-				<p:panelGrid columns="2" columnClasses="labelField, textField">
+				
+				<p:panelGrid columns="6"  columnClasses="labelField, textField">
+				
 					<h:outputLabel for="ciaAerea" value="#{msg['ciaAerea']}:" />
-					<p:selectOneMenu id="ciaAerea" value="">
-						<f:selectItem itemLabel="Selecione o tipo de Cia Aerea"
-							itemValue="" noSelectionOption="true" />
-						<!-- 						<f:selectItems value="#{manterAviaoMB.companhiasAereas}" -->
-						<!-- 							var="ciaAerea" itemLabel="#{ciaAerea.nome}" -->
-						<!-- 							itemValue="#{ciaAerea}" /> -->
-						<f:selectItem itemLabel="Cia1" itemValue=""
+					<p:selectOneMenu id="ciaAerea" ajax="false"
+						value="#{manterHorarioMB.horario.rota.ciaAerea}"
+						rendered="#{manterHorarioMB.acaoEditar or manterHorarioMB.acaoIncluir}"
+						converter="ciaAereaConverter">
+						<f:selectItem itemLabel="#{msg['select']}" itemValue=""
 							noSelectionOption="true" />
-						<f:selectItem itemLabel="Cia2" itemValue=""
-							noSelectionOption="true" />
-						<f:selectItem itemLabel="Cia3" itemValue=""
-							noSelectionOption="true" />
+						<f:selectItems value="#{manterHorarioMB.companhiasAereas}"
+							var="ciaAerea" itemLabel="#{ciaAerea.nome}"
+							itemValue="#{ciaAerea}" />
+						<p:ajax event="change" update="rotas"
+							listener="#{manterHorarioMB.listarRotas}" />
+						<p:ajax event="change" update="avioes"
+							listener="#{manterHorarioMB.listarAvioes}" />
 					</p:selectOneMenu>
+					<p:inputText id="ciaAereaView"
+						maxlength="50" ajax="false"
+						value="#{manterHorarioMB.horario.aviao.ciaAerea.nome}"
+						rendered="#{not manterHorarioMB.acaoEditar and not manterHorarioMB.acaoIncluir}"
+						disabled="true" />
+					
 
-					<h:outputLabel for="origem" value="Origem" />
-					<p:selectOneMenu id="origem" value="">
-						<f:selectItem itemLabel="Selecione Origem" itemValue=""
+					<h:outputLabel for="rotas" value="#{msg['rotas']}:"  />
+					<p:selectOneMenu id="rotas"  ajax="false"
+						rendered="#{manterHorarioMB.acaoEditar or manterHorarioMB.acaoIncluir}"
+						value="#{manterHorarioMB.horario.rota}"
+						converter="rotaConverter" disabled="#{manterHorarioMB.rotas == null}">
+						<f:selectItem itemLabel="#{msg['select']}" itemValue=""
 							noSelectionOption="true" />
-						<!-- 						<f:selectItems value="#{manterAviaoMB.companhiasAereas}" -->
-						<!-- 							var="ciaAerea" itemLabel="#{ciaAerea.nome}" -->
-						<!-- 							itemValue="#{ciaAerea}" /> -->
-						<f:selectItem itemLabel="Origem1" itemValue=""
-							noSelectionOption="true" />
-						<f:selectItem itemLabel="Origem2" itemValue=""
-							noSelectionOption="true" />
-						<f:selectItem itemLabel="Origem3" itemValue=""
-							noSelectionOption="true" />
+						<f:selectItems value="#{manterHorarioMB.rotas}" 
+							var="rota" itemLabel="#{rota.nome}" itemValue="#{rota}" />
 					</p:selectOneMenu>
-
-					<h:outputLabel for="destino" value="Destino" />
-					<p:selectOneMenu id="destino"
-						rendered="#{not manterAviaoMB.acaoVisualizar}"
-						value="#{manterAviaoMB.aviao.ciaAerea}"
-						converter="ciaAereaConverter"
-						disabled="#{manterAviaoMB.acaoVisualizar || manterAviaoMB.acaoExcluir}">
-						<f:selectItem itemLabel="Selecione Origem" itemValue=""
+						
+					<p:inputText id="rotaView"
+						maxlength="50" ajax="false"
+						value="#{manterHorarioMB.horario.rota.nome}"
+						rendered="#{not manterHorarioMB.acaoEditar and not manterHorarioMB.acaoIncluir}"
+						disabled="true" />	
+						
+					<h:outputLabel for="avioes" value="#{msg['avioes']}:"  />
+					<p:selectOneMenu id="avioes"  ajax="false"
+						rendered="#{manterHorarioMB.acaoEditar or manterHorarioMB.acaoIncluir}"
+						value="#{manterHorarioMB.horario.aviao}"
+						converter="aviaoConverter"
+						disabled="#{manterHorarioMB.avioes == null}">
+						<f:selectItem itemLabel="#{msg['select']}" itemValue=""
 							noSelectionOption="true" />
-						<!-- 						<f:selectItems value="#{manterAviaoMB.companhiasAereas}" -->
-						<!-- 							var="ciaAerea" itemLabel="#{ciaAerea.nome}" -->
-						<!-- 							itemValue="#{ciaAerea}" /> -->
-						<f:selectItem itemLabel="Destino1" itemValue=""
-							noSelectionOption="true" />
-						<f:selectItem itemLabel="Destino2" itemValue=""
-							noSelectionOption="true" />
-						<f:selectItem itemLabel="Destino3" itemValue=""
-							noSelectionOption="true" />
+						<f:selectItems value="#{manterHorarioMB.avioes}" 
+							var="aviao" itemLabel="#{aviao.codigo}" itemValue="#{aviao}" />
 					</p:selectOneMenu>
-
-					<h:outputLabel for="codigo" value="codigo" />
-					<p:inputText id="codigo" value="" />
-					<!-- 						 disabled="#{manterAviaoMB.acaoVisualizar || manterAviaoMB.acaoExcluir}" -->
-
-					<h:outputLabel for="partida" value="partida" />
-					<p:inputText id="partida" value="" />
-					<!-- 						 disabled="#{manterAviaoMB.acaoVisualizar || manterAviaoMB.acaoExcluir}" -->
-
-					<h:outputLabel for="chegada" value="chegada" />
-					<p:inputText id="chegada" value="" />
-					<!-- 						 disabled="#{manterAviaoMB.acaoVisualizar || manterAviaoMB.acaoExcluir}" -->
-
-					<h:outputLabel for="qtdEconomica" value="qtdEconomica" />
-					<p:inputText id="qtdEconomica" value="" />
-					<!-- 						 disabled="#{manterAviaoMB.acaoVisualizar || manterAviaoMB.acaoExcluir}" -->
-
-					<h:outputLabel for="qtdExecutiva" value="qtdExecutiva" />
-					<p:inputText id="qtdExecutiva" value="" />
-					<!-- 						 disabled="#{manterAviaoMB.acaoVisualizar || manterAviaoMB.acaoExcluir}" -->
-
-					<h:outputLabel for="qtdPrimeira" value="qtdPrimeira" />
-					<p:inputText id="qtdPrimeira" value="" />
-					<!-- 						 disabled="#{manterAviaoMB.acaoVisualizar || manterAviaoMB.acaoExcluir}" -->
-
-
-
+					<p:inputText id="aviaoView"
+						maxlength="50" ajax="false"
+						value="#{manterHorarioMB.horario.aviao.codigo}"
+						disabled="true" 
+						rendered="#{not manterHorarioMB.acaoEditar and not manterHorarioMB.acaoIncluir}"/>
+						
+					<h:outputLabel for="codigo" value="#{msg['codigo']}:" />
+					<p:inputText id="codigo"
+						maxlength="50" ajax="false"
+						value="#{manterHorarioMB.horario.codigo}"
+						disabled="#{manterHorarioMB.disable}" />
+						
+					<h:outputLabel for="partida" value="#{msg['partida']}:" />
+					<p:calendar id="partida"
+						ajax="false"
+						value="#{manterHorarioMB.horario.partida}"
+						disabled="#{manterHorarioMB.disable}" pattern="dd/MM/yyyy">
+					</p:calendar>
+					
+					<h:outputLabel for="chegada" value="#{msg['chegada']}:" />
+					<p:calendar id="chegada"
+						ajax="false"
+						value="#{manterHorarioMB.horario.chegada}"
+						disabled="#{manterHorarioMB.acaoVisualizar or manterHorarioMB.acaoExcluir}" pattern="dd/MM/yyyy">
+					</p:calendar>
+						
+					<h:outputLabel for="economica" value="#{msg['qtdEconomica']}:" />
+					<p:inputText id="economica"
+						maxlength="50" ajax="false"
+						value="#{manterHorarioMB.horario.qtdEconomica}"
+						disabled="#{manterHorarioMB.disable}" />
+						
+					<h:outputLabel for="executiva" value="#{msg['qtdExecutiva']}:" />
+					<p:inputText id="executiva"
+						maxlength="50" ajax="false"
+						value="#{manterHorarioMB.horario.qtdExecutiva}"
+						disabled="#{manterHorarioMB.disable}" />
+						
+					<h:outputLabel for="primeira" value="#{msg['qtdPrimeira']}:" />
+					<p:inputText id="primeira"
+						maxlength="50" ajax="false"
+						value="#{manterHorarioMB.horario.qtdPrimeira}"
+						disabled="#{manterHorarioMB.disable}" />
+					
 				</p:panelGrid>
 
 				<f:facet name="footer">
 					<p:panel toggleTitle="#{msg['acoes']}" styleClass="noBorder">
-						<p:commandButton id="submit" value="#{msg['salvar']}" ajax="false" />
+						<p:commandButton id="submit" value="#{msg['salvar']}"
+							action="#{manterHorarioMB.salvar}" ajax="false"
+							rendered="#{not manterHorarioMB.acaoVisualizar}" />
 
-						<p:commandButton id="reset" value="#{msg['voltar']}" ajax="false" />
+						<p:commandButton id="reset" value="#{msg['voltar']}"
+							action="#{manterHorarioMB.voltar}" ajax="false" />
 					</p:panel>
 				</f:facet>
 			</p:panel>
