@@ -36,7 +36,7 @@ public class Executiva extends Bilhete {
 
 		this.getHorario().setExecutivas(executivas);
 
-		super.setTipoBilheteEnum(TipoBilheteEnum.PRIMEIRA);
+		super.setTipoBilheteEnum(TipoBilheteEnum.EXECUTIVA);
 		horario.getExecutivas().add(this);
 		
 	}

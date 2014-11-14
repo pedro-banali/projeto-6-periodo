@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/templates/layoutTeste.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="centerContent">
+		<h:form>
+			<p:panel>
+				<f:facet name="header">
+					<h1>#{msg['pesquisarRota']}</h1>
+				</f:facet>
+				<p:panel toggleable="true" toggleSpeed="500">
+						
+						<f:facet name="header">
+							#{msg['filtroPesquisa']}
+						</f:facet>
+					<p:panelGrid columns="6" columnClasses="labelField, textField, labelField, textField, labelField, textField">
+
+						<h:outputLabel for="ciaAerea" value="#{msg['ciaAerea']}:" />
+						<p:selectOneMenu id="ciaAerea"
+							value="#{reservarBilheteMB.filtroPesquisa.ciaAerea}" converter="ciaAereaConverter">
+							<f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true"/>  
+							<f:selectItems value="#{reservarBilheteMB.ciaAereas}"
+								var="ciaAerea" itemLabel="#{ciaAerea.nome}"
+								itemValue="#{ciaAerea}" />
+						</p:selectOneMenu>
+					
+						<h:outputLabel for="origem" value="#{msg['origem']}:" />
+						<p:selectOneMenu id="origem"
+							value="#{reservarBilheteMB.filtroPesquisa.origem}" converter="aeroportoConverter">
+							<f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true"/>  
+							<f:selectItems value="#{reservarBilheteMB.origens}"
+								var="origem" itemLabel="#{origem.nome}"
+								itemValue="#{origem}" />
+						</p:selectOneMenu>
+						
+						<h:outputLabel for="destino" value="#{msg['destino']}:" />
+						<p:selectOneMenu id="destino"
+							value="#{reservarBilheteMB.filtroPesquisa.destino}" converter="aeroportoConverter">
+							<f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true"/>  
+							<f:selectItems value="#{reservarBilheteMB.destinos}"
+								var="destino" itemLabel="#{destino.nome}"
+								itemValue="#{destino}" />
+						</p:selectOneMenu>
+						
+						<h:outputLabel for="tipoBilhete" value="#{msg['tipoBilhete']}:" />
+						<p:selectOneMenu id="tipoBilhete"
+							value="#{reservarBilheteMB.tipoBilhete}">
+							<f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true"/>  
+							<f:selectItems value="#{reservarBilheteMB.tipoBilheteEnums}"
+								var="tipoBilhete" itemLabel="#{tipoBilhete.nome}"
+								itemValue="#{tipoBilhete}" />
+						</p:selectOneMenu>
+						
+						<h:outputLabel for="partida" value="#{msg['partida']}:"/>
+						<p:calendar id="partida"
+							ajax="false"
+							value="#{pesquisarHorarioMB.filtroPesquisa.partida}"
+							 pattern="dd/MM/yyyy">
+						</p:calendar>
+						
+					</p:panelGrid>
+				
+					<p:panel styleClass="noBorder">
+						<p:commandButton value="#{msg['pesquisar']}"
+							action="#{reservarBilheteMB.pesquisar}" update="resultados" />
+					</p:panel>
+				</p:panel>
+
+				<p:spacer height="25px"/>
+
+				<p:panel id="resultados" styleClass="noBorder">
+					<p:dataTable value="#{reservarBilheteMB.bilhetes}" var="bilhete"
+							rendered="#{not empty reservarBilheteMB.bilhetes}"
+							selectionMode="single"
+							selection="#{reservarBilheteMB.bilheteSelecionado}"
+							rowKey="#{bilhete.id}">
+						
+						<f:facet name="header">
+							#{msg['resultados']}
+						</f:facet>
+
+						<p:column headerText="#{msg['ciaAerea']}">
+							#{bilhete.ciaAerea.nome}
+						</p:column>
+						
+						<f:facet name="footer">
+							<p:commandButton value="#{msg['editar']}"
+								action="#{reservarBilheteMB.editar}" ajax="false" />
+							<p:commandButton value="#{msg['excluir']}"
+								action="#{reservarBilheteMB.excluir}" ajax="false" />
+							<p:commandButton value="#{msg['visualizar']}"
+								action="#{reservarBilheteMB.visualizar}" ajax="false" />
+						</f:facet>
+					</p:dataTable>
+				</p:panel>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

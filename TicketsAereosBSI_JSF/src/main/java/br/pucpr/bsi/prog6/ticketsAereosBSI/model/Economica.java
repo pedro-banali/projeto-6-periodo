@@ -36,7 +36,7 @@ public class Economica extends Bilhete {
 
 		this.getHorario().setEconomicas(economicas);
 
-		super.setTipoBilheteEnum(TipoBilheteEnum.PRIMEIRA);
+
 		horario.getEconomicas().add(this);
 
 		setTipoBilheteEnum(TipoBilheteEnum.ECONOMICA);
