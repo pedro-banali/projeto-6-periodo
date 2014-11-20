@@ -7,39 +7,27 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.swing.text.View;
 
 import org.apache.log4j.Logger;
 
-import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.AeroportoBC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.BilheteBC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.BilheteBCFactory;
-import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.CiaAereaBC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.EconomicaBC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.ExecutivaBC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.PassageiroBC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.PrimeiraBC;
-import br.pucpr.bsi.prog6.ticketsAereosBSI.bc.RotaBC;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dto.BilheteDTO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.SituacaoBilheteEnum;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.TipoBilheteEnum;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
-import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Aeroporto;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Bilhete;
-import br.pucpr.bsi.prog6.ticketsAereosBSI.model.CiaAerea;
-import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Economica;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Endereco;
-import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Executiva;
-import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Horario;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Passageiro;
-import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Primeira;
-import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Rota;
-import br.pucpr.bsi.prog6.ticketsAereosBSI.view.mb.utils.ViewUtil;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.view.messages.MessagesUtils;
 
 @ManagedBean
 @ViewScoped
-public class comprarBilheteMB implements Serializable{
+public class ComprarBilheteMB implements Serializable{
 	/////////////////////////////////////
 	// Atributos
 	/////////////////////////////////////
@@ -47,9 +35,9 @@ public class comprarBilheteMB implements Serializable{
 	public static final String BILHETE_SELECIONADO = "bilheteSelecionado";
 	public static final String FILTRO_PESQUISA = "filtroPesquisa";
 	//Utilizado para logs via Log4J
-	private static Logger log = Logger.getLogger(comprarBilheteMB.class);
+	private static Logger log = Logger.getLogger(ComprarBilheteMB.class);
 	private List<BilheteDTO> bilhetes;
-	private Bilhete bilheteSelecionado;
+	private BilheteDTO bilheteSelecionado;
 	private Passageiro passageiro;
 	private List<Passageiro> passageiros;
 	private TipoBilheteEnum tipoBilhete;
@@ -57,7 +45,7 @@ public class comprarBilheteMB implements Serializable{
 	/////////////////////////////////////
 	// Construtores
 	/////////////////////////////////////
-	public comprarBilheteMB() {
+	public ComprarBilheteMB() {
 	}
 	@PostConstruct
 	private void init(){
@@ -95,7 +83,7 @@ public class comprarBilheteMB implements Serializable{
 		validate();
 		@SuppressWarnings("rawtypes")
 		BilheteBC bilheteBC = BilheteBCFactory.getInstanceBC(getTipoBilhete());
-		bilheteBC.comprarBilhete(bilheteSelecionado.getId());
+		bilheteBC.comprarBilhete(bilheteSelecionado.getIdBilhete());
 		pesquisar();
 		MessagesUtils.addInfo("sucesso", "IN0000");
 	}
@@ -128,10 +116,10 @@ public class comprarBilheteMB implements Serializable{
 	public void setBilhetes(List<BilheteDTO> bilhetes) {
 		this.bilhetes = bilhetes;
 	}
-	public Bilhete getBilheteSelecionado() {
+	public BilheteDTO getBilheteSelecionado() {
 		return bilheteSelecionado;
 	}
-	public void setBilheteSelecionado(Bilhete bilheteSelecionado) {
+	public void setBilheteSelecionado(BilheteDTO bilheteSelecionado) {
 		this.bilheteSelecionado = bilheteSelecionado;
 	}
 	public Passageiro getPassageiro() {

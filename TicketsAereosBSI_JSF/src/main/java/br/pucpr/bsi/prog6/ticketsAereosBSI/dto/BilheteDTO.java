@@ -15,6 +15,7 @@ public class BilheteDTO {
 	private Long idBilhete;
 	private Long idHorario;
 	private TipoBilheteEnum tipoBilhete;
+	private Date dataPartida;
 	private SituacaoBilheteEnum situacaoBilheteEnum;
 	
 	
@@ -31,6 +32,7 @@ public class BilheteDTO {
 		this.idHorario = idHorario;
 		this.tipoBilhete = tipoBilhete;
 		this.situacaoBilheteEnum = situacaoBilheteEnum;
+		this.setDataPartida(dataPartida);
 	}
 
 	public String getCidadeOrigem() {
@@ -103,6 +105,14 @@ public class BilheteDTO {
 
 	public void setTipoBilhete(TipoBilheteEnum tipoBilhete) {
 		this.tipoBilhete = tipoBilhete;
+	}
+
+	public Date getDataPartida() {
+		return dataPartida;
+	}
+
+	public void setDataPartida(Date dataPartida) {
+		this.dataPartida = dataPartida;
 	}
 	
 	

@@ -38,8 +38,7 @@ public abstract class BilheteDAO<T extends Bilhete> extends PatternDAO<T> {
 					+ "and rota.destino = destino "
 					+ "and origem.endereco = origemEndereco "
 					+ "and destino.endereco = destinoEndereco "
-					+ "and b.situacaoBilhete = :situacao "
-					+ "and horario.partida = :partida ");
+					+ "and b.situacaoBilhete = :situacao ");
 
 			if (StringUtils.isNotBlank(passageiro.getNome()))
 				queryString += "and b.passageiro = :passageiro ";
@@ -49,8 +48,8 @@ public abstract class BilheteDAO<T extends Bilhete> extends PatternDAO<T> {
 			query.setParameter("situacao", situacao);
 			
 			
-			if (StringUtils.isNotBlank(passageiro.getNome()))
-				query.setParameter("passageiro", passageiro.getNome());
+			if (passageiro != null)
+				query.setParameter("passageiro", passageiro);
 
 			return query.list();
 		} catch (HibernateException e) {

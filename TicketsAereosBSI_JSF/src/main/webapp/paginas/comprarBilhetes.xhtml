@@ -17,7 +17,7 @@
 					<f:facet name="header">
 							#{msg['filtroPesquisa']}
 						</f:facet>
-					<p:panelGrid columns="2"
+					<p:panelGrid columns="4"
 						columnClasses="labelField, textField, labelField, textField, labelField, textField">
 
 						<h:outputLabel for="passageiro" value="#{msg['passageiro']}:" />
@@ -55,30 +55,31 @@
 					<p:dataTable value="#{comprarBilheteMB.bilhetes}" var="bilhete"
 						rendered="#{not empty comprarBilheteMB.bilhetes}"
 						selectionMode="single"
-						selection="#{comprarBilheteMB.bilheteSelecionado}" rowKey="#{bilhete.id}">
+						selection="#{comprarBilheteMB.bilheteSelecionado}"
+						rowKey="#{bilhete.idBilhete}">
 
 						<f:facet name="header">
 							#{msg['bilhetesDisponiveis']}
 						</f:facet>
 
 						<p:column headerText="#{msg['ciaAerea']}">
-							#{bilhete.horario.rota.ciaAerea.nome}
+							#{bilhete.ciaAerea}
 						</p:column>
 						
 						<p:column headerText="#{msg['classeBilhete']}">
-							#{bilhete.tipoBilheteEnum}
+							#{bilhete.tipoBilhete}
 						</p:column>
 
 						<p:column headerText="#{msg['origem']}">
-							#{bilhete.horario.rota.origem.nome}/#{bilhete.horario.rota.origem.codigo}
+							#{bilhete.cidadeOrigem}/#{bilhete.aeroportoOrigem}
 						</p:column>
 
 						<p:column headerText="#{msg['destino']}">
-							#{bilhete.horario.rota.destino.nome}/#{bilhete.horario.rota.origem.codigo}
+							#{bilhete.cidadeDestino}/#{bilhete.aeroportoOrigem}
 						</p:column>
 						
 						<p:column headerText="#{msg['partida']}">
-							#{bilhete.horario.partida}
+							#{bilhete.dataPartida}
 						</p:column>
 
 						<f:facet name="footer">
