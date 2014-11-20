@@ -4,8 +4,12 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.ExecutivaDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.PrimeiraDAO;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dto.BilheteDTO;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.SituacaoBilheteEnum;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Passageiro;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Primeira;
 
 public class PrimeiraBC extends BilheteBC<Primeira> {
@@ -102,6 +106,13 @@ public class PrimeiraBC extends BilheteBC<Primeira> {
 		}
 
 		return PrimeiraDAO.getInstance().findAssentosDisponiveis(idHorario);
+	}
+
+	@Override
+	public List<BilheteDTO> findBySituacao(Passageiro passageiro,
+			SituacaoBilheteEnum reservado) {
+		// TODO Auto-generated method stub
+		return PrimeiraDAO.getInstance().findBySituacao(passageiro, reservado);
 	}
 
 }

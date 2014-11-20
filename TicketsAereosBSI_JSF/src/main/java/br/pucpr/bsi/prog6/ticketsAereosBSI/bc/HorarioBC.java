@@ -1,11 +1,9 @@
 package br.pucpr.bsi.prog6.ticketsAereosBSI.bc;
 
-import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
-import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.AviaoDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.HorarioDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Horario;

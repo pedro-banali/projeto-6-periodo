@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.BilheteDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.EconomicaDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.ExecutivaDAO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.PrimeiraDAO;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dto.BilheteDTO;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.SituacaoBilheteEnum;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Bilhete;
@@ -163,4 +165,6 @@ public abstract class BilheteBC<T extends Bilhete> extends PatternBC<T> {
 			break;
 		}
 	}
+	public abstract List<BilheteDTO> findBySituacao(Passageiro passageiro,
+			SituacaoBilheteEnum reservado);
 }

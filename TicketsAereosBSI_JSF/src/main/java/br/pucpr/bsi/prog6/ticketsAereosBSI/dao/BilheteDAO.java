@@ -8,7 +8,10 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import br.pucpr.bsi.prog6.ticketsAereosBSI.dao.util.HibernateUtil;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.dto.BilheteDTO;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.SituacaoBilheteEnum;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Bilhete;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Passageiro;
 
 public abstract class BilheteDAO<T extends Bilhete> extends PatternDAO<T> {
 
@@ -20,7 +23,44 @@ public abstract class BilheteDAO<T extends Bilhete> extends PatternDAO<T> {
 	private static final long serialVersionUID = 1L;
 
 	public abstract List<String> findAssentosDisponiveis(Long idHorario);
+	
+	public List<BilheteDTO> findBySituacao(Passageiro passageiro, SituacaoBilheteEnum situacao)
+	{
+		Session session = null;
+		try {
+			session = HibernateUtil.getSession();
+			String queryString = ("select new br.pucpr.bsi.prog6.ticketsAereosBSI.dto.BilheteDTO(origemEndereco.cidade, destinoEndereco.cidade, origem.codigo, destino.codigo, ciaAerea.nome, b.id, horario.id, horario.partida, b.tipoBilhete, b.situacaoBilhete) "
+					+ "from Bilhete as b, Horario as horario, Rota as rota, Aeroporto as origem, Aeroporto as destino, CiaAerea as ciaAerea, Endereco as origemEndereco, Endereco as destinoEndereco "
+					+ "where b.horario = horario "
+					+ "and horario.rota = rota "
+					+ "and rota.ciaAerea = ciaAerea "
+					+ "and rota.origem = origem "
+					+ "and rota.destino = destino "
+					+ "and origem.endereco = origemEndereco "
+					+ "and destino.endereco = destinoEndereco "
+					+ "and b.situacaoBilhete = :situacao "
+					+ "and horario.partida = :partida ");
 
+			if (StringUtils.isNotBlank(passageiro.getNome()))
+				queryString += "and b.passageiro = :passageiro ";
+
+			Query query = session.createQuery(queryString);
+
+			query.setParameter("situacao", situacao);
+			
+			
+			if (StringUtils.isNotBlank(passageiro.getNome()))
+				query.setParameter("passageiro", passageiro.getNome());
+
+			return query.list();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+				session.close();
+		}
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> findByFilter(T filter) {

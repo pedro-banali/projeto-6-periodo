@@ -11,6 +11,7 @@ import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.SituacaoBilheteEnum;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.enums.TipoBilheteEnum;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.exception.TicketsAereosBSIException;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Bilhete;
+import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Passageiro;
 import br.pucpr.bsi.prog6.ticketsAereosBSI.model.Primeira;
 
 public class PrimeiraDAO extends BilheteDAO<Primeira> {
